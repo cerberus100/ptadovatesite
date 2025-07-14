@@ -1,0 +1,505 @@
+/**
+ * HH Body Map Styles
+ * Styling for the interactive body map plugin
+ */
+
+/* Container */
+.hh-bodymap-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header */
+.hh-bodymap-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hh-bodymap-header h3 {
+    color: #26547c;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.hh-bodymap-instruction {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* SVG Container */
+.hh-bodymap-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.hh-bodymap-svg-container svg {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* SVG Regions */
+.hh-bodymap-svg-container .bm-region {
+    fill: #e8f4f8;
+    stroke: #26547c;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.3s ease, stroke 0.3s ease, transform 0.2s ease;
+}
+
+.hh-bodymap-svg-container .bm-region:hover {
+    fill: #ff6b5d;
+    stroke: #e54e41;
+    transform: scale(1.05);
+}
+
+.hh-bodymap-svg-container .bm-region.active {
+    fill: #46b5a4;
+    stroke: #326f64;
+    stroke-width: 3;
+}
+
+.hh-bodymap-svg-container .bm-region:focus {
+    outline: 2px dashed #46b5a4;
+    outline-offset: 2px;
+}
+
+.hh-bodymap-svg-container .bm-region.active:hover {
+    fill: #3a8e82;
+    stroke: #2a5d57;
+}
+
+/* Labels */
+.hh-bodymap-svg-container .bm-label {
+    font-family: inherit;
+    font-size: 10px;
+    fill: #26547c;
+    text-anchor: middle;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hh-bodymap-container.show-labels .bm-label {
+    opacity: 1;
+}
+
+/* Selection Info */
+.hh-bodymap-selection-info {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.hh-bodymap-selected-regions {
+    margin-bottom: 10px;
+}
+
+.hh-bodymap-selected-regions strong {
+    color: #26547c;
+    font-weight: 600;
+}
+
+.hh-bodymap-selected-list {
+    color: #495057;
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+/* Actions */
+.hh-bodymap-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hh-bodymap-clear-btn {
+    background: #ff6b5d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hh-bodymap-clear-btn:hover {
+    background: #e54e41;
+    transform: translateY(-1px);
+}
+
+.hh-bodymap-clear-btn:active {
+    transform: translateY(0);
+}
+
+/* Hidden Input */
+.hh-bodymap-hidden-input {
+    display: none;
+}
+
+/* Loading State */
+.hh-bodymap-container.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.hh-bodymap-container.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #46b5a4;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.hh-bodymap-container.error {
+    border-color: #ff6b5d;
+}
+
+.hh-bodymap-error-message {
+    background: #ffe6e6;
+    color: #d63384;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Success State */
+.hh-bodymap-success-message {
+    background: #e8f5e8;
+    color: #28a745;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* Modal Mode */
+.hh-bodymap-container.modal-mode {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.hh-bodymap-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.hh-bodymap-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 5px;
+    line-height: 1;
+}
+
+.hh-bodymap-modal-close:hover {
+    color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hh-bodymap-container {
+        margin: 0 10px;
+        padding: 15px;
+        max-width: none;
+    }
+    
+    .hh-bodymap-svg-container {
+        padding: 10px;
+    }
+    
+    .hh-bodymap-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .hh-bodymap-instruction {
+        font-size: 0.85rem;
+    }
+    
+    .hh-bodymap-container.modal-mode {
+        max-width: 95vw;
+        max-height: 95vh;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hh-bodymap-container {
+        padding: 10px;
+    }
+    
+    .hh-bodymap-svg-container {
+        padding: 8px;
+    }
+    
+    .hh-bodymap-selection-info {
+        padding: 10px;
+    }
+    
+    .hh-bodymap-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hh-bodymap-clear-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .hh-bodymap-svg-container .bm-region {
+        stroke-width: 3;
+    }
+    
+    .hh-bodymap-svg-container .bm-region:hover {
+        fill: #ff0000;
+        stroke: #cc0000;
+    }
+    
+    .hh-bodymap-svg-container .bm-region.active {
+        fill: #008000;
+        stroke: #006600;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .hh-bodymap-svg-container .bm-region {
+        transition: none;
+    }
+    
+    .hh-bodymap-clear-btn {
+        transition: none;
+    }
+    
+    .hh-bodymap-container.loading::after {
+        animation: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .hh-bodymap-container {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .hh-bodymap-svg-container {
+        background: white;
+    }
+    
+    .hh-bodymap-actions {
+        display: none;
+    }
+    
+    .hh-bodymap-svg-container .bm-region.active {
+        fill: #000;
+        stroke: #000;
+    }
+}
+
+/* Accessibility Improvements */
+.hh-bodymap-container:focus-within {
+    outline: 2px solid #46b5a4;
+    outline-offset: 2px;
+}
+
+.hh-bodymap-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Keyboard Navigation */
+.hh-bodymap-svg-container .bm-region:focus {
+    outline: 3px solid #46b5a4;
+    outline-offset: 3px;
+}
+
+/* Form Integration */
+.hh-bodymap-form-group {
+    margin-bottom: 20px;
+}
+
+.hh-bodymap-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.hh-bodymap-form-group .hh-bodymap-container {
+    margin: 0;
+}
+
+/* Gravity Forms Integration */
+.gform_wrapper .hh-bodymap-container {
+    margin: 0;
+}
+
+.gform_wrapper .hh-bodymap-header h3 {
+    margin-top: 0;
+}
+
+/* ACF Integration */
+.acf-field .hh-bodymap-container {
+    margin: 0;
+}
+
+.acf-field-bodymap .acf-label {
+    margin-bottom: 10px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .hh-bodymap-container {
+        background: #1a1a1a;
+        border-color: #333;
+        color: #fff;
+    }
+    
+    .hh-bodymap-header h3 {
+        color: #66C9B8;
+    }
+    
+    .hh-bodymap-instruction {
+        color: #adb5bd;
+    }
+    
+    .hh-bodymap-svg-container {
+        background: #2d2d2d;
+    }
+    
+    .hh-bodymap-selection-info {
+        background: #2d2d2d;
+        color: #fff;
+    }
+    
+    .hh-bodymap-selected-regions strong {
+        color: #66C9B8;
+    }
+    
+    .hh-bodymap-selected-list {
+        color: #adb5bd;
+    }
+    
+    .hh-bodymap-svg-container .bm-region {
+        fill: #3d5a80;
+        stroke: #66C9B8;
+    }
+    
+    .hh-bodymap-svg-container .bm-region:hover {
+        fill: #ff6b5d;
+        stroke: #e54e41;
+    }
+    
+    .hh-bodymap-svg-container .bm-region.active {
+        fill: #46b5a4;
+        stroke: #66C9B8;
+    }
+}
+
+/* Animation for region selection */
+@keyframes regionSelect {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hh-bodymap-svg-container .bm-region.just-selected {
+    animation: regionSelect 0.3s ease;
+}
+
+/* Tooltip styles */
+.hh-bodymap-tooltip {
+    position: absolute;
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hh-bodymap-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hh-bodymap-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+} 

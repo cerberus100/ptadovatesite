@@ -1,0 +1,1048 @@
+[
+    {
+        "id": "1",
+        "title": "Patient Assistance Request",
+        "description": "Get help connecting with wound care specialists in your area. All information is kept confidential and secure.",
+        "labelPlacement": "top_label",
+        "descriptionPlacement": "below",
+        "button": {
+            "type": "text",
+            "text": "Submit Request",
+            "imageUrl": ""
+        },
+        "fields": [
+            {
+                "type": "section",
+                "id": 1,
+                "label": "Patient Information",
+                "description": "Please provide your basic contact information",
+                "isRequired": false
+            },
+            {
+                "type": "name",
+                "id": 2,
+                "label": "Full Name",
+                "isRequired": true,
+                "inputs": [
+                    {
+                        "id": "2.3",
+                        "label": "First",
+                        "name": "first_name",
+                        "placeholder": "First Name"
+                    },
+                    {
+                        "id": "2.6",
+                        "label": "Last",
+                        "name": "last_name",
+                        "placeholder": "Last Name"
+                    }
+                ],
+                "nameFormat": "simple"
+            },
+            {
+                "type": "email",
+                "id": 3,
+                "label": "Email Address",
+                "isRequired": true,
+                "placeholder": "your.email@example.com",
+                "size": "large"
+            },
+            {
+                "type": "phone",
+                "id": 4,
+                "label": "Phone Number",
+                "isRequired": true,
+                "phoneFormat": "standard",
+                "placeholder": "(555) 123-4567"
+            },
+            {
+                "type": "address",
+                "id": 5,
+                "label": "Address",
+                "isRequired": true,
+                "inputs": [
+                    {
+                        "id": "5.1",
+                        "label": "Street Address",
+                        "name": "street_address",
+                        "placeholder": "123 Main Street"
+                    },
+                    {
+                        "id": "5.2",
+                        "label": "Address Line 2",
+                        "name": "street_address_2",
+                        "placeholder": "Apt, suite, etc."
+                    },
+                    {
+                        "id": "5.3",
+                        "label": "City",
+                        "name": "city",
+                        "placeholder": "City"
+                    },
+                    {
+                        "id": "5.4",
+                        "label": "State / Province",
+                        "name": "state",
+                        "placeholder": "State"
+                    },
+                    {
+                        "id": "5.5",
+                        "label": "ZIP / Postal Code",
+                        "name": "zip",
+                        "placeholder": "12345"
+                    }
+                ],
+                "addressType": "us"
+            },
+            {
+                "type": "section",
+                "id": 6,
+                "label": "Medical Information",
+                "description": "Help us understand your medical needs"
+            },
+            {
+                "type": "radio",
+                "id": 7,
+                "label": "Do you have diabetes?",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Yes - Type 1 Diabetes",
+                        "value": "type1"
+                    },
+                    {
+                        "text": "Yes - Type 2 Diabetes",
+                        "value": "type2"
+                    },
+                    {
+                        "text": "Pre-diabetes",
+                        "value": "prediabetes"
+                    },
+                    {
+                        "text": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "id": 8,
+                "label": "Diabetic Foot Ulcer Information",
+                "description": "Additional information for diabetic patients",
+                "conditionalLogic": {
+                    "actionType": "show",
+                    "logicType": "any",
+                    "rules": [
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type1"
+                        },
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type2"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "checkbox",
+                "id": 9,
+                "label": "Diabetic Foot Ulcer Symptoms (check all that apply)",
+                "isRequired": false,
+                "choices": [
+                    {
+                        "text": "Open sore or wound on foot",
+                        "value": "open_sore"
+                    },
+                    {
+                        "text": "Drainage from wound",
+                        "value": "drainage"
+                    },
+                    {
+                        "text": "Red, swollen, or warm area",
+                        "value": "inflammation"
+                    },
+                    {
+                        "text": "Foul odor from wound",
+                        "value": "odor"
+                    },
+                    {
+                        "text": "Pain or tenderness",
+                        "value": "pain"
+                    },
+                    {
+                        "text": "Numbness or tingling",
+                        "value": "numbness"
+                    },
+                    {
+                        "text": "Black tissue around wound",
+                        "value": "black_tissue"
+                    }
+                ],
+                "conditionalLogic": {
+                    "actionType": "show",
+                    "logicType": "any",
+                    "rules": [
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type1"
+                        },
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type2"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "number",
+                "id": 10,
+                "label": "How long have you had this wound? (in weeks)",
+                "isRequired": false,
+                "placeholder": "Number of weeks",
+                "rangeMin": 0,
+                "rangeMax": 999,
+                "conditionalLogic": {
+                    "actionType": "show",
+                    "logicType": "any",
+                    "rules": [
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type1"
+                        },
+                        {
+                            "fieldId": "7",
+                            "operator": "is",
+                            "value": "type2"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "section",
+                "id": 11,
+                "label": "Insurance & Financial Information"
+            },
+            {
+                "type": "select",
+                "id": 12,
+                "label": "Insurance Status",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Medicare",
+                        "value": "medicare"
+                    },
+                    {
+                        "text": "Medicaid",
+                        "value": "medicaid"
+                    },
+                    {
+                        "text": "Private Insurance",
+                        "value": "private"
+                    },
+                    {
+                        "text": "No Insurance",
+                        "value": "none"
+                    },
+                    {
+                        "text": "Other",
+                        "value": "other"
+                    }
+                ],
+                "placeholder": "Select your insurance status"
+            },
+            {
+                "type": "text",
+                "id": 13,
+                "label": "Insurance Provider Name",
+                "isRequired": false,
+                "placeholder": "e.g., Blue Cross Blue Shield, Aetna, etc.",
+                "conditionalLogic": {
+                    "actionType": "show",
+                    "logicType": "any",
+                    "rules": [
+                        {
+                            "fieldId": "12",
+                            "operator": "is",
+                            "value": "private"
+                        },
+                        {
+                            "fieldId": "12",
+                            "operator": "is",
+                            "value": "other"
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "section",
+                "id": 14,
+                "label": "Wound Information"
+            },
+            {
+                "type": "select",
+                "id": 15,
+                "label": "Primary Wound Location",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Foot/Ankle",
+                        "value": "foot_ankle"
+                    },
+                    {
+                        "text": "Lower Leg",
+                        "value": "lower_leg"
+                    },
+                    {
+                        "text": "Upper Leg/Thigh",
+                        "value": "upper_leg"
+                    },
+                    {
+                        "text": "Hip/Buttocks",
+                        "value": "hip_buttocks"
+                    },
+                    {
+                        "text": "Back",
+                        "value": "back"
+                    },
+                    {
+                        "text": "Arm/Hand",
+                        "value": "arm_hand"
+                    },
+                    {
+                        "text": "Other",
+                        "value": "other"
+                    }
+                ],
+                "placeholder": "Select wound location"
+            },
+            {
+                "type": "textarea",
+                "id": 16,
+                "label": "Wound Description",
+                "description": "Please describe your wound, including size, appearance, and any treatments you've tried",
+                "isRequired": true,
+                "placeholder": "Describe your wound in detail...",
+                "maxLength": 300,
+                "size": "large"
+            },
+            {
+                "type": "radio",
+                "id": 17,
+                "label": "Have you seen a doctor for this wound?",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Yes, I'm currently receiving treatment",
+                        "value": "currently_treating"
+                    },
+                    {
+                        "text": "Yes, but I need a specialist",
+                        "value": "need_specialist"
+                    },
+                    {
+                        "text": "No, I haven't seen a doctor yet",
+                        "value": "no_doctor"
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "id": 18,
+                "label": "File Upload",
+                "description": "You may upload photos of your wound or relevant medical documents (optional)"
+            },
+            {
+                "type": "fileupload",
+                "id": 19,
+                "label": "Upload Files",
+                "description": "Accepted file types: JPG, PNG, PDF. Maximum file size: 20MB total.",
+                "isRequired": false,
+                "multipleFiles": true,
+                "maxFiles": 5,
+                "maxFileSize": 20,
+                "allowedExtensions": "jpg,jpeg,png,pdf"
+            },
+            {
+                "type": "section",
+                "id": 20,
+                "label": "Preferences"
+            },
+            {
+                "type": "checkbox",
+                "id": 21,
+                "label": "Provider Preferences (check all that apply)",
+                "isRequired": false,
+                "choices": [
+                    {
+                        "text": "Telehealth consultations available",
+                        "value": "telehealth"
+                    },
+                    {
+                        "text": "Spanish-speaking provider",
+                        "value": "spanish"
+                    },
+                    {
+                        "text": "Accept my insurance",
+                        "value": "insurance"
+                    },
+                    {
+                        "text": "Within 25 miles of my location",
+                        "value": "local"
+                    },
+                    {
+                        "text": "Available for urgent appointments",
+                        "value": "urgent"
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "id": 22,
+                "label": "Privacy & Consent"
+            },
+            {
+                "type": "consent",
+                "id": 23,
+                "label": "HIPAA Authorization",
+                "description": "I authorize Helping Hands Wound Care Advocacy to use and disclose my protected health information to qualified healthcare providers for the purpose of connecting me with appropriate wound care treatment. I understand that my information will be kept confidential and secure.",
+                "isRequired": true,
+                "checkboxLabel": "I agree to the HIPAA authorization"
+            },
+            {
+                "type": "consent",
+                "id": 24,
+                "label": "Privacy Policy Agreement",
+                "description": "I have read and agree to the Privacy Policy and Terms of Service. I understand that this service is provided free of charge and that Helping Hands is not a healthcare provider.",
+                "isRequired": true,
+                "checkboxLabel": "I agree to the Privacy Policy and Terms of Service"
+            },
+            {
+                "type": "captcha",
+                "id": 25,
+                "label": "reCAPTCHA",
+                "captchaType": "recaptcha",
+                "isRequired": true
+            }
+        ],
+        "version": "2.7",
+        "pagination": {
+            "type": "steps",
+            "pages": [
+                {
+                    "title": "Personal Information",
+                    "fields": [2, 3, 4, 5]
+                },
+                {
+                    "title": "Medical Information", 
+                    "fields": [7, 8, 9, 10, 12, 13]
+                },
+                {
+                    "title": "Wound Details",
+                    "fields": [15, 16, 17, 19]
+                },
+                {
+                    "title": "Preferences & Consent",
+                    "fields": [21, 23, 24, 25]
+                }
+            ]
+        },
+        "firstPageCssClass": "patient-form-page-1",
+        "notifications": [
+            {
+                "id": "admin_notification",
+                "name": "Admin Notification",
+                "event": "form_submission",
+                "to": "{admin_email}",
+                "subject": "New Patient Assistance Request",
+                "message": "A new patient assistance request has been submitted.\n\nPatient: {Full Name:2}\nEmail: {Email Address:3}\nPhone: {Phone Number:4}\nDiabetes: {Do you have diabetes?:7}\nWound Location: {Primary Wound Location:15}\nInsurance: {Insurance Status:12}\n\nView full submission in WordPress admin.",
+                "from": "{admin_email}",
+                "fromName": "Helping Hands",
+                "bcc": "",
+                "replyTo": "{Email Address:3}",
+                "routing": null,
+                "conditionalLogic": null,
+                "disableAutoformat": false
+            },
+            {
+                "id": "user_confirmation",
+                "name": "User Confirmation",
+                "event": "form_submission",
+                "to": "{Email Address:3}",
+                "subject": "Your Helping Hands Assistance Request",
+                "message": "Dear {Full Name:2},\n\nThank you for submitting your wound care assistance request. We have received your information and will begin matching you with qualified providers in your area.\n\nWhat happens next:\n1. Our team will review your request within 24 hours\n2. We will identify suitable wound care specialists\n3. You will receive provider recommendations via email\n4. Our advocates will help coordinate your care\n\nIf you have any questions or need immediate assistance, please contact us at support@helpinghands.com or call (555) 123-4567.\n\nBest regards,\nThe Helping Hands Team",
+                "from": "{admin_email}",
+                "fromName": "Helping Hands",
+                "bcc": "",
+                "replyTo": "{admin_email}",
+                "routing": null,
+                "conditionalLogic": null,
+                "disableAutoformat": false
+            }
+        ],
+        "confirmations": [
+            {
+                "id": "default_confirmation",
+                "name": "Default Confirmation",
+                "isDefault": true,
+                "type": "message",
+                "message": "<div class=\"confirmation-message\">\n<h3>Thank you for your submission!</h3>\n<p>We've received your wound care assistance request and will begin working to connect you with qualified providers in your area.</p>\n<p><strong>What happens next:</strong></p>\n<ul>\n<li>Our team will review your request within 24 hours</li>\n<li>We'll identify suitable wound care specialists</li>\n<li>You'll receive provider recommendations via email</li>\n<li>Our advocates will help coordinate your care</li>\n</ul>\n<p>If you need immediate medical attention, please contact your doctor or call 911.</p>\n</div>",
+                "url": "",
+                "pageId": "",
+                "queryString": "",
+                "conditionalLogic": null
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "title": "Join Our Provider Network",
+        "description": "Apply to join the Helping Hands wound care provider network and help patients in your area receive quality care.",
+        "labelPlacement": "top_label",
+        "descriptionPlacement": "below",
+        "button": {
+            "type": "text",
+            "text": "Submit Application",
+            "imageUrl": ""
+        },
+        "fields": [
+            {
+                "type": "section",
+                "id": 1,
+                "label": "Practice Information",
+                "description": "Please provide information about your practice"
+            },
+            {
+                "type": "text",
+                "id": 2,
+                "label": "Practice Name",
+                "isRequired": true,
+                "placeholder": "ABC Medical Center",
+                "size": "large"
+            },
+            {
+                "type": "name",
+                "id": 3,
+                "label": "Provider Name",
+                "isRequired": true,
+                "inputs": [
+                    {
+                        "id": "3.3",
+                        "label": "First",
+                        "name": "first_name",
+                        "placeholder": "First Name"
+                    },
+                    {
+                        "id": "3.6",
+                        "label": "Last",
+                        "name": "last_name",
+                        "placeholder": "Last Name"
+                    }
+                ],
+                "nameFormat": "simple"
+            },
+            {
+                "type": "text",
+                "id": 4,
+                "label": "Professional Credentials",
+                "description": "e.g., MD, DO, NP, PA, DPM",
+                "isRequired": true,
+                "placeholder": "MD, CWSP, FACCWS"
+            },
+            {
+                "type": "text",
+                "id": 5,
+                "label": "NPI Number",
+                "description": "National Provider Identifier (10 digits)",
+                "isRequired": true,
+                "placeholder": "1234567890",
+                "inputMask": true,
+                "inputMaskValue": "9999999999"
+            },
+            {
+                "type": "select",
+                "id": 6,
+                "label": "Primary Specialty",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Wound Care Specialist",
+                        "value": "wound-care-specialist"
+                    },
+                    {
+                        "text": "Podiatrist",
+                        "value": "podiatrist"
+                    },
+                    {
+                        "text": "Vascular Surgeon",
+                        "value": "vascular-surgeon"
+                    },
+                    {
+                        "text": "Plastic Surgeon",
+                        "value": "plastic-surgeon"
+                    },
+                    {
+                        "text": "Dermatologist",
+                        "value": "dermatologist"
+                    },
+                    {
+                        "text": "Endocrinologist",
+                        "value": "endocrinologist"
+                    },
+                    {
+                        "text": "Infectious Disease Specialist",
+                        "value": "infectious-disease"
+                    },
+                    {
+                        "text": "Family Medicine",
+                        "value": "family-medicine"
+                    },
+                    {
+                        "text": "Internal Medicine",
+                        "value": "internal-medicine"
+                    },
+                    {
+                        "text": "Nurse Practitioner",
+                        "value": "nurse-practitioner"
+                    },
+                    {
+                        "text": "Physician Assistant",
+                        "value": "physician-assistant"
+                    },
+                    {
+                        "text": "Other",
+                        "value": "other"
+                    }
+                ],
+                "placeholder": "Select your specialty"
+            },
+            {
+                "type": "section",
+                "id": 7,
+                "label": "Contact Information"
+            },
+            {
+                "type": "email",
+                "id": 8,
+                "label": "Professional Email",
+                "isRequired": true,
+                "placeholder": "doctor@example.com",
+                "size": "large"
+            },
+            {
+                "type": "phone",
+                "id": 9,
+                "label": "Office Phone",
+                "isRequired": true,
+                "phoneFormat": "standard",
+                "placeholder": "(555) 123-4567"
+            },
+            {
+                "type": "website",
+                "id": 10,
+                "label": "Practice Website",
+                "isRequired": false,
+                "placeholder": "https://www.example.com"
+            },
+            {
+                "type": "address",
+                "id": 11,
+                "label": "Practice Address",
+                "isRequired": true,
+                "inputs": [
+                    {
+                        "id": "11.1",
+                        "label": "Street Address",
+                        "name": "street_address",
+                        "placeholder": "123 Main Street"
+                    },
+                    {
+                        "id": "11.2",
+                        "label": "Address Line 2",
+                        "name": "street_address_2",
+                        "placeholder": "Suite 100"
+                    },
+                    {
+                        "id": "11.3",
+                        "label": "City",
+                        "name": "city",
+                        "placeholder": "City"
+                    },
+                    {
+                        "id": "11.4",
+                        "label": "State",
+                        "name": "state",
+                        "placeholder": "State"
+                    },
+                    {
+                        "id": "11.5",
+                        "label": "ZIP Code",
+                        "name": "zip",
+                        "placeholder": "12345"
+                    }
+                ],
+                "addressType": "us"
+            },
+            {
+                "type": "section",
+                "id": 12,
+                "label": "Wound Care Expertise"
+            },
+            {
+                "type": "checkbox",
+                "id": 13,
+                "label": "Types of Wounds You Treat",
+                "description": "Select all that apply",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Diabetic Foot Ulcers",
+                        "value": "diabetic-foot"
+                    },
+                    {
+                        "text": "Venous Leg Ulcers",
+                        "value": "venous-leg"
+                    },
+                    {
+                        "text": "Pressure Ulcers",
+                        "value": "pressure"
+                    },
+                    {
+                        "text": "Arterial Ulcers",
+                        "value": "arterial"
+                    },
+                    {
+                        "text": "Surgical Wounds",
+                        "value": "surgical"
+                    },
+                    {
+                        "text": "Traumatic Wounds",
+                        "value": "traumatic"
+                    }
+                ]
+            },
+            {
+                "type": "checkbox",
+                "id": 14,
+                "label": "Services Offered",
+                "description": "Select all services your practice offers",
+                "isRequired": false,
+                "choices": [
+                    {
+                        "text": "Wound Assessment",
+                        "value": "wound-assessment"
+                    },
+                    {
+                        "text": "Debridement",
+                        "value": "debridement"
+                    },
+                    {
+                        "text": "Compression Therapy",
+                        "value": "compression-therapy"
+                    },
+                    {
+                        "text": "Hyperbaric Oxygen Therapy",
+                        "value": "hyperbaric-oxygen"
+                    },
+                    {
+                        "text": "Negative Pressure Wound Therapy",
+                        "value": "negative-pressure"
+                    },
+                    {
+                        "text": "Bioengineered Skin Substitutes",
+                        "value": "bioengineered-skin"
+                    },
+                    {
+                        "text": "Patient Education",
+                        "value": "patient-education"
+                    },
+                    {
+                        "text": "Diabetic Foot Care",
+                        "value": "diabetic-foot-care"
+                    }
+                ]
+            },
+            {
+                "type": "textarea",
+                "id": 15,
+                "label": "Certifications & Training",
+                "description": "List relevant wound care certifications, board certifications, and specialized training",
+                "isRequired": false,
+                "placeholder": "e.g., Certified Wound Specialist (CWS), American Board of Wound Management (ABWM), etc.",
+                "size": "large"
+            },
+            {
+                "type": "section",
+                "id": 16,
+                "label": "Practice Details"
+            },
+            {
+                "type": "radio",
+                "id": 17,
+                "label": "Do you offer telehealth consultations?",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "text": "No",
+                        "value": "no"
+                    }
+                ]
+            },
+            {
+                "type": "radio",
+                "id": 18,
+                "label": "Are you currently accepting new patients?",
+                "isRequired": true,
+                "choices": [
+                    {
+                        "text": "Yes",
+                        "value": "yes"
+                    },
+                    {
+                        "text": "No",
+                        "value": "no"
+                    },
+                    {
+                        "text": "Limited availability",
+                        "value": "limited"
+                    }
+                ]
+            },
+            {
+                "type": "checkbox",
+                "id": 19,
+                "label": "Insurance Plans Accepted",
+                "description": "Select all insurance plans you accept",
+                "isRequired": false,
+                "choices": [
+                    {
+                        "text": "Medicare",
+                        "value": "medicare"
+                    },
+                    {
+                        "text": "Medicaid",
+                        "value": "medicaid"
+                    },
+                    {
+                        "text": "Blue Cross Blue Shield",
+                        "value": "bcbs"
+                    },
+                    {
+                        "text": "Aetna",
+                        "value": "aetna"
+                    },
+                    {
+                        "text": "Cigna",
+                        "value": "cigna"
+                    },
+                    {
+                        "text": "UnitedHealthcare",
+                        "value": "unitedhealthcare"
+                    },
+                    {
+                        "text": "Humana",
+                        "value": "humana"
+                    },
+                    {
+                        "text": "TRICARE",
+                        "value": "tricare"
+                    },
+                    {
+                        "text": "Workers' Compensation",
+                        "value": "workers-comp"
+                    },
+                    {
+                        "text": "Self-Pay",
+                        "value": "self-pay"
+                    }
+                ]
+            },
+            {
+                "type": "checkbox",
+                "id": 20,
+                "label": "Languages Spoken",
+                "description": "Select all languages spoken by you and your staff",
+                "isRequired": false,
+                "choices": [
+                    {
+                        "text": "English",
+                        "value": "english"
+                    },
+                    {
+                        "text": "Spanish",
+                        "value": "spanish"
+                    },
+                    {
+                        "text": "French",
+                        "value": "french"
+                    },
+                    {
+                        "text": "German",
+                        "value": "german"
+                    },
+                    {
+                        "text": "Chinese (Mandarin)",
+                        "value": "chinese"
+                    },
+                    {
+                        "text": "Arabic",
+                        "value": "arabic"
+                    },
+                    {
+                        "text": "Other",
+                        "value": "other"
+                    }
+                ]
+            },
+            {
+                "type": "section",
+                "id": 21,
+                "label": "Professional Documents"
+            },
+            {
+                "type": "fileupload",
+                "id": 22,
+                "label": "Upload Credentials",
+                "description": "Please upload copies of your medical license, certifications, and any relevant credentials. Accepted formats: PDF, JPG, PNG. Maximum file size: 10MB.",
+                "isRequired": true,
+                "multipleFiles": true,
+                "maxFiles": 10,
+                "maxFileSize": 10,
+                "allowedExtensions": "pdf,jpg,jpeg,png"
+            },
+            {
+                "type": "section",
+                "id": 23,
+                "label": "Additional Information"
+            },
+            {
+                "type": "textarea",
+                "id": 24,
+                "label": "Professional Biography",
+                "description": "Brief description of your background, experience, and approach to wound care",
+                "isRequired": false,
+                "placeholder": "Tell us about your experience in wound care...",
+                "size": "large"
+            },
+            {
+                "type": "textarea",
+                "id": 25,
+                "label": "Why do you want to join our network?",
+                "description": "What motivates you to be part of Helping Hands?",
+                "isRequired": false,
+                "placeholder": "Share your motivation for joining our network...",
+                "size": "large"
+            },
+            {
+                "type": "section",
+                "id": 26,
+                "label": "Agreements & Consent"
+            },
+            {
+                "type": "consent",
+                "id": 27,
+                "label": "Provider Network Agreement",
+                "description": "I agree to participate in the Helping Hands provider network and understand that this is a referral service. I maintain full responsibility for patient care and will adhere to all applicable medical standards and regulations.",
+                "isRequired": true,
+                "checkboxLabel": "I agree to the Provider Network Agreement"
+            },
+            {
+                "type": "consent",
+                "id": 28,
+                "label": "Newsletter Subscription",
+                "description": "I would like to receive updates about wound care best practices, research, and network news.",
+                "isRequired": false,
+                "checkboxLabel": "Yes, I want to receive the newsletter"
+            },
+            {
+                "type": "captcha",
+                "id": 29,
+                "label": "reCAPTCHA",
+                "captchaType": "recaptcha",
+                "isRequired": true
+            }
+        ],
+        "version": "2.7",
+        "pagination": {
+            "type": "steps",
+            "pages": [
+                {
+                    "title": "Practice Information",
+                    "fields": [2, 3, 4, 5, 6]
+                },
+                {
+                    "title": "Contact Details",
+                    "fields": [8, 9, 10, 11]
+                },
+                {
+                    "title": "Expertise & Services",
+                    "fields": [13, 14, 15, 17, 18]
+                },
+                {
+                    "title": "Insurance & Languages",
+                    "fields": [19, 20, 22]
+                },
+                {
+                    "title": "Final Details",
+                    "fields": [24, 25, 27, 28, 29]
+                }
+            ]
+        },
+        "firstPageCssClass": "provider-form-page-1",
+        "notifications": [
+            {
+                "id": "admin_notification",
+                "name": "Admin Notification",
+                "event": "form_submission",
+                "to": "{admin_email}",
+                "subject": "New Provider Network Application",
+                "message": "A new provider has applied to join the network.\n\nProvider: {Provider Name:3}\nCredentials: {Professional Credentials:4}\nNPI: {NPI Number:5}\nSpecialty: {Primary Specialty:6}\nEmail: {Professional Email:8}\nPhone: {Office Phone:9}\nPractice: {Practice Name:2}\nTelehealth: {Do you offer telehealth consultations?:17}\nAccepting Patients: {Are you currently accepting new patients?:18}\n\nWound Types: {Types of Wounds You Treat:13}\n\nView full application in WordPress admin.",
+                "from": "{admin_email}",
+                "fromName": "Helping Hands",
+                "bcc": "",
+                "replyTo": "{Professional Email:8}",
+                "routing": null,
+                "conditionalLogic": null,
+                "disableAutoformat": false
+            },
+            {
+                "id": "provider_confirmation",
+                "name": "Provider Confirmation",
+                "event": "form_submission",
+                "to": "{Professional Email:8}",
+                "subject": "Your Helping Hands Provider Application",
+                "message": "Dear Dr. {Provider Name:3},\n\nThank you for applying to join the Helping Hands wound care provider network. We have received your application and will review it within 5-7 business days.\n\nApplication Summary:\nPractice: {Practice Name:2}\nSpecialty: {Primary Specialty:6}\nNPI: {NPI Number:5}\nTelehealth: {Do you offer telehealth consultations?:17}\n\nWhat happens next:\n1. Our team will verify your credentials\n2. We will review your application materials\n3. You will receive an approval decision via email\n4. Upon approval, we will create your provider profile\n5. You will receive training materials and access to our platform\n\nIf you have any questions, please contact us at providers@helpinghands.com or call (555) 123-4567.\n\nBest regards,\nThe Helping Hands Team",
+                "from": "{admin_email}",
+                "fromName": "Helping Hands",
+                "bcc": "",
+                "replyTo": "{admin_email}",
+                "routing": null,
+                "conditionalLogic": null,
+                "disableAutoformat": false
+            }
+        ],
+        "confirmations": [
+            {
+                "id": "default_confirmation",
+                "name": "Default Confirmation",
+                "isDefault": true,
+                "type": "message",
+                "message": "<div class=\"confirmation-message\">\n<h3>Thank you for your application!</h3>\n<p>We've received your application to join the Helping Hands provider network.</p>\n<p><strong>What happens next:</strong></p>\n<ul>\n<li>Our team will verify your credentials within 5-7 business days</li>\n<li>We will review your application materials</li>\n<li>You will receive an approval decision via email</li>\n<li>Upon approval, we will create your provider profile</li>\n<li>You will receive training materials and platform access</li>\n</ul>\n<p>If you have any questions, please contact us at providers@helpinghands.com</p>\n</div>",
+                "url": "",
+                "pageId": "",
+                "queryString": "",
+                "conditionalLogic": null
+            }
+        ]
+    }
+] 

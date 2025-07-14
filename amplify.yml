@@ -1,0 +1,57 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - echo "No backend build required for WordPress"
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Starting Helping Hands build process"
+        - npm install
+        - echo "Installing AWS CLI"
+        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        - unzip awscliv2.zip
+        - sudo ./aws/install
+        - echo "Setting up environment variables"
+        - |
+          if [ "$AWS_BRANCH" = "main" ]; then
+            export APP_ENV=production
+            export WP_SITE_URL=https://helpinghands.com
+          elif [ "$AWS_BRANCH" = "staging" ]; then
+            export APP_ENV=staging
+            export WP_SITE_URL=https://staging.helpinghands.com
+          else
+            export APP_ENV=development
+            export WP_SITE_URL=https://dev.helpinghands.com
+          fi
+        - echo "Environment set to $APP_ENV"
+    build:
+      commands:
+        - echo "Building WordPress assets"
+        - npm run build
+        - echo "Compiling SCSS to CSS"
+        - npm run scss:build
+        - echo "Optimizing images"
+        - npm run images:optimize
+        - echo "Building complete"
+    postBuild:
+      commands:
+        - echo "Running post-build tasks"
+        - echo "Syncing assets to S3"
+        - aws s3 sync ./assets/css/ s3://$AWS_S3_BUCKET/assets/css/ --delete
+        - aws s3 sync ./assets/js/ s3://$AWS_S3_BUCKET/assets/js/ --delete
+        - aws s3 sync ./assets/images/ s3://$AWS_S3_BUCKET/assets/images/ --delete
+        - echo "Invalidating CloudFront cache"
+        - aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+        - echo "Deployment complete"
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - assets/css/**/*
+      - assets/js/**/* 

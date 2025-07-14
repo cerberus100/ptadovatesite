@@ -1,0 +1,156 @@
+/**
+ * Helping Hands Brand Color Palette
+ * CSS Custom Properties for consistent theming
+ */
+
+:root {
+    /* Primary Brand Colors */
+    --hh-navy: #26547C;
+    --hh-teal: #46B5A4;
+    --hh-coral: #FF6B5D;
+    --hh-white: #FFFFFF;
+    
+    /* Extended Color Palette */
+    --hh-navy-light: #3A6B96;
+    --hh-navy-dark: #1A3A56;
+    --hh-teal-light: #66C9B8;
+    --hh-teal-dark: #326F64;
+    --hh-coral-light: #FF8A7F;
+    --hh-coral-dark: #E54E41;
+    
+    /* Neutral Colors */
+    --hh-gray-100: #F8F9FA;
+    --hh-gray-200: #E9ECEF;
+    --hh-gray-300: #DEE2E6;
+    --hh-gray-400: #CED4DA;
+    --hh-gray-500: #ADB5BD;
+    --hh-gray-600: #6C757D;
+    --hh-gray-700: #495057;
+    --hh-gray-800: #343A40;
+    --hh-gray-900: #212529;
+    
+    /* Semantic Colors */
+    --hh-success: #28A745;
+    --hh-info: var(--hh-teal);
+    --hh-warning: #FFC107;
+    --hh-danger: var(--hh-coral);
+    --hh-light: var(--hh-gray-100);
+    --hh-dark: var(--hh-gray-900);
+    
+    /* Text Colors */
+    --hh-text-primary: var(--hh-gray-900);
+    --hh-text-secondary: var(--hh-gray-600);
+    --hh-text-muted: var(--hh-gray-500);
+    --hh-text-white: var(--hh-white);
+    --hh-text-navy: var(--hh-navy);
+    
+    /* Background Colors */
+    --hh-bg-primary: var(--hh-white);
+    --hh-bg-secondary: var(--hh-gray-100);
+    --hh-bg-dark: var(--hh-navy);
+    --hh-bg-light: var(--hh-gray-50);
+    
+    /* Border Colors */
+    --hh-border-light: var(--hh-gray-200);
+    --hh-border-medium: var(--hh-gray-300);
+    --hh-border-dark: var(--hh-gray-400);
+    
+    /* Shadow Colors */
+    --hh-shadow-light: rgba(0, 0, 0, 0.1);
+    --hh-shadow-medium: rgba(0, 0, 0, 0.15);
+    --hh-shadow-dark: rgba(0, 0, 0, 0.25);
+    
+    /* Hover and Focus States */
+    --hh-hover-navy: var(--hh-navy-dark);
+    --hh-hover-teal: var(--hh-teal-dark);
+    --hh-hover-coral: var(--hh-coral-dark);
+    --hh-focus-outline: var(--hh-teal);
+    
+    /* Spacing (based on 8px grid) */
+    --hh-spacing-xs: 0.25rem;  /* 4px */
+    --hh-spacing-sm: 0.5rem;   /* 8px */
+    --hh-spacing-md: 1rem;     /* 16px */
+    --hh-spacing-lg: 1.5rem;   /* 24px */
+    --hh-spacing-xl: 2rem;     /* 32px */
+    --hh-spacing-xxl: 3rem;    /* 48px */
+    
+    /* Typography */
+    --hh-font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --hh-font-family-secondary: 'Merriweather', Georgia, serif;
+    --hh-font-size-xs: 0.75rem;   /* 12px */
+    --hh-font-size-sm: 0.875rem;  /* 14px */
+    --hh-font-size-base: 1rem;    /* 16px */
+    --hh-font-size-lg: 1.125rem;  /* 18px */
+    --hh-font-size-xl: 1.25rem;   /* 20px */
+    --hh-font-size-xxl: 1.5rem;   /* 24px */
+    --hh-font-size-xxxl: 2rem;    /* 32px */
+    
+    /* Line Heights */
+    --hh-line-height-tight: 1.2;
+    --hh-line-height-normal: 1.5;
+    --hh-line-height-loose: 1.8;
+    
+    /* Border Radius */
+    --hh-border-radius-sm: 0.25rem;  /* 4px */
+    --hh-border-radius-md: 0.5rem;   /* 8px */
+    --hh-border-radius-lg: 1rem;     /* 16px */
+    --hh-border-radius-xl: 1.5rem;   /* 24px */
+    --hh-border-radius-full: 9999px;
+    
+    /* Transitions */
+    --hh-transition-fast: 0.15s ease;
+    --hh-transition-normal: 0.3s ease;
+    --hh-transition-slow: 0.5s ease;
+    
+    /* Z-Index Scale */
+    --hh-z-dropdown: 1000;
+    --hh-z-sticky: 1020;
+    --hh-z-fixed: 1030;
+    --hh-z-modal-backdrop: 1040;
+    --hh-z-modal: 1050;
+    --hh-z-popover: 1060;
+    --hh-z-tooltip: 1070;
+    --hh-z-toast: 1080;
+    
+    /* Breakpoints (for reference in CSS) */
+    --hh-breakpoint-xs: 0px;
+    --hh-breakpoint-sm: 576px;
+    --hh-breakpoint-md: 768px;
+    --hh-breakpoint-lg: 992px;
+    --hh-breakpoint-xl: 1200px;
+    --hh-breakpoint-xxl: 1400px;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --hh-bg-primary: var(--hh-gray-900);
+        --hh-bg-secondary: var(--hh-gray-800);
+        --hh-text-primary: var(--hh-white);
+        --hh-text-secondary: var(--hh-gray-300);
+        --hh-text-muted: var(--hh-gray-400);
+        --hh-border-light: var(--hh-gray-700);
+        --hh-border-medium: var(--hh-gray-600);
+        --hh-border-dark: var(--hh-gray-500);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --hh-navy: #000080;
+        --hh-teal: #008080;
+        --hh-coral: #FF0000;
+        --hh-text-primary: #000000;
+        --hh-border-light: #000000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --hh-transition-fast: 0s;
+        --hh-transition-normal: 0s;
+        --hh-transition-slow: 0s;
+    }
+} 

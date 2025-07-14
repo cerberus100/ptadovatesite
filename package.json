@@ -1,0 +1,71 @@
+{
+  "name": "helping-hands-wound-care",
+  "version": "1.0.0",
+  "description": "WordPress theme and build tools for Helping Hands Wound Care Advocacy",
+  "main": "index.js",
+  "scripts": {
+    "scss": "sass --no-source-map --style=compressed assets/scss/style.scss assets/css/style.min.css --watch",
+    "build-css": "sass --no-source-map --style=compressed assets/scss/style.scss assets/css/style.min.css",
+    "build-css-dev": "sass --source-map --style=expanded assets/scss/style.scss assets/css/style.css",
+    "watch": "sass --source-map --style=expanded assets/scss/style.scss assets/css/style.css --watch",
+    "lint-scss": "stylelint assets/scss/**/*.scss",
+    "lint-scss-fix": "stylelint assets/scss/**/*.scss --fix",
+    "build": "npm run build-css && npm run optimize-assets",
+    "scss:build": "npm run build-css",
+    "images:optimize": "imagemin assets/images/**/*.{jpg,jpeg,png,svg} --out-dir=assets/images/optimized",
+    "optimize-assets": "npm run images:optimize",
+    "aws:sync": "aws s3 sync ./assets s3://$AWS_S3_BUCKET/assets --delete",
+    "aws:invalidate": "aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths '/*'",
+    "aws:deploy": "npm run build && npm run aws:sync && npm run aws:invalidate",
+    "docker:build": "docker-compose -f build/docker-compose.yml build",
+    "docker:up": "docker-compose -f build/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f build/docker-compose.yml down",
+    "docker:logs": "docker-compose -f build/docker-compose.yml logs -f",
+    "wp:setup": "cd build && ./setup.sh",
+    "wp:plugins": "cd build && ./plugins-setup.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helpinghands/wound-care-site.git"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "scss",
+    "wound-care",
+    "healthcare",
+    "advocacy"
+  ],
+  "author": "Helping Hands Team",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/helpinghands/wound-care-site/issues"
+  },
+  "homepage": "https://github.com/helpinghands/wound-care-site#readme",
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "stylelint": "^15.11.0",
+    "stylelint-config-sass-guidelines": "^10.0.0",
+    "stylelint-config-standard-scss": "^11.1.0",
+    "imagemin": "^8.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "aws-cli": "^1.32.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "> 0.5%",
+    "last 2 versions"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+} 

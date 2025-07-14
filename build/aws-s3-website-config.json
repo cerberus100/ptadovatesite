@@ -1,0 +1,32 @@
+{
+    "IndexDocument": {
+        "Suffix": "index.html"
+    },
+    "ErrorDocument": {
+        "Key": "404.html"
+    },
+    "RoutingRules": [
+        {
+            "Condition": {
+                "KeyPrefixEquals": "wp-content/themes/helpinghands/assets/"
+            },
+            "Redirect": {
+                "Protocol": "https",
+                "HostName": "#{CloudFrontDomain}",
+                "ReplaceKeyPrefixWith": "assets/",
+                "HttpRedirectCode": "301"
+            }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "wp-content/uploads/"
+            },
+            "Redirect": {
+                "Protocol": "https",
+                "HostName": "#{CloudFrontDomain}",
+                "ReplaceKeyPrefixWith": "uploads/",
+                "HttpRedirectCode": "301"
+            }
+        }
+    ]
+} 

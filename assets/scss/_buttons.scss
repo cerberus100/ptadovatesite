@@ -1,0 +1,764 @@
+/**
+ * Helping Hands Button Styles
+ * Comprehensive button component system using design tokens
+ */
+
+// Base button styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $hh-btn-padding-y $hh-btn-padding-x;
+  font-family: $hh-font-family-primary;
+  font-size: $hh-btn-font-size;
+  font-weight: $hh-font-weight-medium;
+  line-height: $hh-btn-line-height;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: $hh-btn-border-width solid transparent;
+  border-radius: $hh-btn-border-radius;
+  transition: $hh-btn-transition;
+  user-select: none;
+  appearance: none;
+  
+  // Prevent double-click selection
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba($hh-teal, 0.25);
+  }
+  
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled,
+  &.disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+  
+  // Icon spacing
+  i,
+  svg {
+    margin-right: $hh-spacing-xs;
+    
+    &:last-child {
+      margin-right: 0;
+      margin-left: $hh-spacing-xs;
+    }
+    
+    &:only-child {
+      margin: 0;
+    }
+  }
+}
+
+// Primary button (teal)
+.btn-primary {
+  color: $hh-white;
+  background-color: $hh-teal;
+  border-color: $hh-teal;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-hover-teal;
+    border-color: $hh-hover-teal;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-teal, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-teal-dark;
+    border-color: $hh-teal-dark;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-white;
+    background-color: $hh-teal;
+    border-color: $hh-teal;
+  }
+}
+
+// Secondary button (navy)
+.btn-secondary {
+  color: $hh-white;
+  background-color: $hh-navy;
+  border-color: $hh-navy;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-hover-navy;
+    border-color: $hh-hover-navy;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-navy, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-navy-dark;
+    border-color: $hh-navy-dark;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-white;
+    background-color: $hh-navy;
+    border-color: $hh-navy;
+  }
+}
+
+// Success button
+.btn-success {
+  color: $hh-white;
+  background-color: $hh-success;
+  border-color: $hh-success;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: darken($hh-success, 7.5%);
+    border-color: darken($hh-success, 10%);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-success, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: darken($hh-success, 10%);
+    border-color: darken($hh-success, 12.5%);
+  }
+}
+
+// Danger button (coral)
+.btn-danger {
+  color: $hh-white;
+  background-color: $hh-coral;
+  border-color: $hh-coral;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-hover-coral;
+    border-color: $hh-hover-coral;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-coral, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-coral-dark;
+    border-color: $hh-coral-dark;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-white;
+    background-color: $hh-coral;
+    border-color: $hh-coral;
+  }
+}
+
+// Warning button
+.btn-warning {
+  color: $hh-gray-900;
+  background-color: $hh-warning;
+  border-color: $hh-warning;
+  
+  &:hover {
+    color: $hh-gray-900;
+    background-color: darken($hh-warning, 7.5%);
+    border-color: darken($hh-warning, 10%);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-warning, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-gray-900;
+    background-color: darken($hh-warning, 10%);
+    border-color: darken($hh-warning, 12.5%);
+  }
+}
+
+// Info button
+.btn-info {
+  color: $hh-white;
+  background-color: $hh-info;
+  border-color: $hh-info;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-hover-teal;
+    border-color: $hh-hover-teal;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-info, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-teal-dark;
+    border-color: $hh-teal-dark;
+  }
+}
+
+// Light button
+.btn-light {
+  color: $hh-gray-900;
+  background-color: $hh-light;
+  border-color: $hh-light;
+  
+  &:hover {
+    color: $hh-gray-900;
+    background-color: darken($hh-light, 7.5%);
+    border-color: darken($hh-light, 10%);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-light, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-gray-900;
+    background-color: darken($hh-light, 10%);
+    border-color: darken($hh-light, 12.5%);
+  }
+}
+
+// Dark button
+.btn-dark {
+  color: $hh-white;
+  background-color: $hh-dark;
+  border-color: $hh-dark;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: lighten($hh-dark, 7.5%);
+    border-color: lighten($hh-dark, 10%);
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-dark, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: lighten($hh-dark, 10%);
+    border-color: lighten($hh-dark, 12.5%);
+  }
+}
+
+// Outline button variants
+.btn-outline {
+  color: $hh-teal;
+  background-color: transparent;
+  border-color: $hh-teal;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-teal;
+    border-color: $hh-teal;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-teal, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-teal;
+    border-color: $hh-teal;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-teal;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-primary {
+  @extend .btn-outline;
+}
+
+.btn-outline-secondary {
+  color: $hh-navy;
+  background-color: transparent;
+  border-color: $hh-navy;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-navy;
+    border-color: $hh-navy;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-navy, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-navy;
+    border-color: $hh-navy;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-navy;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-success {
+  color: $hh-success;
+  background-color: transparent;
+  border-color: $hh-success;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-success;
+    border-color: $hh-success;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-success, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-success;
+    border-color: $hh-success;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-success;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-danger {
+  color: $hh-coral;
+  background-color: transparent;
+  border-color: $hh-coral;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-coral;
+    border-color: $hh-coral;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-coral, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-coral;
+    border-color: $hh-coral;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-coral;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-warning {
+  color: $hh-warning;
+  background-color: transparent;
+  border-color: $hh-warning;
+  
+  &:hover {
+    color: $hh-gray-900;
+    background-color: $hh-warning;
+    border-color: $hh-warning;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-warning, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-gray-900;
+    background-color: $hh-warning;
+    border-color: $hh-warning;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-warning;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-info {
+  color: $hh-info;
+  background-color: transparent;
+  border-color: $hh-info;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-info;
+    border-color: $hh-info;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-info, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-info;
+    border-color: $hh-info;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-info;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-light {
+  color: $hh-gray-600;
+  background-color: transparent;
+  border-color: $hh-light;
+  
+  &:hover {
+    color: $hh-gray-900;
+    background-color: $hh-light;
+    border-color: $hh-light;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-light, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-gray-900;
+    background-color: $hh-light;
+    border-color: $hh-light;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-gray-600;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-dark {
+  color: $hh-dark;
+  background-color: transparent;
+  border-color: $hh-dark;
+  
+  &:hover {
+    color: $hh-white;
+    background-color: $hh-dark;
+    border-color: $hh-dark;
+  }
+  
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba($hh-dark, 0.5);
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-white;
+    background-color: $hh-dark;
+    border-color: $hh-dark;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-dark;
+    background-color: transparent;
+  }
+}
+
+// Link button
+.btn-link {
+  color: $hh-teal;
+  background-color: transparent;
+  border-color: transparent;
+  text-decoration: underline;
+  
+  &:hover {
+    color: $hh-hover-teal;
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    text-decoration: underline;
+    box-shadow: none;
+  }
+  
+  &:active,
+  &.active {
+    color: $hh-hover-teal;
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+  &:disabled,
+  &.disabled {
+    color: $hh-text-muted;
+    text-decoration: none;
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: $hh-btn-sm-padding-y $hh-btn-sm-padding-x;
+  font-size: $hh-btn-sm-font-size;
+  border-radius: $hh-border-radius-sm;
+}
+
+.btn-lg {
+  padding: $hh-btn-lg-padding-y $hh-btn-lg-padding-x;
+  font-size: $hh-btn-lg-font-size;
+  border-radius: $hh-border-radius-lg;
+}
+
+// Block button
+.btn-block {
+  display: block;
+  width: 100%;
+  
+  + .btn-block {
+    margin-top: $hh-spacing-sm;
+  }
+}
+
+// Button group
+.btn-group {
+  display: inline-flex;
+  vertical-align: middle;
+  
+  > .btn {
+    position: relative;
+    flex: 1 1 auto;
+    
+    &:hover {
+      z-index: 1;
+    }
+    
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 1;
+    }
+  }
+  
+  > .btn:not(:first-child) {
+    margin-left: -$hh-btn-border-width;
+  }
+  
+  > .btn:not(:last-child):not(.dropdown-toggle) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  > .btn:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+// Vertical button group
+.btn-group-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  
+  > .btn {
+    width: 100%;
+    
+    &:not(:first-child) {
+      margin-top: -$hh-btn-border-width;
+    }
+    
+    &:not(:last-child):not(.dropdown-toggle) {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    
+    &:not(:first-child) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+// Button toolbar
+.btn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  
+  .btn-group,
+  .input-group {
+    margin-right: $hh-spacing-sm;
+  }
+  
+  .btn-group:last-child,
+  .input-group:last-child {
+    margin-right: 0;
+  }
+}
+
+// Special button variants for Helping Hands
+.btn-cta {
+  @extend .btn-primary;
+  padding: $hh-btn-lg-padding-y $hh-btn-lg-padding-x;
+  font-size: $hh-btn-lg-font-size;
+  font-weight: $hh-font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 8px rgba($hh-teal, 0.3);
+  
+  &:hover {
+    box-shadow: 0 6px 12px rgba($hh-teal, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    box-shadow: 0 2px 4px rgba($hh-teal, 0.3);
+    transform: translateY(0);
+  }
+}
+
+.btn-emergency {
+  @extend .btn-danger;
+  animation: pulse 2s infinite;
+  
+  &:hover {
+    animation: none;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($hh-coral, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba($hh-coral, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($hh-coral, 0);
+  }
+}
+
+.btn-telehealth {
+  @extend .btn-outline-info;
+  
+  &:before {
+    content: "📹";
+    margin-right: $hh-spacing-xs;
+  }
+}
+
+.btn-provider {
+  @extend .btn-outline-secondary;
+  
+  &:before {
+    content: "🩺";
+    margin-right: $hh-spacing-xs;
+  }
+}
+
+// Loading state
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  .btn-text {
+    visibility: hidden;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive button adjustments
+@media (max-width: $hh-breakpoint-sm) {
+  .btn {
+    padding: $hh-btn-sm-padding-y $hh-btn-sm-padding-x;
+    font-size: $hh-btn-sm-font-size;
+  }
+  
+  .btn-lg {
+    padding: $hh-btn-padding-y $hh-btn-padding-x;
+    font-size: $hh-btn-font-size;
+  }
+  
+  .btn-group > .btn {
+    margin-bottom: $hh-spacing-xs;
+  }
+  
+  .btn-block {
+    margin-bottom: $hh-spacing-sm;
+  }
+} 
