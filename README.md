@@ -13,12 +13,12 @@ A comprehensive WordPress build stack for the "Helping Hands" wound care advocac
 - **Admin Dashboard**: Request management system
 
 ### AWS Cloud Integration
-- **AWS Amplify**: Automated deployment pipeline
 - **S3 Storage**: Media files and static assets
 - **CloudFront CDN**: Global content delivery
 - **RDS Database**: Production database hosting
 - **ElastiCache**: Redis caching in production
 - **SES Email**: Professional email delivery
+- **EC2/Lightsail**: Proper WordPress hosting (not Amplify)
 
 ## 📁 Project Structure
 
@@ -87,21 +87,30 @@ npm run wp:plugins
 npm run build
 ```
 
-### 2. AWS Amplify Setup
+### 2. WordPress Hosting Setup
 
+**❌ AWS Amplify won't work for WordPress** (static sites only)
+
+**✅ Proper WordPress hosting options:**
+
+#### Option A: AWS Lightsail (Recommended)
 ```bash
-# Configure AWS credentials
-aws configure
+# Create WordPress instance in AWS Lightsail Console
+# Upload your theme files via SFTP
+# Import configurations and go live
+```
 
-# Update AWS variables in build/.env
-nano build/.env
+#### Option B: AWS EC2 with Docker
+```bash
+# Launch EC2 instance
+# Install Docker
+# Clone repo and run: docker-compose up
+```
 
-# Deploy to AWS
-cd build
-./aws-deploy.sh production
-
-# Or use npm scripts
-npm run aws:deploy
+#### Option C: Traditional Web Hosting
+```bash
+# SiteGround, WP Engine, Kinsta, etc.
+# Upload theme files via cPanel/FTP
 ```
 
 ## 🔧 Configuration
@@ -163,37 +172,38 @@ npm run docker:logs
 npm run docker:build
 ```
 
-## ☁️ AWS Deployment
+## ☁️ WordPress Deployment
 
-### Initial Setup
+### ⚠️ Important: AWS Amplify ≠ WordPress
+**AWS Amplify is for static sites only. WordPress requires PHP + MySQL.**
 
-1. **Create AWS Resources**:
-   - S3 bucket for media storage
-   - CloudFront distribution
-   - RDS database (production)
-   - ElastiCache cluster (production)
-   - SES email configuration
+### Proper WordPress Hosting Options
 
-2. **Configure Amplify**:
-   - Connect your Git repository
-   - Set environment variables
-   - Configure build settings
+#### 1. AWS Lightsail (Easiest)
+- One-click WordPress installation
+- $3.50/month managed hosting
+- Upload theme files via SFTP
+- Perfect for small to medium sites
 
-### Deployment Commands
-
+#### 2. AWS EC2 (Advanced)
 ```bash
-# Deploy to staging
-./build/aws-deploy.sh staging
-
-# Deploy to production
-./build/aws-deploy.sh production
-
-# Deploy with custom build
-./build/aws-deploy.sh production false
-
-# Skip build and deploy
-./build/aws-deploy.sh staging true
+# Launch EC2 instance
+# Install Docker
+# Clone your repo
+# Run: docker-compose -f build/docker-compose.yml up -d
 ```
+
+#### 3. Traditional Web Hosting
+- SiteGround ($3/month)
+- WP Engine ($20/month)
+- Kinsta ($35/month)
+- Upload via cPanel/FTP
+
+### AWS Services (Supporting)
+- **S3**: Media file storage
+- **CloudFront**: CDN for faster loading
+- **RDS**: Production database
+- **SES**: Email delivery
 
 ## 📦 Build Scripts
 
@@ -210,8 +220,10 @@ npm run watch
 # Optimize images
 npm run images:optimize
 
-# AWS deployment
-npm run aws:deploy
+# Local development
+npm run docker:up
+npm run wp:setup
+npm run wp:plugins
 ```
 
 ## 🔌 Plugins & Features
