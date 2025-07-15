@@ -10,32 +10,17 @@ frontend:
       commands:
         - echo "Starting Helping Hands Patient Advocates build process"
         - npm install
-        - echo "Setting up environment variables"
-        - |
-          if [ "$AWS_BRANCH" = "main" ]; then
-            export APP_ENV=production
-            export SITE_URL=https://helpinghandspro.com
-          elif [ "$AWS_BRANCH" = "staging" ]; then
-            export APP_ENV=staging
-            export SITE_URL=https://staging.helpinghandspro.com
-          else
-            export APP_ENV=development
-            export SITE_URL=https://dev.helpinghandspro.com
-          fi
-        - echo "Environment set to $APP_ENV"
-        - echo "Site URL: $SITE_URL"
+        - echo "Dependencies installed successfully"
     build:
       commands:
         - echo "Building static site assets"
         - npm run build-css
-        - echo "Compiling SCSS to CSS"
-        - npm run build-css
+        - echo "SCSS compiled to CSS successfully"
         - echo "Static site build complete"
     postBuild:
       commands:
         - echo "Running post-build tasks"
         - echo "Static site ready for deployment"
-        - echo "Deployment complete"
   artifacts:
     baseDirectory: /
     files:
