@@ -1,1 +1,187 @@
- 
+<svg width="350" height="700" viewBox="0 0 350 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive human body map for wound location selection">
+  <defs>
+    <style>
+      .bm-region {
+        fill: rgba(70, 181, 164, 0.15);
+        stroke: #26547c;
+        stroke-width: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        opacity: 0.8;
+      }
+      .bm-region:hover {
+        fill: rgba(255, 107, 93, 0.4);
+        stroke: #e54e41;
+        stroke-width: 3;
+        opacity: 1;
+      }
+      .bm-region.active {
+        fill: rgba(70, 181, 164, 0.6);
+        stroke: #326f64;
+        stroke-width: 3;
+        opacity: 1;
+      }
+      .bm-region:focus {
+        outline: 2px dashed #46b5a4;
+        outline-offset: 2px;
+      }
+      .bm-body-outline {
+        fill: #f8f9fa;
+        stroke: #26547c;
+        stroke-width: 2;
+        opacity: 0.9;
+      }
+      .bm-label {
+        font-family: Arial, sans-serif;
+        font-size: 11px;
+        fill: #26547c;
+        text-anchor: middle;
+        pointer-events: none;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  
+  <!-- Human Body Outline (Front View) -->
+  <path class="bm-body-outline" d="M175 50 
+    C165 45 155 50 150 60 C145 70 140 80 140 90 C140 100 145 110 150 120
+    C155 130 160 140 160 150 L160 180 C158 190 155 200 155 210 L155 240
+    C155 250 158 260 160 270 L160 300 C160 310 155 320 150 330 L145 340
+    C140 350 135 360 135 370 L135 420 C135 430 140 440 145 450 L150 480
+    C155 490 160 500 160 510 L160 550 C160 560 155 570 150 580 L145 590
+    C140 600 135 610 135 620 L135 650 C135 660 140 670 150 680
+    L200 680 C210 670 215 660 215 650 L215 620 C215 610 210 600 205 590
+    L200 580 C195 570 190 560 190 550 L190 510 C190 500 195 490 200 480
+    L205 450 C210 440 215 430 215 420 L215 370 C215 360 210 350 205 340
+    L200 330 C195 320 190 310 190 300 L190 270 C192 260 195 250 195 240
+    L195 210 C195 200 192 190 190 180 L190 150 C190 140 195 130 200 120
+    C205 110 210 100 210 90 C210 80 205 70 200 60 C195 50 185 45 175 50 Z"/>
+  
+  <!-- Human Body Outline (Back View) -->
+  <path class="bm-body-outline" d="M280 50 
+    C270 45 260 50 255 60 C250 70 245 80 245 90 C245 100 250 110 255 120
+    C260 130 265 140 265 150 L265 180 C263 190 260 200 260 210 L260 240
+    C260 250 263 260 265 270 L265 300 C265 310 260 320 255 330 L250 340
+    C245 350 240 360 240 370 L240 420 C240 430 245 440 250 450 L255 480
+    C260 490 265 500 265 510 L265 550 C265 560 260 570 255 580 L250 590
+    C245 600 240 610 240 620 L240 650 C240 660 245 670 255 680
+    L305 680 C315 670 320 660 320 650 L320 620 C320 610 315 600 310 590
+    L305 580 C300 570 295 560 295 550 L295 510 C295 500 300 490 305 480
+    L310 450 C315 440 320 430 320 420 L320 370 C320 360 315 350 310 340
+    L305 330 C300 320 295 310 295 300 L295 270 C297 260 300 250 300 240
+    L300 210 C300 200 297 190 295 180 L295 150 C295 140 300 130 305 120
+    C310 110 315 100 315 90 C315 80 310 70 305 60 C300 50 290 45 280 50 Z"/>
+  
+  <!-- Head & Neck -->
+  <ellipse id="head_neck" class="bm-region" cx="175" cy="75" rx="32" ry="38" 
+           role="button" tabindex="0" aria-label="Head and neck region">
+    <title>Head & Neck</title>
+  </ellipse>
+  
+  <!-- Chest -->
+  <ellipse id="chest" class="bm-region" cx="175" cy="165" rx="35" ry="45" 
+        role="button" tabindex="0" aria-label="Chest region">
+    <title>Chest</title>
+  </ellipse>
+  
+  <!-- Left Upper Arm -->
+  <ellipse id="upper_arm_L" class="bm-region" cx="125" cy="165" rx="18" ry="40" 
+           role="button" tabindex="0" aria-label="Left upper arm">
+    <title>Left Upper Arm</title>
+  </ellipse>
+  
+  <!-- Right Upper Arm -->
+  <ellipse id="upper_arm_R" class="bm-region" cx="225" cy="165" rx="18" ry="40" 
+           role="button" tabindex="0" aria-label="Right upper arm">
+    <title>Right Upper Arm</title>
+  </ellipse>
+  
+  <!-- Abdomen -->
+  <ellipse id="abdomen" class="bm-region" cx="175" cy="225" rx="30" ry="25"
+        role="button" tabindex="0" aria-label="Abdomen region">
+    <title>Abdomen</title>
+  </ellipse>
+  
+  <!-- Left Forearm & Hand -->
+  <ellipse id="forearm_hand_L" class="bm-region" cx="105" cy="235" rx="15" ry="50" 
+           role="button" tabindex="0" aria-label="Left forearm and hand">
+    <title>Left Forearm & Hand</title>
+  </ellipse>
+  
+  <!-- Right Forearm & Hand -->
+  <ellipse id="forearm_hand_R" class="bm-region" cx="245" cy="235" rx="15" ry="50" 
+           role="button" tabindex="0" aria-label="Right forearm and hand">
+    <title>Right Forearm & Hand</title>
+  </ellipse>
+  
+  <!-- Groin & Hip -->
+  <ellipse id="groin_hip" class="bm-region" cx="175" cy="285" rx="35" ry="25"
+        role="button" tabindex="0" aria-label="Groin and hip region">
+    <title>Groin & Hip</title>
+  </ellipse>
+  
+  <!-- Left Upper Leg -->
+  <ellipse id="upper_leg_L" class="bm-region" cx="158" cy="395" rx="22" ry="65" 
+           role="button" tabindex="0" aria-label="Left upper leg">
+    <title>Left Upper Leg</title>
+  </ellipse>
+  
+  <!-- Right Upper Leg -->
+  <ellipse id="upper_leg_R" class="bm-region" cx="192" cy="395" rx="22" ry="65" 
+           role="button" tabindex="0" aria-label="Right upper leg">
+    <title>Right Upper Leg</title>
+  </ellipse>
+  
+  <!-- Left Lower Leg & Foot -->
+  <ellipse id="lower_leg_foot_L" class="bm-region" cx="150" cy="530" rx="18" ry="75" 
+           role="button" tabindex="0" aria-label="Left lower leg and foot">
+    <title>Left Lower Leg & Foot</title>
+  </ellipse>
+  
+  <!-- Right Lower Leg & Foot -->
+  <ellipse id="lower_leg_foot_R" class="bm-region" cx="200" cy="530" rx="18" ry="75" 
+           role="button" tabindex="0" aria-label="Right lower leg and foot">
+    <title>Right Lower Leg & Foot</title>
+  </ellipse>
+  
+  <!-- Back regions (positioned to the right side) -->
+  <!-- Upper Back -->
+  <ellipse id="upper_back" class="bm-region" cx="280" cy="165" rx="35" ry="45" 
+        role="button" tabindex="0" aria-label="Upper back region">
+    <title>Upper Back</title>
+  </ellipse>
+  
+  <!-- Lower Back -->
+  <ellipse id="lower_back" class="bm-region" cx="280" cy="225" rx="30" ry="25"
+        role="button" tabindex="0" aria-label="Lower back region">
+    <title>Lower Back</title>
+  </ellipse>
+  
+  <!-- Interactive region labels -->
+  <text class="bm-label" x="175" y="75" opacity="0">Head & Neck</text>
+  <text class="bm-label" x="175" y="155" opacity="0">Chest</text>
+  <text class="bm-label" x="115" y="165" opacity="0">L. Arm</text>
+  <text class="bm-label" x="235" y="165" opacity="0">R. Arm</text>
+  <text class="bm-label" x="175" y="225" opacity="0">Abdomen</text>
+  <text class="bm-label" x="95" y="235" opacity="0">L. Forearm</text>
+  <text class="bm-label" x="255" y="235" opacity="0">R. Forearm</text>
+  <text class="bm-label" x="175" y="295" opacity="0">Groin/Hip</text>
+  <text class="bm-label" x="155" y="400" opacity="0">L. Thigh</text>
+  <text class="bm-label" x="195" y="400" opacity="0">R. Thigh</text>
+  <text class="bm-label" x="150" y="530" opacity="0">L. Lower Leg</text>
+  <text class="bm-label" x="200" y="530" opacity="0">R. Lower Leg</text>
+  <text class="bm-label" x="280" y="155" opacity="0">Upper Back</text>
+  <text class="bm-label" x="280" y="225" opacity="0">Lower Back</text>
+  
+  <!-- Instructions text -->
+  <text x="175" y="670" class="bm-label" font-size="12" opacity="0.7">Click on body regions to select wound locations</text>
+  
+  <!-- Front/Back indicators -->
+  <text x="175" y="25" class="bm-label" font-size="14" font-weight="bold" opacity="0.8">FRONT</text>
+  <text x="280" y="25" class="bm-label" font-size="14" font-weight="bold" opacity="0.8">BACK</text>
+  
+  <!-- Screen reader announcements -->
+  <div aria-live="polite" aria-atomic="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;">
+    <span id="bm-sr-announcement"></span>
+  </div>
+</svg> 

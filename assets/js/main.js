@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormHandling();
     initializeNetworkForms();
     initializeSmoothScrolling();
+    initializeJoinNetworkForms();
 });
 
 // Navigation functionality
@@ -624,6 +625,41 @@ function initializeAnalytics() {
             page_location: window.location.href
         });
     }
+}
+
+// Initialize join network forms
+function initializeJoinNetworkForms() {
+    // Make showForm and showOptions functions available globally
+    window.showForm = function(formType) {
+        const optionsContainer = document.getElementById('join-options');
+        const nominationContainer = document.getElementById('nomination-form-container');
+        const applicationContainer = document.getElementById('application-form-container');
+        
+        // Hide options
+        optionsContainer.style.display = 'none';
+        
+        // Show appropriate form
+        if (formType === 'nomination') {
+            nominationContainer.style.display = 'block';
+            applicationContainer.style.display = 'none';
+        } else if (formType === 'application') {
+            applicationContainer.style.display = 'block';
+            nominationContainer.style.display = 'none';
+        }
+    };
+    
+    window.showOptions = function() {
+        const optionsContainer = document.getElementById('join-options');
+        const nominationContainer = document.getElementById('nomination-form-container');
+        const applicationContainer = document.getElementById('application-form-container');
+        
+        // Show options
+        optionsContainer.style.display = 'block';
+        
+        // Hide forms
+        nominationContainer.style.display = 'none';
+        applicationContainer.style.display = 'none';
+    };
 }
 
 // Call analytics on load

@@ -47,7 +47,11 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/images/hero-healthcare.svg" alt="Healthcare professionals" />
+                <div class="hero-image-placeholder">
+                    <div class="hero-icon">👥</div>
+                    <p>Patient Advocacy</p>
+                    <div class="hero-subtext">Professional wound care connections</div>
+                </div>
             </div>
         </div>
     </section>
@@ -195,8 +199,13 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="insurance">Insurance Information</label>
-                        <input type="text" id="insurance" name="insurance" placeholder="Insurance provider (optional)">
+                                        <label for="insurance">Insurance Information</label>
+                <select id="insurance" name="insurance">
+                    <option value="">Select Insurance Type (optional)</option>
+                    <option value="medicare">Medicare</option>
+                    <option value="medicaid">Medicaid</option>
+                    <option value="commercial">Commercial Insurance (ACA or Work Plan)</option>
+                </select>
                     </div>
                     <div class="form-group">
                         <label for="description">Description of Assistance Needed *</label>
@@ -235,177 +244,198 @@
                 </div>
             </div>
             
-            <div class="join-options">
-                <div class="join-option">
-                    <div class="option-header">
-                        <h3>👥 Nominate a Provider</h3>
-                        <p>Know a healthcare provider who exemplifies patient-first care?</p>
-                    </div>
-                    <form id="nomination-form" class="network-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="nominator-name">Your Name *</label>
-                                <input type="text" id="nominator-name" name="nominator-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nominator-email">Your Email *</label>
-                                <input type="email" id="nominator-email" name="nominator-email" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="provider-name">Provider Name *</label>
-                                <input type="text" id="provider-name" name="provider-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="provider-practice">Practice/Organization *</label>
-                                <input type="text" id="provider-practice" name="provider-practice" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="provider-specialty">Specialty *</label>
-                                <select id="provider-specialty" name="provider-specialty" required>
-                                    <option value="">Select Specialty</option>
-                                    <option value="wound-care">Wound Care Specialist</option>
-                                    <option value="dermatology">Dermatologist</option>
-                                    <option value="vascular">Vascular Surgeon</option>
-                                    <option value="plastic">Plastic Surgeon</option>
-                                    <option value="podiatry">Podiatrist</option>
-                                    <option value="general">General Practitioner</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="provider-location">Location *</label>
-                                <input type="text" id="provider-location" name="provider-location" placeholder="City, State" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="nomination-reason">Why do you recommend this provider? *</label>
-                            <textarea id="nomination-reason" name="nomination-reason" rows="4" placeholder="Tell us about their patient-first approach, exceptional care, or how they've helped you or others..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="provider-contact">Provider Contact Information (Optional)</label>
-                            <textarea id="provider-contact" name="provider-contact" rows="2" placeholder="Phone, email, or website if known"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Submit Nomination</button>
-                    </form>
+            <!-- Initial Choice Buttons -->
+            <div class="join-options" id="join-options">
+                <div class="join-option-card">
+                    <div class="option-icon">👥</div>
+                    <h3>Nominate a Provider</h3>
+                    <p>Know a healthcare provider who exemplifies patient-first care? Help us find them!</p>
+                    <button type="button" class="btn btn-primary network-option-btn" onclick="showForm('nomination')">Nominate a Provider</button>
                 </div>
                 
-                <div class="join-option">
-                    <div class="option-header">
-                        <h3>🏥 Provider Application</h3>
-                        <p>Are you a healthcare provider interested in joining our network?</p>
-                    </div>
-                    <form id="application-form" class="network-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="applicant-name">Full Name *</label>
-                                <input type="text" id="applicant-name" name="applicant-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="applicant-title">Professional Title *</label>
-                                <input type="text" id="applicant-title" name="applicant-title" placeholder="MD, DO, NP, PA, etc." required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="applicant-email">Email *</label>
-                                <input type="email" id="applicant-email" name="applicant-email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="applicant-phone">Phone *</label>
-                                <input type="tel" id="applicant-phone" name="applicant-phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="applicant-specialty">Primary Specialty *</label>
-                                <select id="applicant-specialty" name="applicant-specialty" required>
-                                    <option value="">Select Specialty</option>
-                                    <option value="wound-care">Wound Care Specialist</option>
-                                    <option value="dermatology">Dermatologist</option>
-                                    <option value="vascular">Vascular Surgeon</option>
-                                    <option value="plastic">Plastic Surgeon</option>
-                                    <option value="podiatry">Podiatrist</option>
-                                    <option value="general">General Practitioner</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="applicant-experience">Years of Experience *</label>
-                                <select id="applicant-experience" name="applicant-experience" required>
-                                    <option value="">Select Experience</option>
-                                    <option value="1-5">1-5 years</option>
-                                    <option value="6-10">6-10 years</option>
-                                    <option value="11-15">11-15 years</option>
-                                    <option value="16-20">16-20 years</option>
-                                    <option value="20+">20+ years</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="applicant-practice">Practice/Organization *</label>
-                                <input type="text" id="applicant-practice" name="applicant-practice" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="applicant-location">Location *</label>
-                                <input type="text" id="applicant-location" name="applicant-location" placeholder="City, State" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="applicant-license">License Number *</label>
-                            <input type="text" id="applicant-license" name="applicant-license" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="patient-commitment">Patient-First Commitment *</label>
-                            <textarea id="patient-commitment" name="patient-commitment" rows="4" placeholder="Describe your commitment to patient-centered care, accessibility, and working with underserved populations..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="insurance-acceptance">Insurance & Payment Options *</label>
-                            <textarea id="insurance-acceptance" name="insurance-acceptance" rows="3" placeholder="List accepted insurance plans, sliding scale fees, payment plans, or other accessibility options..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="wound-types">Wound Types Treated</label>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox" name="wound-types" value="chronic"> Chronic wounds</label>
-                                <label><input type="checkbox" name="wound-types" value="diabetic"> Diabetic ulcers</label>
-                                <label><input type="checkbox" name="wound-types" value="pressure"> Pressure sores</label>
-                                <label><input type="checkbox" name="wound-types" value="venous"> Venous ulcers</label>
-                                <label><input type="checkbox" name="wound-types" value="arterial"> Arterial ulcers</label>
-                                <label><input type="checkbox" name="wound-types" value="surgical"> Surgical wounds</label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="additional-info">Additional Information</label>
-                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any other information about your practice, specializations, or commitment to patient advocacy..."></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="non-profit-agreement" required>
-                                I understand this is a non-profit organization and I commit to prioritizing patient care over profit
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Submit Application</button>
-                    </form>
+                <div class="join-option-card">
+                    <div class="option-icon">🏥</div>
+                    <h3>Apply to Join</h3>
+                    <p>Are you a healthcare provider interested in joining our patient-first network?</p>
+                    <button type="button" class="btn btn-primary network-option-btn" onclick="showForm('application')">Apply to Join Helping Hands</button>
                 </div>
+            </div>
+            
+            <!-- Nomination Form (Hidden by default) -->
+            <div id="nomination-form-container" class="form-container" style="display: none;">
+                <div class="form-header">
+                    <h3>👥 Nominate a Provider</h3>
+                    <p>Help us find healthcare providers who exemplify patient-first care</p>
+                    <button type="button" class="btn btn-secondary back-btn" onclick="showOptions()">← Back to Options</button>
+                </div>
+                
+                <form id="nomination-form" class="network-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nominator-name">Your Name *</label>
+                            <input type="text" id="nominator-name" name="nominator-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nominator-email">Your Email *</label>
+                            <input type="email" id="nominator-email" name="nominator-email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="provider-name">Provider Name *</label>
+                            <input type="text" id="provider-name" name="provider-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="provider-practice">Practice/Organization *</label>
+                            <input type="text" id="provider-practice" name="provider-practice" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="provider-specialty">Specialty *</label>
+                            <select id="provider-specialty" name="provider-specialty" required>
+                                <option value="">Select Specialty</option>
+                                <option value="wound-care">Wound Care Specialist</option>
+                                <option value="dermatology">Dermatologist</option>
+                                <option value="vascular">Vascular Surgeon</option>
+                                <option value="plastic">Plastic Surgeon</option>
+                                <option value="podiatry">Podiatrist</option>
+                                <option value="general">General Practitioner</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="provider-location">Location *</label>
+                            <input type="text" id="provider-location" name="provider-location" placeholder="City, State" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nomination-reason">Why do you recommend this provider? *</label>
+                        <textarea id="nomination-reason" name="nomination-reason" rows="4" placeholder="Tell us about their patient-first approach, exceptional care, or how they've helped you or others..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="provider-contact">Provider Contact Information (Optional)</label>
+                        <textarea id="provider-contact" name="provider-contact" rows="2" placeholder="Phone, email, or website if known"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Nomination</button>
+                </form>
+            </div>
+            
+            <!-- Application Form (Hidden by default) -->
+            <div id="application-form-container" class="form-container" style="display: none;">
+                <div class="form-header">
+                    <h3>🏥 Apply to Join Helping Hands</h3>
+                    <p>Join our network of patient-first healthcare providers</p>
+                    <button type="button" class="btn btn-secondary back-btn" onclick="showOptions()">← Back to Options</button>
+                </div>
+                
+                <form id="application-form" class="network-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicant-name">Full Name *</label>
+                            <input type="text" id="applicant-name" name="applicant-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicant-title">Professional Title *</label>
+                            <input type="text" id="applicant-title" name="applicant-title" placeholder="MD, DO, NP, PA, etc." required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicant-email">Email *</label>
+                            <input type="email" id="applicant-email" name="applicant-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicant-phone">Phone *</label>
+                            <input type="tel" id="applicant-phone" name="applicant-phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicant-specialty">Primary Specialty *</label>
+                            <select id="applicant-specialty" name="applicant-specialty" required>
+                                <option value="">Select Specialty</option>
+                                <option value="wound-care">Wound Care Specialist</option>
+                                <option value="dermatology">Dermatologist</option>
+                                <option value="vascular">Vascular Surgeon</option>
+                                <option value="plastic">Plastic Surgeon</option>
+                                <option value="podiatry">Podiatrist</option>
+                                <option value="general">General Practitioner</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicant-experience">Years of Experience *</label>
+                            <select id="applicant-experience" name="applicant-experience" required>
+                                <option value="">Select Experience</option>
+                                <option value="1-5">1-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="11-15">11-15 years</option>
+                                <option value="16-20">16-20 years</option>
+                                <option value="20+">20+ years</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="applicant-practice">Practice/Organization *</label>
+                            <input type="text" id="applicant-practice" name="applicant-practice" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="applicant-location">Location *</label>
+                            <input type="text" id="applicant-location" name="applicant-location" placeholder="City, State" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="applicant-license">License Number *</label>
+                        <input type="text" id="applicant-license" name="applicant-license" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="patient-commitment">Patient-First Commitment *</label>
+                        <textarea id="patient-commitment" name="patient-commitment" rows="4" placeholder="Describe your commitment to patient-centered care, accessibility, and working with underserved populations..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="insurance-acceptance">Insurance & Payment Options *</label>
+                        <textarea id="insurance-acceptance" name="insurance-acceptance" rows="3" placeholder="List accepted insurance plans, sliding scale fees, payment plans, or other accessibility options..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wound-types">Wound Types Treated</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="wound-types" value="chronic"> Chronic wounds</label>
+                            <label><input type="checkbox" name="wound-types" value="diabetic"> Diabetic ulcers</label>
+                            <label><input type="checkbox" name="wound-types" value="pressure"> Pressure sores</label>
+                            <label><input type="checkbox" name="wound-types" value="venous"> Venous ulcers</label>
+                            <label><input type="checkbox" name="wound-types" value="arterial"> Arterial ulcers</label>
+                            <label><input type="checkbox" name="wound-types" value="surgical"> Surgical wounds</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="additional-info">Additional Information</label>
+                        <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any other information about your practice, specializations, or commitment to patient advocacy..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="non-profit-agreement" required>
+                            I understand this is a non-profit organization and I commit to prioritizing patient care over profit
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </form>
             </div>
         </div>
     </section>

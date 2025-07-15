@@ -1,1 +1,150 @@
- 
+<svg width="300" height="600" viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive body map for wound location selection">
+  <defs>
+    <style>
+      .bm-region {
+        fill: #e8f4f8;
+        stroke: #26547c;
+        stroke-width: 2;
+        cursor: pointer;
+        transition: fill 0.3s ease, stroke 0.3s ease;
+      }
+      .bm-region:hover {
+        fill: #ff6b5d;
+        stroke: #e54e41;
+      }
+      .bm-region.active {
+        fill: #46b5a4;
+        stroke: #326f64;
+      }
+      .bm-region:focus {
+        outline: 2px dashed #46b5a4;
+        outline-offset: 2px;
+      }
+      .bm-body-outline {
+        fill: none;
+        stroke: #26547c;
+        stroke-width: 3;
+      }
+      .bm-label {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        fill: #26547c;
+        text-anchor: middle;
+        pointer-events: none;
+      }
+    </style>
+  </defs>
+  
+  <!-- Head & Neck -->
+  <ellipse id="head_neck" class="bm-region" cx="150" cy="40" rx="25" ry="30" 
+           role="button" tabindex="0" aria-label="Head and neck region">
+    <title>Head & Neck</title>
+  </ellipse>
+  
+  <!-- Chest -->
+  <rect id="chest" class="bm-region" x="120" y="80" width="60" height="50" rx="10" 
+        role="button" tabindex="0" aria-label="Chest region">
+    <title>Chest</title>
+  </rect>
+  
+  <!-- Left Upper Arm -->
+  <ellipse id="upper_arm_L" class="bm-region" cx="90" cy="110" rx="15" ry="30" 
+           role="button" tabindex="0" aria-label="Left upper arm">
+    <title>Left Upper Arm</title>
+  </ellipse>
+  
+  <!-- Right Upper Arm -->
+  <ellipse id="upper_arm_R" class="bm-region" cx="210" cy="110" rx="15" ry="30" 
+           role="button" tabindex="0" aria-label="Right upper arm">
+    <title>Right Upper Arm</title>
+  </ellipse>
+  
+  <!-- Abdomen -->
+  <rect id="abdomen" class="bm-region" x="125" y="140" width="50" height="40" rx="8" 
+        role="button" tabindex="0" aria-label="Abdomen region">
+    <title>Abdomen</title>
+  </rect>
+  
+  <!-- Left Forearm & Hand -->
+  <ellipse id="forearm_hand_L" class="bm-region" cx="70" cy="180" rx="12" ry="35" 
+           role="button" tabindex="0" aria-label="Left forearm and hand">
+    <title>Left Forearm & Hand</title>
+  </ellipse>
+  
+  <!-- Right Forearm & Hand -->
+  <ellipse id="forearm_hand_R" class="bm-region" cx="230" cy="180" rx="12" ry="35" 
+           role="button" tabindex="0" aria-label="Right forearm and hand">
+    <title>Right Forearm & Hand</title>
+  </ellipse>
+  
+  <!-- Groin & Hip -->
+  <ellipse id="groin_hip" class="bm-region" cx="150" cy="200" rx="30" ry="20" 
+           role="button" tabindex="0" aria-label="Groin and hip region">
+    <title>Groin & Hip</title>
+  </ellipse>
+  
+  <!-- Left Upper Leg -->
+  <ellipse id="upper_leg_L" class="bm-region" cx="135" cy="280" rx="18" ry="50" 
+           role="button" tabindex="0" aria-label="Left upper leg">
+    <title>Left Upper Leg</title>
+  </ellipse>
+  
+  <!-- Right Upper Leg -->
+  <ellipse id="upper_leg_R" class="bm-region" cx="165" cy="280" rx="18" ry="50" 
+           role="button" tabindex="0" aria-label="Right upper leg">
+    <title>Right Upper Leg</title>
+  </ellipse>
+  
+  <!-- Left Lower Leg & Foot -->
+  <ellipse id="lower_leg_foot_L" class="bm-region" cx="130" cy="420" rx="15" ry="80" 
+           role="button" tabindex="0" aria-label="Left lower leg and foot">
+    <title>Left Lower Leg & Foot</title>
+  </ellipse>
+  
+  <!-- Right Lower Leg & Foot -->
+  <ellipse id="lower_leg_foot_R" class="bm-region" cx="170" cy="420" rx="15" ry="80" 
+           role="button" tabindex="0" aria-label="Right lower leg and foot">
+    <title>Right Lower Leg & Foot</title>
+  </ellipse>
+  
+  <!-- Back regions (positioned to the right) -->
+  <!-- Upper Back -->
+  <rect id="upper_back" class="bm-region" x="220" y="80" width="50" height="60" rx="10" 
+        role="button" tabindex="0" aria-label="Upper back region">
+    <title>Upper Back</title>
+  </rect>
+  
+  <!-- Lower Back -->
+  <rect id="lower_back" class="bm-region" x="225" y="150" width="40" height="50" rx="8" 
+        role="button" tabindex="0" aria-label="Lower back region">
+    <title>Lower Back</title>
+  </rect>
+  
+  <!-- Body outline for reference -->
+  <path class="bm-body-outline" d="M150 70 Q120 70 110 100 Q105 130 110 160 Q115 190 125 220 Q120 250 120 280 Q115 320 115 360 Q115 400 115 440 Q115 480 125 520 Q140 540 150 540 Q160 540 175 520 Q185 480 185 440 Q185 400 185 360 Q185 320 180 280 Q180 250 175 220 Q185 190 190 160 Q195 130 190 100 Q180 70 150 70Z" 
+        fill="none" stroke="#26547c" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Labels for regions (hidden by default, can be shown with CSS) -->
+  <text class="bm-label" x="150" y="50" opacity="0">Head & Neck</text>
+  <text class="bm-label" x="150" y="105" opacity="0">Chest</text>
+  <text class="bm-label" x="90" y="120" opacity="0">L. Arm</text>
+  <text class="bm-label" x="210" y="120" opacity="0">R. Arm</text>
+  <text class="bm-label" x="150" y="160" opacity="0">Abdomen</text>
+  <text class="bm-label" x="70" y="190" opacity="0">L. Forearm</text>
+  <text class="bm-label" x="230" y="190" opacity="0">R. Forearm</text>
+  <text class="bm-label" x="150" y="210" opacity="0">Groin/Hip</text>
+  <text class="bm-label" x="135" y="290" opacity="0">L. Thigh</text>
+  <text class="bm-label" x="165" y="290" opacity="0">R. Thigh</text>
+  <text class="bm-label" x="130" y="430" opacity="0">L. Lower Leg</text>
+  <text class="bm-label" x="170" y="430" opacity="0">R. Lower Leg</text>
+  <text class="bm-label" x="245" y="110" opacity="0">Upper Back</text>
+  <text class="bm-label" x="245" y="175" opacity="0">Lower Back</text>
+  
+  <!-- Instructions text -->
+  <text x="150" y="580" class="bm-label" font-size="11" opacity="0.7">Click on body regions to select wound locations</text>
+  
+  <!-- Screen reader announcements -->
+  <div aria-live="polite" aria-atomic="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;">
+    <span id="bm-sr-announcement"></span>
+  </div>
+</svg> 
