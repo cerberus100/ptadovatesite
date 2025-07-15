@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeProviderSearch();
     initializeBodyMap();
     initializeFormHandling();
+    initializeNetworkForms();
     initializeSmoothScrolling();
 });
 
@@ -478,6 +479,96 @@ function submitAssistanceRequest(data) {
         // In a real application, you would send this data to your backend
         console.log('Form submitted:', data);
     }, 2000);
+}
+
+// Initialize network forms (nomination and application)
+function initializeNetworkForms() {
+    const nominationForm = document.getElementById('nomination-form');
+    const applicationForm = document.getElementById('application-form');
+    
+    // Provider nomination form
+    if (nominationForm) {
+        nominationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(nominationForm);
+            const data = Object.fromEntries(formData);
+            
+            // Basic validation
+            if (!data['nominator-name'] || !data['nominator-email'] || !data['provider-name'] || !data['nomination-reason']) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data['nominator-email'])) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate nomination submission
+            alert(`Thank you for nominating ${data['provider-name']}! We will review this provider and contact them about joining our patient-first network.`);
+            
+            // Reset form
+            nominationForm.reset();
+            
+            console.log('Provider nomination submitted:', data);
+        });
+    }
+    
+    // Provider application form
+    if (applicationForm) {
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(applicationForm);
+            const data = {};
+            
+            // Handle multiple values (like checkboxes)
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Basic validation
+            if (!data['applicant-name'] || !data['applicant-email'] || !data['applicant-phone'] || 
+                !data['applicant-specialty'] || !data['patient-commitment'] || !data['insurance-acceptance']) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data['applicant-email'])) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Check non-profit agreement
+            if (!data['non-profit-agreement']) {
+                alert('Please confirm your commitment to patient-first care in our non-profit network.');
+                return;
+            }
+            
+            // Simulate application submission
+            alert(`Thank you for your application, ${data['applicant-name']}! We will review your information and contact you within 5 business days regarding your application to join the Helping Hands network.`);
+            
+            // Reset form
+            applicationForm.reset();
+            
+            console.log('Provider application submitted:', data);
+        });
+    }
 }
 
 // Provider action handlers
