@@ -3,63 +3,51 @@ backend:
   phases:
     build:
       commands:
-        - echo "No backend build required for WordPress"
+        - echo "No backend build required for static site"
 frontend:
   phases:
     preBuild:
       commands:
-        - echo "Starting Helping Hands build process"
+        - echo "Starting Helping Hands Patient Advocates build process"
         - npm install
-        - echo "Checking AWS CLI installation"
-        - aws --version || (echo "Installing AWS CLI" && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install)
         - echo "Setting up environment variables"
         - |
           if [ "$AWS_BRANCH" = "main" ]; then
             export APP_ENV=production
-            export WP_SITE_URL=https://helpinghands.com
+            export SITE_URL=https://helpinghandspro.com
           elif [ "$AWS_BRANCH" = "staging" ]; then
             export APP_ENV=staging
-            export WP_SITE_URL=https://staging.helpinghands.com
+            export SITE_URL=https://staging.helpinghandspro.com
           else
             export APP_ENV=development
-            export WP_SITE_URL=https://dev.helpinghands.com
+            export SITE_URL=https://dev.helpinghandspro.com
           fi
         - echo "Environment set to $APP_ENV"
+        - echo "Site URL: $SITE_URL"
     build:
       commands:
-        - echo "Building WordPress assets"
+        - echo "Building static site assets"
         - npm run build-css
         - echo "Compiling SCSS to CSS"
         - npm run build-css
-        - echo "Optimizing images (if available)"
-        - npm run images:optimize || echo "Image optimization not available, skipping"
-        - echo "Building complete"
+        - echo "Static site build complete"
     postBuild:
       commands:
         - echo "Running post-build tasks"
-        - echo "Syncing assets to S3 (if configured)"
-        - |
-          if [ -n "$AWS_S3_BUCKET" ]; then
-            aws s3 sync ./assets/css/ s3://$AWS_S3_BUCKET/assets/css/ --delete || echo "CSS sync failed"
-            aws s3 sync ./assets/js/ s3://$AWS_S3_BUCKET/assets/js/ --delete || echo "JS sync failed"
-            aws s3 sync ./assets/images/ s3://$AWS_S3_BUCKET/assets/images/ --delete || echo "Images sync failed"
-          else
-            echo "AWS_S3_BUCKET not configured, skipping S3 sync"
-          fi
-        - echo "Invalidating CloudFront cache (if configured)"
-        - |
-          if [ -n "$AWS_CLOUDFRONT_DISTRIBUTION_ID" ]; then
-            aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*" || echo "CloudFront invalidation failed"
-          else
-            echo "AWS_CLOUDFRONT_DISTRIBUTION_ID not configured, skipping cache invalidation"
-          fi
+        - echo "Static site ready for deployment"
         - echo "Deployment complete"
   artifacts:
     baseDirectory: /
     files:
       - '**/*'
+      - '!node_modules/**/*'
+      - '!assets/scss/**/*'
+      - '!build/**/*'
+      - '!wp-content/**/*'
+      - '!theme/**/*'
+      - '!forms/**/*'
+      - '!*.md'
+      - '!package*.json'
   cache:
     paths:
-      - node_modules/**/*
-      - assets/css/**/*
-      - assets/js/**/* 
+      - node_modules/**/* 

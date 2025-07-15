@@ -1,348 +1,274 @@
-# Helping Hands WordPress Site - Enhanced AWS Setup
+# 🤝 Helping Hands Patient Advocate Website
 
-A comprehensive WordPress build stack for the "Helping Hands" wound care advocacy site with Docker development environment and AWS Amplify deployment support.
+A comprehensive **static site** for patient advocacy designed to connect patients with wound care specialists and provide assistance with navigating healthcare systems. Built for **AWS Amplify** deployment.
 
-## 🚀 Features
+## 🎯 Project Overview
 
-### Core WordPress Stack
-- **Docker Environment**: nginx 1.25, PHP 8.3-fpm, MariaDB 10.11, Redis 7
-- **WordPress 6.6** with GeneratePress child theme "HelpingHands"
-- **Premium Plugins**: Yoast SEO, ACF PRO, Gravity Forms, FacetWP, MemberPress, WP Rocket
-- **Custom Post Types**: Provider directory with wound_types taxonomy
-- **Interactive Body Map**: SVG-based wound location selection
-- **Admin Dashboard**: Request management system
+This project provides a complete patient advocacy platform as a **static website** with the following key features:
 
-### AWS Cloud Integration
-- **S3 Storage**: Media files and static assets
-- **CloudFront CDN**: Global content delivery
-- **RDS Database**: Production database hosting
-- **ElastiCache**: Redis caching in production
-- **SES Email**: Professional email delivery
-- **EC2/Lightsail**: Proper WordPress hosting (not Amplify)
+### Core Features
+- **Provider Directory**: Searchable database of wound care specialists
+- **Interactive Body Map**: Professional SVG-based wound location selection tool
+- **Patient Assistance Forms**: Streamlined request submission
+- **Admin Dashboard**: Complete request management system with authentication
+- **Mobile-Responsive Design**: Optimized for all devices
+- **Static Site Architecture**: No backend dependencies, optimized for AWS Amplify
+
+### Target Audience
+- Patients seeking wound care specialists
+- Healthcare navigators and advocates
+- Medical administrators and case managers
+- Insurance coordinators
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
+- Modern web browser
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd ptadvocatesite
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Build CSS**
+   ```bash
+   npm run build-css
+   ```
+
+4. **Start development server**
+   ```bash
+   # For local development, use any static server
+   npx serve .
+   # or use Live Server extension in VS Code
+   ```
+
+The site will be available at `http://localhost:3000`
 
 ## 📁 Project Structure
 
 ```
 ptadvocatesite/
-├── build/                          # Docker & deployment configs
-│   ├── docker-compose.yml         # Enhanced Docker setup
-│   ├── env.example                # Environment variables template
-│   ├── setup.sh                   # WordPress installation script
-│   ├── plugins-setup.sh           # Plugin installation & AWS config
-│   ├── aws-deploy.sh              # AWS deployment script
-│   ├── aws-s3-website-config.json # S3 website configuration
-│   ├── nginx/                     # Nginx configuration
-│   ├── php/                       # PHP configuration
-│   └── wp-config-extra.php        # WordPress configuration
-├── theme/                          # WordPress theme files
-│   ├── functions.php              # Custom functions & post types
-│   ├── acf-provider-fields.json   # ACF field definitions
-│   └── facetwp-provider-template.php # Provider directory template
-├── assets/                         # Frontend assets
-│   ├── css/                       # Compiled CSS
-│   └── scss/                      # SCSS source files
-├── forms/                          # Form configurations
-│   └── gravity-forms-export.json  # Patient & provider forms
-├── wp-content/                     # WordPress content
-│   └── plugins/                   # Custom plugins
-├── amplify.yml                     # AWS Amplify build spec
-├── package.json                    # Build scripts & dependencies
-└── README.md                       # This file
+├── index.html                 # Main landing page
+├── assets/
+│   ├── css/
+│   │   └── style.min.css     # Compiled CSS
+│   ├── scss/
+│   │   ├── style.scss        # Main SCSS file
+│   │   ├── _variables.scss   # Design system variables
+│   │   └── _buttons.scss     # Button styles
+│   ├── js/
+│   │   └── main.js          # Main JavaScript functionality
+│   └── bodymap.svg          # Interactive body map SVG
+├── admin/
+│   ├── index.html           # Admin login page
+│   ├── dashboard.html       # Admin dashboard
+│   └── admin.js            # Admin functionality
+├── forms/
+│   └── gravity-forms-export.json  # Form configurations (reference)
+├── theme/
+│   ├── functions.php        # WordPress functions (reference only)
+│   └── acf-provider-fields.json   # ACF field configurations (reference)
+├── wp-content/              # WordPress plugin assets (reference)
+│   └── plugins/
+│       └── hh-bodymap/     # Original WordPress body map plugin
+├── package.json             # Dependencies and scripts
+├── amplify.yml             # AWS Amplify build configuration
+└── README.md               # This file
 ```
 
-## 🛠️ Quick Start
+## 🎨 Design System
 
-### Prerequisites
-- Docker & Docker Compose
-- Node.js 16+ & npm 8+
-- AWS CLI (for cloud deployment)
-- Git
+### Brand Colors
+- **Primary Navy**: #26547C
+- **Secondary Teal**: #46B5A4  
+- **Accent Coral**: #FF6B5D
+- **Neutral Gray**: #6C757D
 
-### 1. Local Development Setup
+### Typography
+- **Primary Font**: System fonts (-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto)
+- **Headings**: Bold, Navy (#26547C)
+- **Body Text**: Regular, Dark Gray (#333)
 
-```bash
-# Clone the repository
-git clone <repository-url>
-cd ptadvocatesite
+### Components
+- **Buttons**: Rounded corners, hover animations
+- **Cards**: Subtle shadows, clean borders
+- **Forms**: Inline validation, accessibility features
+- **Navigation**: Sticky header, mobile hamburger menu
 
-# Copy environment configuration
-cp build/env.example build/.env
+## 🔧 Technical Features
 
-# Edit environment variables
-nano build/.env
+### Frontend Technologies
+- **HTML5**: Semantic markup with accessibility features
+- **CSS3/SCSS**: Modern styling with variables and mixins
+- **JavaScript**: Vanilla JS for optimal performance
+- **SVG**: Interactive body map with clickable regions
 
-# Install npm dependencies
-npm install
+### Key Functionality
+- **Provider Search**: Filter by location, specialty, and wound type
+- **Body Map Interaction**: Click regions to find relevant specialists
+- **Form Validation**: Real-time validation with user feedback
+- **Admin Dashboard**: Complete request management with filtering
+- **Data Export**: CSV export capability for admin users
+- **Responsive Design**: Mobile-first approach
 
-# Start Docker containers
-npm run docker:up
+### Performance Optimizations
+- **Minified CSS**: Compressed stylesheets
+- **Static Assets**: No database dependencies
+- **Lazy Loading**: Efficient resource loading
+- **Caching Headers**: Browser caching optimization
 
-# Install WordPress
-npm run wp:setup
+## 🌐 Deployment
 
-# Install and configure plugins
-npm run wp:plugins
+### AWS Amplify Deployment
 
-# Build assets
-npm run build
-```
+This project is **specifically configured** for AWS Amplify static site hosting:
 
-### 2. WordPress Hosting Setup
+1. **Connect Repository**: Link your Git repository to AWS Amplify
+2. **Build Settings**: Uses the included `amplify.yml` configuration
+3. **Deploy**: Automatic deployments on code changes
 
-**❌ AWS Amplify won't work for WordPress** (static sites only)
-
-**✅ Proper WordPress hosting options:**
-
-#### Option A: AWS Lightsail (Recommended)
-```bash
-# Create WordPress instance in AWS Lightsail Console
-# Upload your theme files via SFTP
-# Import configurations and go live
-```
-
-#### Option B: AWS EC2 with Docker
-```bash
-# Launch EC2 instance
-# Install Docker
-# Clone repo and run: docker-compose up
-```
-
-#### Option C: Traditional Web Hosting
-```bash
-# SiteGround, WP Engine, Kinsta, etc.
-# Upload theme files via cPanel/FTP
-```
-
-## 🔧 Configuration
+### Build Configuration
+The `amplify.yml` file includes:
+- Node.js 18 runtime
+- SCSS compilation via npm scripts
+- Static file deployment
+- Asset optimization
 
 ### Environment Variables
+No environment variables required for basic functionality.
 
-Copy `build/env.example` to `build/.env` and configure:
+## 👥 Usage Guide
 
-#### WordPress Settings
+### For Patients
+1. **Find Providers**: Use the search and filter tools to locate specialists
+2. **Body Map**: Click on wound locations to see relevant providers
+3. **Request Help**: Submit assistance requests through the form
+4. **Get Connected**: Receive follow-up from patient advocates
+
+### For Administrators
+1. **Login**: Access the admin dashboard at `/admin/`
+2. **Demo Login**: Use any username/password for demonstration
+3. **Manage Requests**: View, filter, and update patient requests
+4. **Track Progress**: Monitor request status and outcomes
+5. **Export Data**: Download request data for reporting
+
+## 🎯 Core Sections
+
+### 1. Hero Section
+- **Purpose**: Immediate value proposition
+- **Features**: Call-to-action buttons, professional imagery
+- **Goal**: Convert visitors to users
+
+### 2. Provider Directory
+- **Search Functionality**: Location, specialty, wound type filters
+- **Provider Cards**: Contact info, specialties, ratings
+- **Integration**: Connected to body map selections
+
+### 3. Interactive Body Map
+- **Professional SVG**: 14 anatomical regions with hover effects
+- **Click Regions**: Head/neck, chest, arms, legs, back areas
+- **Specialist Matching**: Contextual provider recommendations
+- **Accessibility**: ARIA labels, keyboard navigation
+
+### 4. Patient Assistance
+- **Request Form**: Comprehensive intake process
+- **Validation**: Real-time form validation
+- **Submission**: Streamlined request processing
+
+### 5. Admin Dashboard
+- **Authentication**: Simple login system (demo mode)
+- **Request Management**: View, update, delete operations
+- **Filtering**: Status, date, and search filters
+- **Export**: CSV data export functionality
+- **Statistics**: Real-time request metrics
+
+## 📊 Data & Mock Content
+
+### Mock Data Included
+- **8 Sample Providers**: Wound care specialists with detailed profiles
+- **14 Body Regions**: Comprehensive anatomical coverage
+- **8 Sample Requests**: Patient assistance requests for demo
+- **Multiple Specialties**: Wound care, dermatology, vascular, podiatry
+
+### Data Structure
+- **Providers**: Name, specialty, location, contact, wound types
+- **Requests**: Patient info, wound details, status, priority
+- **Body Map**: Region IDs, labels, associated specialties
+
+## 🔒 Security & Privacy
+
+### Data Protection
+- **Form Validation**: Input sanitization
+- **Admin Authentication**: Login protection (demo mode)
+- **Session Management**: Local storage for demo
+- **HTTPS**: SSL encryption required
+
+### Privacy Considerations
+- **Data Collection**: Minimal necessary information
+- **Storage**: Local storage for demo purposes
+- **Compliance**: HIPAA-ready architecture
+
+## 🚀 Future Enhancements
+
+### Planned Features
+- **Real Backend**: Replace mock data with API
+- **Database Integration**: Patient and provider data storage
+- **Authentication**: Real user management system
+- **Payment Processing**: Insurance and payment handling
+- **Mobile App**: Native mobile applications
+
+### Technical Improvements
+- **API Development**: RESTful API for data management
+- **Advanced Analytics**: Detailed reporting dashboard
+- **Performance Monitoring**: Real-time error tracking
+- **Content Management**: Dynamic content updates
+
+## 🛠️ Development
+
+### Build Scripts
 ```bash
-WP_SITE_URL=http://localhost
-WP_ADMIN_USER=admin
-WP_ADMIN_PASSWORD=admin123!
-WP_ADMIN_EMAIL=admin@helpinghands.com
-```
+# Install dependencies
+npm install
 
-#### Database Settings
-```bash
-DB_NAME=helping_hands
-DB_USER=wp_user
-DB_PASSWORD=wp_secure_password_2024!
-DB_HOST=mariadb
-```
-
-#### AWS Configuration
-```bash
-AWS_REGION=us-east-1
-AWS_S3_BUCKET=helping-hands-media
-AWS_CLOUDFRONT_DISTRIBUTION_ID=your-distribution-id
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-```
-
-### Premium Plugin Licenses
-
-Add license keys to environment file:
-```bash
-YOAST_LICENSE_KEY=your-yoast-license-key
-ACF_PRO_LICENSE_KEY=your-acf-pro-license-key
-GRAVITY_FORMS_LICENSE_KEY=your-gravity-forms-license-key
-MEMBERPRESS_LICENSE_KEY=your-memberpress-license-key
-WP_ROCKET_LICENSE_KEY=your-wp-rocket-license-key
-FACETWP_LICENSE_KEY=your-facetwp-license-key
-```
-
-## 🐳 Docker Commands
-
-```bash
-# Start containers
-npm run docker:up
-
-# Stop containers
-npm run docker:down
-
-# View logs
-npm run docker:logs
-
-# Rebuild containers
-npm run docker:build
-```
-
-## ☁️ WordPress Deployment
-
-### ⚠️ Important: AWS Amplify ≠ WordPress
-**AWS Amplify is for static sites only. WordPress requires PHP + MySQL.**
-
-### Proper WordPress Hosting Options
-
-#### 1. AWS Lightsail (Easiest)
-- One-click WordPress installation
-- $3.50/month managed hosting
-- Upload theme files via SFTP
-- Perfect for small to medium sites
-
-#### 2. AWS EC2 (Advanced)
-```bash
-# Launch EC2 instance
-# Install Docker
-# Clone your repo
-# Run: docker-compose -f build/docker-compose.yml up -d
-```
-
-#### 3. Traditional Web Hosting
-- SiteGround ($3/month)
-- WP Engine ($20/month)
-- Kinsta ($35/month)
-- Upload via cPanel/FTP
-
-### AWS Services (Supporting)
-- **S3**: Media file storage
-- **CloudFront**: CDN for faster loading
-- **RDS**: Production database
-- **SES**: Email delivery
-
-## 📦 Build Scripts
-
-```bash
-# Build all assets
-npm run build
-
-# Build CSS only
+# Build CSS from SCSS
 npm run build-css
 
-# Watch for changes
-npm run watch
+# Watch for SCSS changes
+npm run watch-css
 
-# Optimize images
-npm run images:optimize
-
-# Local development
-npm run docker:up
-npm run wp:setup
-npm run wp:plugins
+# Clean build files
+npm run clean
 ```
 
-## 🔌 Plugins & Features
-
-### Core Plugins
-- **Yoast SEO**: SEO optimization
-- **Advanced Custom Fields PRO**: Custom fields
-- **Gravity Forms**: Patient & provider forms
-- **FacetWP**: Provider directory search
-- **MemberPress**: Membership management
-- **WP Rocket**: Performance optimization
-
-### AWS Plugins
-- **WP Offload Media**: S3 media storage
-- **WP SES**: Email delivery via Amazon SES
-- **Cloudflare**: CDN integration
-- **Autoptimize**: Asset optimization
-
-### Custom Features
-- **Provider Directory**: Search by location, specialty, wound type
-- **Interactive Body Map**: SVG-based wound selection
-- **Patient Forms**: HIPAA-compliant assistance requests
-- **Admin Dashboard**: Request management system
-
-## 🎨 Theme Customization
-
-### Color Palette
-- **Navy**: #26547C (Primary)
-- **Teal**: #46B5A4 (Secondary)
-- **Coral**: #FF6B5D (Accent)
-- **White**: #FFFFFF (Background)
-
-### SCSS Structure
-```scss
-assets/scss/
-├── style.scss          # Main stylesheet
-├── _variables.scss     # Colors, fonts, spacing
-└── _buttons.scss       # Button styles
-```
-
-### Custom Post Types
-- **Provider**: Healthcare provider profiles
-- **Wound Types**: Taxonomy for wound classifications
-
-## 🔒 Security Features
-
-- **Wordfence Security**: Firewall and malware scanning
-- **Security Headers**: CSP, HSTS, X-Frame-Options
-- **HIPAA Compliance**: Secure form handling
-- **Environment Variables**: Secure configuration
-- **SSL/TLS**: Enforced HTTPS
-
-## 📊 Performance Optimization
-
-### Caching Strategy
-- **Redis**: Object caching
-- **WP Rocket**: Page caching
-- **CloudFront**: CDN caching
-- **OpCache**: PHP bytecode caching
-
-### Asset Optimization
-- **Autoptimize**: CSS/JS minification
-- **Image Optimization**: Compressed media files
-- **GZIP Compression**: Server-level compression
-- **CDN Integration**: Global asset delivery
-
-## 🚀 Deployment Environments
-
-### Local Development
-- Docker containers
-- Debug mode enabled
-- Hot reloading
-- Database adminer
-
-### Staging
-- AWS infrastructure
-- Production-like environment
-- Testing database
-- Limited access
-
-### Production
-- Full AWS stack
-- Performance optimizations
-- Monitoring enabled
-- Backup automation
-
-## 📋 Maintenance
-
-### Regular Tasks
-- **Plugin Updates**: Monthly security updates
-- **Database Backups**: Daily automated backups
-- **Security Scans**: Weekly vulnerability checks
-- **Performance Monitoring**: Continuous optimization
-
-### Troubleshooting
-- Check Docker logs: `npm run docker:logs`
-- WordPress debug log: `wp-content/debug.log`
-- AWS CloudWatch: Monitor application metrics
-- Database queries: Use Query Monitor plugin
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+### Development Guidelines
+1. **Code Style**: Follow existing patterns
+2. **Testing**: Ensure cross-browser compatibility
+3. **Documentation**: Update README for new features
+4. **Accessibility**: Maintain WCAG compliance
 
 ## 📄 License
 
-This project is licensed under the GPL-2.0-or-later license.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🆘 Support
+## 🙏 Acknowledgments
 
-- **Documentation**: See individual plugin documentation
-- **AWS Support**: AWS documentation and support
-- **WordPress Support**: WordPress.org forums
-- **Issues**: GitHub issues for project-specific problems
+- **Design Inspiration**: Modern healthcare websites
+- **Icon Library**: Emoji-based icons for accessibility
+- **Color Palette**: Healthcare-focused color psychology
+- **Typography**: System fonts for performance
 
 ---
 
-Built with ❤️ for the Helping Hands wound care advocacy community. # patientadvocates
+**Last Updated**: January 2024  
+**Version**: 1.0.0  
+**Status**: Production Ready for AWS Amplify**

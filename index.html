@@ -3,142 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helping Hands - Patient Advocates</title>
-    <meta name="description" content="Wound care advocacy and patient assistance services">
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #26547C 0%, #46B5A4 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 90%;
-        }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #26547C;
-            margin-bottom: 1rem;
-        }
-        .tagline {
-            color: #666;
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-        .status {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            border-left: 4px solid #46B5A4;
-        }
-        .status h3 {
-            color: #26547C;
-            margin-top: 0;
-        }
-        .features {
-            text-align: left;
-            margin: 2rem 0;
-        }
-        .features ul {
-            list-style: none;
-            padding: 0;
-        }
-        .features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        .features li:before {
-            content: "✓";
-            color: #46B5A4;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-        .btn {
-            display: inline-block;
-            background: #FF6B5D;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background 0.3s;
-        }
-        .btn:hover {
-            background: #e55a4d;
-        }
-        .footer {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
-            color: #888;
-            font-size: 0.9rem;
-        }
-    </style>
+    <title>Helping Hands - Patient Advocates & Wound Care Specialists</title>
+    <meta name="description" content="Professional patient advocacy and wound care specialist connections. Get help navigating healthcare and finding the right wound care providers.">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🤝 Helping Hands</div>
-        <div class="tagline">Patient Advocates & Wound Care Specialists</div>
-        
-        <div class="status">
-            <h3>🚀 Deployment Successful!</h3>
-            <p>Your WordPress site has been successfully deployed on AWS Amplify.</p>
-        </div>
-
-        <div class="features">
-            <h4>What's Included:</h4>
-            <ul>
-                <li>Complete WordPress build stack</li>
-                <li>Docker development environment</li>
-                <li>AWS cloud integration</li>
-                <li>Provider directory system</li>
-                <li>Interactive body map</li>
-                <li>HIPAA-compliant forms</li>
-                <li>Performance optimization</li>
-                <li>Security features</li>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🤝 Helping Hands</h1>
+                <span>Patient Advocates</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#providers">Find Providers</a></li>
+                <li><a href="#body-map">Body Map</a></li>
+                <li><a href="#request-help">Get Help</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
+    </nav>
 
-        <div style="margin: 2rem 0;">
-            <a href="https://github.com/contentkingpins/patientadvocates" class="btn">View on GitHub</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Your Healthcare Navigation Partner</h2>
+                <p>Professional patient advocacy and wound care specialist connections. We help you find the right care and navigate the healthcare system with confidence.</p>
+                <div class="hero-buttons">
+                    <a href="#request-help" class="btn btn-primary">Request Assistance</a>
+                    <a href="#providers" class="btn btn-secondary">Find Providers</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/images/hero-healthcare.svg" alt="Healthcare professionals" />
+            </div>
         </div>
+    </section>
 
-        <div class="footer">
-            <p><strong>Next Steps:</strong></p>
-            <p>1. Configure your WordPress installation<br>
-            2. Set up your domain and SSL<br>
-            3. Install and configure plugins<br>
-            4. Import your content and forms</p>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>Provider Connections</h3>
+                    <p>Connect with qualified wound care specialists and healthcare providers in your area.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Patient Advocacy</h3>
+                    <p>Professional advocacy services to help you navigate healthcare systems and insurance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🗺️</div>
+                    <h3>Interactive Body Map</h3>
+                    <p>Visual wound location mapping to help providers understand your specific needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Care Coordination</h3>
+                    <p>Seamless coordination between multiple healthcare providers for comprehensive care.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Simple analytics
-        console.log('Helping Hands - Patient Advocates site loaded successfully');
-        
-        // Check if WordPress is accessible
-        setTimeout(() => {
-            const wpCheck = document.createElement('div');
-            wpCheck.style.cssText = 'position:fixed;top:10px;right:10px;background:#46B5A4;color:white;padding:8px 12px;border-radius:4px;font-size:12px;';
-            wpCheck.textContent = 'WordPress Ready ✓';
-            document.body.appendChild(wpCheck);
-            
-            setTimeout(() => {
-                wpCheck.remove();
-            }, 3000);
-        }, 1000);
-    </script>
+    <!-- Provider Directory -->
+    <section id="providers" class="providers">
+        <div class="container">
+            <h2>Find Wound Care Providers</h2>
+            <div class="provider-search">
+                <div class="search-filters">
+                    <input type="text" id="location-search" placeholder="Enter your location">
+                    <select id="specialty-filter">
+                        <option value="">All Specialties</option>
+                        <option value="wound-care">Wound Care Specialist</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="vascular">Vascular Surgery</option>
+                        <option value="plastic">Plastic Surgery</option>
+                        <option value="podiatry">Podiatry</option>
+                    </select>
+                    <select id="wound-type-filter">
+                        <option value="">All Wound Types</option>
+                        <option value="chronic">Chronic Wounds</option>
+                        <option value="diabetic">Diabetic Ulcers</option>
+                        <option value="pressure">Pressure Sores</option>
+                        <option value="venous">Venous Ulcers</option>
+                        <option value="arterial">Arterial Ulcers</option>
+                    </select>
+                    <button id="search-providers" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            <div id="providers-results" class="providers-grid">
+                <!-- Providers will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Body Map -->
+    <section id="body-map" class="body-map-section">
+        <div class="container">
+            <h2>Interactive Body Map</h2>
+            <p>Click on the body area where you need wound care to find specialized providers</p>
+            <div class="hh-bodymap-container">
+                <div class="hh-bodymap-header">
+                    <h3>Select wound location</h3>
+                    <p class="hh-bodymap-instruction">Click on the body area where assistance is needed</p>
+                </div>
+                
+                <div class="hh-bodymap-svg-container" id="body-map-svg">
+                    <!-- Professional SVG body map will be loaded here -->
+                </div>
+                
+                <div class="hh-bodymap-selection-info">
+                    <div class="hh-bodymap-selected-regions">
+                        <strong>Selected:</strong>
+                        <span class="hh-bodymap-selected-list" id="selected-regions-list">None</span>
+                    </div>
+                    
+                    <div class="hh-bodymap-actions">
+                        <button type="button" class="hh-bodymap-clear-btn" id="clear-selection-btn" style="display: none;">
+                            Clear Selection
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="selected-area-info">
+                    <p>Click on any part of the body to see relevant wound care specialists and treatment options.</p>
+                </div>
+                
+                <!-- Hidden input for form integration -->
+                <input type="hidden" name="wound_location" id="wound_location" value="" class="hh-bodymap-hidden-input">
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Help Form -->
+    <section id="request-help" class="request-help">
+        <div class="container">
+            <h2>Request Patient Assistance</h2>
+            <div class="form-container">
+                <form id="assistance-form" class="assistance-form">
+                    <div class="form-group">
+                        <label for="patient-name">Full Name *</label>
+                        <input type="text" id="patient-name" name="patient-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="patient-email">Email Address *</label>
+                        <input type="email" id="patient-email" name="patient-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="patient-phone">Phone Number</label>
+                        <input type="tel" id="patient-phone" name="patient-phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="patient-location">Location (City, State) *</label>
+                        <input type="text" id="patient-location" name="patient-location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="wound-type">Type of Wound Care Needed</label>
+                        <select id="wound-type" name="wound-type">
+                            <option value="">Please select...</option>
+                            <option value="chronic">Chronic Wound</option>
+                            <option value="diabetic">Diabetic Ulcer</option>
+                            <option value="pressure">Pressure Sore</option>
+                            <option value="venous">Venous Ulcer</option>
+                            <option value="arterial">Arterial Ulcer</option>
+                            <option value="surgical">Surgical Wound</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency">Urgency Level</label>
+                        <select id="urgency" name="urgency">
+                            <option value="routine">Routine</option>
+                            <option value="urgent">Urgent (within 1 week)</option>
+                            <option value="emergency">Emergency (within 24 hours)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="insurance">Insurance Information</label>
+                        <input type="text" id="insurance" name="insurance" placeholder="Insurance provider (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description of Assistance Needed *</label>
+                        <textarea id="description" name="description" rows="4" required placeholder="Please describe your situation and how we can help..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="hipaa-consent" name="hipaa-consent" required>
+                            I consent to the collection and use of my information as described in the Privacy Policy *
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>help@helpinghandspro.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>1-800-HELPING</p>
+                </div>
+                <div class="contact-item">
+                    <h3>⏰ Hours</h3>
+                    <p>Monday - Friday: 8AM - 6PM EST</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🤝 Helping Hands</h3>
+                    <p>Professional patient advocacy and wound care connections.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#providers">Find Providers</a></li>
+                        <li><a href="#body-map">Body Map</a></li>
+                        <li><a href="#request-help">Patient Assistance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Helping Hands Patient Advocates. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html> 
