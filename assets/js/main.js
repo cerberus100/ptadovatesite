@@ -283,7 +283,7 @@ function setupBodyMapInteractions() {
     let selectedRegions = [];
 
     // Add click handlers to body regions
-    document.querySelectorAll('.bm-region').forEach(region => {
+    document.querySelectorAll('.body-region').forEach(region => {
         region.addEventListener('click', function() {
             const regionData = this.getAttribute('data-region');
             const regionId = this.id;
@@ -470,7 +470,7 @@ function setupBodyMapInteractions() {
 
     // Make functions globally available
     window.clearBodyMapSelections = function() {
-        const regions = document.querySelectorAll('.bm-region.active');
+        const regions = document.querySelectorAll('.body-region.active');
         regions.forEach(region => region.classList.remove('active'));
         selectedRegions = [];
         updateSelectedRegions([]);
