@@ -286,8 +286,11 @@ function initializeBodyMap() {
             console.error('Error loading body map:', error);
             // Fallback to basic body map
             bodyMapSvg.innerHTML = `
-                <svg width="300" height="600" viewBox="0 0 300 600">
-                    <text x="150" y="300" text-anchor="middle" fill="#666">Body map loading...</text>
+                <svg width="400" height="600" viewBox="0 0 400 600">
+                    <rect width="400" height="600" fill="#f8f9fa"/>
+                    <text x="200" y="300" text-anchor="middle" fill="#7f8c8d" font-family="Segoe UI, sans-serif" font-size="16">
+                        Body map loading...
+                    </text>
                 </svg>
             `;
         });
@@ -295,102 +298,211 @@ function initializeBodyMap() {
 
 // Setup body map interactions
 function setupBodyMapInteractions() {
+    const selectedAreaInfo = document.getElementById('selected-area-info');
     let selectedRegions = [];
-    
+
     // Add click handlers to body regions
     document.querySelectorAll('.bm-region').forEach(region => {
         region.addEventListener('click', function() {
-            const regionId = this.getAttribute('id');
-            toggleRegionSelection(regionId);
+            const regionData = this.getAttribute('data-region');
+            const regionId = this.id;
+            
+            // Convert region data to readable name
+            const regionName = formatRegionName(regionData || regionId);
+            
+            // Toggle selection
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                selectedRegions = selectedRegions.filter(r => r.id !== regionId);
+            } else {
+                this.classList.add('active');
+                selectedRegions.push({
+                    id: regionId,
+                    name: regionName,
+                    data: regionData
+                });
+            }
+            
+            // Update display and form
+            updateSelectedRegions(selectedRegions);
+            
+            // Provide visual feedback
+            if (this.classList.contains('active')) {
+                showSelectionFeedback(this);
+            }
         });
         
+        // Enhanced hover effects
+        region.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('active')) {
+                const regionName = formatRegionName(this.getAttribute('data-region') || this.id);
+                showTooltip(this, regionName);
+            }
+        });
+        
+        region.addEventListener('mouseleave', function() {
+            hideTooltip();
+        });
+        
+        // Keyboard accessibility
         region.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                const regionId = this.getAttribute('id');
-                toggleRegionSelection(regionId);
+                this.click();
             }
         });
     });
-    
-    // Clear selection button
-    document.getElementById('clear-selection-btn').addEventListener('click', function() {
-        clearAllSelections();
-    });
-    
-    // Toggle region selection
-    function toggleRegionSelection(regionId) {
-        const region = document.getElementById(regionId);
-        const index = selectedRegions.indexOf(regionId);
+
+    function formatRegionName(regionData) {
+        if (!regionData) return 'Unknown region';
         
-        if (index > -1) {
-            // Remove from selection
-            selectedRegions.splice(index, 1);
-            region.classList.remove('active');
-        } else {
-            // Add to selection
-            selectedRegions.push(regionId);
-            region.classList.add('active');
-        }
-        
-        updateSelectionDisplay();
-        selectBodyArea(regionId);
-    }
-    
-    // Update selection display
-    function updateSelectionDisplay() {
-        const selectedList = document.getElementById('selected-regions-list');
-        const clearBtn = document.getElementById('clear-selection-btn');
-        const hiddenInput = document.getElementById('wound_location');
-        
-        if (selectedRegions.length > 0) {
-            const regionLabels = selectedRegions.map(id => getRegionLabel(id));
-            selectedList.textContent = regionLabels.join(', ');
-            clearBtn.style.display = 'inline-block';
-            hiddenInput.value = selectedRegions.join(',');
-        } else {
-            selectedList.textContent = 'None';
-            clearBtn.style.display = 'none';
-            hiddenInput.value = '';
-        }
-    }
-    
-    // Clear all selections
-    function clearAllSelections() {
-        selectedRegions.forEach(regionId => {
-            const region = document.getElementById(regionId);
-            if (region) {
-                region.classList.remove('active');
-            }
-        });
-        selectedRegions = [];
-        updateSelectionDisplay();
-        
-        // Clear area info
-        const areaInfo = document.getElementById('selected-area-info');
-        areaInfo.innerHTML = '<p>Click on any part of the body to see relevant wound care specialists and treatment options.</p>';
-    }
-    
-    // Get region label
-    function getRegionLabel(regionId) {
-        const labels = {
-            'head_neck': 'Head & Neck',
-            'upper_arm_L': 'Left Upper Arm',
-            'upper_arm_R': 'Right Upper Arm',
-            'forearm_hand_L': 'Left Forearm & Hand',
-            'forearm_hand_R': 'Right Forearm & Hand',
+        // Convert data-region values to proper names
+        const regionMap = {
+            'head': 'Head',
+            'head-back': 'Back of Head',
+            'neck': 'Neck',
+            'neck-back': 'Back of Neck',
             'chest': 'Chest',
+            'upper-back': 'Upper Back',
+            'left-shoulder': 'Left Shoulder',
+            'right-shoulder': 'Right Shoulder',
+            'left-shoulder-back': 'Left Shoulder (Back)',
+            'right-shoulder-back': 'Right Shoulder (Back)',
+            'left-arm': 'Left Arm',
+            'right-arm': 'Right Arm',
+            'left-arm-back': 'Left Arm (Back)',
+            'right-arm-back': 'Right Arm (Back)',
             'abdomen': 'Abdomen',
-            'groin_hip': 'Groin & Hip',
-            'upper_leg_L': 'Left Upper Leg',
-            'upper_leg_R': 'Right Upper Leg',
-            'lower_leg_foot_L': 'Left Lower Leg & Foot',
-            'lower_leg_foot_R': 'Right Lower Leg & Foot',
-            'upper_back': 'Upper Back',
-            'lower_back': 'Lower Back',
+            'lower-back': 'Lower Back',
+            'left-hand': 'Left Hand',
+            'right-hand': 'Right Hand',
+            'left-hand-back': 'Left Hand (Back)',
+            'right-hand-back': 'Right Hand (Back)',
+            'pelvis': 'Pelvis/Hip',
+            'buttocks': 'Buttocks',
+            'left-thigh': 'Left Thigh',
+            'right-thigh': 'Right Thigh',
+            'left-thigh-back': 'Left Thigh (Back)',
+            'right-thigh-back': 'Right Thigh (Back)',
+            'left-knee': 'Left Knee',
+            'right-knee': 'Right Knee',
+            'left-knee-back': 'Left Knee (Back)',
+            'right-knee-back': 'Right Knee (Back)',
+            'left-lower-leg': 'Left Shin',
+            'right-lower-leg': 'Right Shin',
+            'left-calf': 'Left Calf',
+            'right-calf': 'Right Calf',
+            'left-ankle': 'Left Ankle',
+            'right-ankle': 'Right Ankle',
+            'left-ankle-back': 'Left Ankle (Back)',
+            'right-ankle-back': 'Right Ankle (Back)',
+            'left-foot': 'Left Foot',
+            'right-foot': 'Right Foot',
+            'left-foot-back': 'Left Foot (Back)',
+            'right-foot-back': 'Right Foot (Back)'
         };
-        return labels[regionId] || regionId;
+        
+        return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
     }
+
+    function showSelectionFeedback(element) {
+        // Add a subtle animation to show selection
+        element.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            element.style.transform = 'scale(1)';
+        }, 200);
+    }
+
+    function showTooltip(element, text) {
+        // Create or update tooltip
+        let tooltip = document.getElementById('body-map-tooltip');
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'body-map-tooltip';
+            tooltip.style.cssText = `
+                position: absolute;
+                background: #2c3e50;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 6px;
+                font-size: 12px;
+                font-family: 'Segoe UI', sans-serif;
+                z-index: 1000;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            `;
+            document.body.appendChild(tooltip);
+        }
+        
+        tooltip.textContent = text;
+        
+        // Position tooltip near the element
+        const rect = element.getBoundingClientRect();
+        tooltip.style.left = (rect.left + rect.width / 2 - tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = (rect.top - tooltip.offsetHeight - 8) + 'px';
+        tooltip.style.opacity = '1';
+    }
+
+    function hideTooltip() {
+        const tooltip = document.getElementById('body-map-tooltip');
+        if (tooltip) {
+            tooltip.style.opacity = '0';
+        }
+    }
+
+    function updateSelectedRegions(regions) {
+        const selectedAreaInfo = document.getElementById('selected-area-info');
+        const hiddenInput = document.getElementById('wound-location');
+        
+        if (regions.length > 0) {
+            selectedAreaInfo.innerHTML = `
+                <div class="selected-regions">
+                    <h4>Selected Areas (${regions.length}):</h4>
+                    <div class="selected-regions-list">
+                        ${regions.map(region => `
+                            <div class="selected-region-item">
+                                <span class="region-name">${region.name}</span>
+                                <button type="button" onclick="removeRegion('${region.id}')" class="remove-region" title="Remove ${region.name}">×</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button type="button" onclick="clearBodyMapSelections()" class="clear-all-btn">Clear All</button>
+                </div>
+            `;
+            if (hiddenInput) {
+                hiddenInput.value = regions.map(r => r.name).join(', ');
+            }
+        } else {
+            selectedAreaInfo.innerHTML = `
+                <div class="no-selection">
+                    <p>Click on the body area where you need assistance</p>
+                    <small>You can select multiple areas</small>
+                </div>
+            `;
+            if (hiddenInput) {
+                hiddenInput.value = '';
+            }
+        }
+    }
+
+    // Make functions globally available
+    window.clearBodyMapSelections = function() {
+        const regions = document.querySelectorAll('.bm-region.active');
+        regions.forEach(region => region.classList.remove('active'));
+        selectedRegions = [];
+        updateSelectedRegions([]);
+    };
+
+    window.removeRegion = function(regionId) {
+        const region = document.getElementById(regionId);
+        if (region) {
+            region.classList.remove('active');
+            selectedRegions = selectedRegions.filter(r => r.id !== regionId);
+            updateSelectedRegions(selectedRegions);
+        }
+    };
 }
 
 // Handle body area selection
