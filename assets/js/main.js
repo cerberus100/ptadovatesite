@@ -273,27 +273,8 @@ function formatWoundType(type) {
 
 // Body map functionality
 function initializeBodyMap() {
-    const bodyMapSvg = document.getElementById('body-map-svg');
-    
-    // Load professional SVG body map
-    fetch('assets/bodymap.svg')
-        .then(response => response.text())
-        .then(svgText => {
-            bodyMapSvg.innerHTML = svgText;
-            setupBodyMapInteractions();
-        })
-        .catch(error => {
-            console.error('Error loading body map:', error);
-            // Fallback to basic body map
-            bodyMapSvg.innerHTML = `
-                <svg width="400" height="600" viewBox="0 0 400 600">
-                    <rect width="400" height="600" fill="#f8f9fa"/>
-                    <text x="200" y="300" text-anchor="middle" fill="#7f8c8d" font-family="Segoe UI, sans-serif" font-size="16">
-                        Body map loading...
-                    </text>
-                </svg>
-            `;
-        });
+    // SVG is now embedded directly in HTML, just setup interactions
+    setupBodyMapInteractions();
 }
 
 // Setup body map interactions
