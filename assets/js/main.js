@@ -334,57 +334,26 @@ function setupBodyMapInteractions() {
         });
     });
 
-    function formatRegionName(regionData) {
-        if (!regionData) return 'Unknown region';
-        
-        // Convert data-region values to proper names
-        const regionMap = {
-            'head': 'Head',
-            'head-back': 'Back of Head',
-            'neck': 'Neck',
-            'neck-back': 'Back of Neck',
-            'chest': 'Chest',
-            'upper-back': 'Upper Back',
-            'left-shoulder': 'Left Shoulder',
-            'right-shoulder': 'Right Shoulder',
-            'left-shoulder-back': 'Left Shoulder (Back)',
-            'right-shoulder-back': 'Right Shoulder (Back)',
-            'left-arm': 'Left Arm',
-            'right-arm': 'Right Arm',
-            'left-arm-back': 'Left Arm (Back)',
-            'right-arm-back': 'Right Arm (Back)',
-            'abdomen': 'Abdomen',
-            'lower-back': 'Lower Back',
-            'left-hand': 'Left Hand',
-            'right-hand': 'Right Hand',
-            'left-hand-back': 'Left Hand (Back)',
-            'right-hand-back': 'Right Hand (Back)',
-            'pelvis': 'Pelvis/Hip',
-            'buttocks': 'Buttocks',
-            'left-thigh': 'Left Thigh',
-            'right-thigh': 'Right Thigh',
-            'left-thigh-back': 'Left Thigh (Back)',
-            'right-thigh-back': 'Right Thigh (Back)',
-            'left-knee': 'Left Knee',
-            'right-knee': 'Right Knee',
-            'left-knee-back': 'Left Knee (Back)',
-            'right-knee-back': 'Right Knee (Back)',
-            'left-lower-leg': 'Left Shin',
-            'right-lower-leg': 'Right Shin',
-            'left-calf': 'Left Calf',
-            'right-calf': 'Right Calf',
-            'left-ankle': 'Left Ankle',
-            'right-ankle': 'Right Ankle',
-            'left-ankle-back': 'Left Ankle (Back)',
-            'right-ankle-back': 'Right Ankle (Back)',
-            'left-foot': 'Left Foot',
-            'right-foot': 'Right Foot',
-            'left-foot-back': 'Left Foot (Back)',
-            'right-foot-back': 'Right Foot (Back)'
-        };
-        
-        return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    }
+                    function formatRegionName(regionData) {
+                    if (!regionData) return 'Unknown region';
+                    
+                    // Convert data-region values to proper names (simplified for clean silhouette)
+                    const regionMap = {
+                        'head': 'Head',
+                        'chest': 'Chest',
+                        'left-arm': 'Left Arm',
+                        'right-arm': 'Right Arm',
+                        'abdomen': 'Abdomen',
+                        'left-leg': 'Left Leg',
+                        'right-leg': 'Right Leg',
+                        'left-hand': 'Left Hand',
+                        'right-hand': 'Right Hand',
+                        'left-foot': 'Left Foot',
+                        'right-foot': 'Right Foot'
+                    };
+                    
+                    return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                }
 
     function showSelectionFeedback(element) {
         // Add a subtle animation to show selection
