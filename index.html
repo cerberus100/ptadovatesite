@@ -123,142 +123,49 @@
             <h2>Interactive Body Map</h2>
             <p>Click on the body area where you need wound care to find specialized providers</p>
             <div class="body-map-container">
-                <div class="body-map-svg" id="body-map-svg">
-                    <!-- CLEAN HUMAN SILHOUETTE BODY MAP -->
-                    <svg width="400" height="700" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive medical body map for wound location selection">
-                      <defs>
-                        <style>
-                          .bm-background {
-                            fill: #0a1635;
-                            stroke: none;
-                          }
-                          
-                          .bm-glow-circle {
-                            fill: none;
-                            stroke: #00d4ff;
-                            stroke-width: 1;
-                            opacity: 0.2;
-                            animation: pulse 6s ease-in-out infinite;
-                          }
-                          
-                          @keyframes pulse {
-                            0%, 100% { opacity: 0.1; transform: scale(1); }
-                            50% { opacity: 0.3; transform: scale(1.02); }
-                          }
-                          
-                          .human-silhouette {
-                            fill: rgba(0,212,255,0.1);
-                            stroke: #00d4ff;
-                            stroke-width: 2;
-                            opacity: 0.9;
-                            filter: drop-shadow(0 0 15px rgba(0,212,255,0.3));
-                          }
-                          
-                          .body-region {
-                            fill: rgba(0,212,255,0.15);
-                            stroke: #00d4ff;
-                            stroke-width: 1.5;
-                            cursor: pointer;
-                            transition: all 0.3s ease;
-                            opacity: 0.7;
-                          }
-                          
-                          .body-region:hover {
-                            fill: rgba(0,212,255,0.4);
-                            stroke: #00ff9d;
-                            stroke-width: 2.5;
-                            opacity: 1;
-                            filter: drop-shadow(0 0 12px #00d4ff);
-                          }
-                          
-                          .body-region.active {
-                            fill: rgba(255,69,58,0.7);
-                            stroke: #ff453a;
-                            stroke-width: 3;
-                            opacity: 1;
-                            filter: drop-shadow(0 0 18px #ff453a);
-                            animation: painPulse 2.5s ease-in-out infinite;
-                          }
-                          
-                          @keyframes painPulse {
-                            0%, 100% { opacity: 0.8; }
-                            50% { opacity: 1; }
-                          }
-                          
-                          .bm-label {
-                            font-family: 'Segoe UI', 'Arial', sans-serif;
-                            font-size: 11px;
-                            font-weight: 600;
-                            fill: #00d4ff;
-                            text-anchor: middle;
-                            pointer-events: none;
-                            opacity: 0;
-                            transition: opacity 0.3s ease;
-                            text-shadow: 0 0 8px #00d4ff;
-                          }
-                          
-                          .body-region:hover + .bm-label,
-                          .body-region.active + .bm-label {
-                            opacity: 1;
-                          }
-                          
-                          .body-region.active + .bm-label {
-                            fill: #ff453a;
-                            text-shadow: 0 0 8px #ff453a;
-                          }
-                          
-                          .bm-instruction {
-                            font-family: 'Segoe UI', sans-serif;
-                            font-size: 14px;
-                            font-weight: 500;
-                            fill: #00d4ff;
-                            text-anchor: middle;
-                            opacity: 0.9;
-                            text-shadow: 0 0 10px #00d4ff;
-                          }
-                        </style>
-                      </defs>
-                      
-                      <!-- Dark medical background -->
-                      <rect class="bm-background" width="400" height="700"/>
-                      
-                      <!-- Glowing ambient circles -->
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="160" style="animation-delay: 0s"/>
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="190" style="animation-delay: 2s"/>
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="220" style="animation-delay: 4s"/>
-                      
-                      <!-- Instructions -->
-                      <text x="200" y="30" class="bm-instruction">Click on areas of pain or discomfort</text>
-                      
-                                              <!-- SIMPLE SILHOUETTE - NO BACKGROUND -->
-                        <g transform="translate(200,200)">
-                          
-                          <!-- Clean Body Silhouette - Inline -->
-                          <g fill="#00d4ff" opacity="0.6">
-                            <!-- Head -->
-                            <circle cx="0" cy="-80" r="25"/>
-                            <!-- Body -->
-                            <rect x="-25" y="-55" width="50" height="80" rx="15"/>
-                            <!-- Arms -->
-                            <rect x="-110" y="-25" width="220" height="25" rx="12"/>
-                            <!-- Left Leg -->
-                            <rect x="-25" y="25" width="20" height="120" rx="10"/>
-                            <!-- Right Leg -->
-                            <rect x="5" y="25" width="20" height="120" rx="10"/>
-                          </g>
-                          
-                          <!-- Interactive Regions -->
-                          <circle class="body-region" cx="0" cy="-80" r="30" data-region="head" id="head"/>
-                          <rect class="body-region" x="-30" y="-60" width="60" height="90" rx="10" data-region="chest" id="chest"/>
-                          <rect class="body-region" x="-115" y="-30" width="85" height="30" rx="10" data-region="left-arm" id="left-arm"/>
-                          <rect class="body-region" x="30" y="-30" width="85" height="30" rx="10" data-region="right-arm" id="right-arm"/>
-                          <rect class="body-region" x="-30" y="20" width="60" height="50" rx="10" data-region="abdomen" id="abdomen"/>
-                          <rect class="body-region" x="-30" y="70" width="25" height="80" rx="10" data-region="left-leg" id="left-leg"/>
-                          <rect class="body-region" x="5" y="70" width="25" height="80" rx="10" data-region="right-leg" id="right-leg"/>
-                          
-                        </g>
-                      
-                    </svg>
+                <div class="body-map-image-container">
+                    <!-- Professional Body Map using HTML Image Map -->
+                    <img src="assets/images/body-silhouette.jpg" alt="Human body silhouette for pain/wound location selection" usemap="#body-map" id="body-image" class="body-silhouette-img" />
+                    
+                    <map name="body-map">
+                        <!-- Head and Face -->
+                        <area id="head" class="bodyParts" data-region="head" title="Head" coords="198,23,175,31,165,78,188,112,212,113,234,72,224,28" shape="poly">
+                        <area id="face" class="bodyParts" data-region="face" title="Face" coords="220,58,180,58,182,84,199,107,218,82" shape="poly">
+                        <area id="neck" class="bodyParts" data-region="neck" title="Neck" coords="219,105,225,125,245,135,153,137,175,124,179,103,189,112,206,115" shape="poly">
+                        
+                        <!-- Torso -->
+                        <area id="chest" class="bodyParts" data-region="chest" title="Chest" coords="154,138,244,135,253,184,249,267,199,226,152,264,147,182" shape="poly">
+                        <area id="abdomen" class="bodyParts" data-region="abdomen" title="Abdomen" coords="250,268,254,292,199,312,145,290,149,268,199,230" shape="poly">
+                        <area id="pelvis" class="bodyParts" data-region="pelvis" title="Pelvis" coords="254,293,256,313,201,367,140,315,145,291,199,311" shape="poly">
+                        
+                        <!-- Arms -->
+                        <area id="right-shoulder" class="bodyParts" data-region="right-shoulder" title="Right Shoulder" coords="153,136,122,145,121,174,146,184" shape="poly">
+                        <area id="left-shoulder" class="bodyParts" data-region="left-shoulder" title="Left Shoulder" coords="246,134,273,144,279,173,253,182" shape="poly">
+                        <area id="right-arm" class="bodyParts" data-region="right-arm" title="Right Arm" coords="146,185,148,222,142,250,115,240,123,196,120,175" shape="poly">
+                        <area id="left-arm" class="bodyParts" data-region="left-arm" title="Left Arm" coords="278,174,279,194,283,237,256,249,253,218,254,180" shape="poly">
+                        <area id="right-elbow" class="bodyParts" data-region="right-elbow" title="Right Elbow" coords="117,240,142,250,140,275,110,263" shape="poly">
+                        <area id="left-elbow" class="bodyParts" data-region="left-elbow" title="Left Elbow" coords="290,261,281,240,256,249,258,274" shape="poly">
+                        <area id="right-forearm" class="bodyParts" data-region="right-forearm" title="Right Forearm" coords="140,276,123,317,103,308,106,292,109,264" shape="poly">
+                        <area id="left-forearm" class="bodyParts" data-region="left-forearm" title="Left Forearm" coords="261,274,290,261,297,308,276,320" shape="poly">
+                        <area id="right-wrist" class="bodyParts" data-region="right-wrist" title="Right Wrist" coords="124,319,117,337,95,323,103,309" shape="poly">
+                        <area id="left-wrist" class="bodyParts" data-region="left-wrist" title="Left Wrist" coords="284,340,279,319,296,309,305,321" shape="poly">
+                        <area id="right-hand" class="bodyParts" data-region="right-hand" title="Right Hand" coords="117,337,107,378,89,388,75,377,85,343,71,346,80,330,94,323" shape="poly">
+                        <area id="left-hand" class="bodyParts" data-region="left-hand" title="Left Hand" coords="285,341,304,322,317,327,333,351,317,342,324,379,309,389,291,377" shape="poly">
+                        
+                        <!-- Legs -->
+                        <area id="left-hip" class="bodyParts" data-region="left-hip" title="Left Hip" coords="258,313,260,344,204,368,215,353" shape="poly">
+                        <area id="right-hip" class="bodyParts" data-region="right-hip" title="Right Hip" coords="141,316,139,349,196,370,185,354" shape="poly">
+                        <area id="left-thigh" class="bodyParts" data-region="left-thigh" title="Left Thigh" coords="202,369,260,345,259,443,215,457" shape="poly">
+                        <area id="right-thigh" class="bodyParts" data-region="right-thigh" title="Right Thigh" coords="197,371,183,453,140,441,136,348" shape="poly">
+                        <area id="left-knee" class="bodyParts" data-region="left-knee" title="Left Knee" coords="213,457,225,507,263,498,258,444" shape="poly">
+                        <area id="right-knee" class="bodyParts" data-region="right-knee" title="Right Knee" coords="187,455,142,442,136,496,174,505" shape="poly">
+                        <area id="right-shin" class="bodyParts" data-region="right-shin" title="Right Shin" coords="174,505,137,497,128,533,144,604,161,605,172,548" shape="poly">
+                        <area id="left-shin" class="bodyParts" data-region="left-shin" title="Left Shin" coords="226,506,226,544,237,597,257,598,268,544,265,498,244,504" shape="poly">
+                        <area id="left-ankle" class="bodyParts" data-region="left-ankle" title="Left Ankle" coords="238,598,255,598,256,631,231,633" shape="poly">
+                        <area id="right-ankle" class="bodyParts" data-region="right-ankle" title="Right Ankle" coords="163,604,145,605,143,634,167,634" shape="poly">
+                        <area id="right-foot" class="bodyParts" data-region="right-foot" title="Right Foot" coords="143,633,136,680,156,697,173,692,168,636" shape="poly">
+                        <area id="left-foot" class="bodyParts" data-region="left-foot" title="Left Foot" coords="230,633,225,692,246,698,261,680,257,631" shape="poly">
+                    </map>
                 </div>
                 
                 <div id="selected-area-info">
@@ -612,6 +519,8 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery.imagemapster.min.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html> 

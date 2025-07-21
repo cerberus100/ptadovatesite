@@ -455,21 +455,26 @@ a {
     }
   }
   
-  .body-map-svg {
+  .body-map-image-container {
     background: transparent;
     border: none;
     padding: $hh-spacing-lg;
     text-align: center;
     position: relative;
     
-
-    
-    svg {
+    .body-silhouette-img {
       width: 100%;
       height: auto;
       max-width: 500px;
       position: relative;
       z-index: 2;
+      border-radius: $hh-border-radius-sm;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
     }
   }
   

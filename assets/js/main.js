@@ -271,65 +271,88 @@ function formatWoundType(type) {
     return types[type] || type;
 }
 
-// Body map functionality
+// Body map functionality using ImageMapster
 function initializeBodyMap() {
-    // SVG is now embedded directly in HTML, just setup interactions
-    setupBodyMapInteractions();
+    // Initialize with jQuery ImageMapster for professional body map
+    setupImageMapInteractions();
 }
 
-// Setup body map interactions
-function setupBodyMapInteractions() {
+// Setup image map interactions using ImageMapster
+function setupImageMapInteractions() {
+    // Check if jQuery is available
+    if (typeof $ === 'undefined') {
+        console.error('jQuery is required for ImageMapster');
+        return;
+    }
+    
     const selectedAreaInfo = document.getElementById('selected-area-info');
     let selectedRegions = [];
 
-    // Add click handlers to body regions
-    document.querySelectorAll('.body-region').forEach(region => {
-        region.addEventListener('click', function() {
-            const regionData = this.getAttribute('data-region');
-            const regionId = this.id;
-            
-            // Convert region data to readable name
+    // Initialize ImageMapster
+    $('#body-image').mapster({
+        fillColor: '00d4ff',
+        fillOpacity: 0.3,
+        stroke: true,
+        strokeColor: '00d4ff',
+        strokeWidth: 2,
+        staticState: false,
+        mapKey: 'data-region',
+        
+        onClick: function(data) {
+            const area = $(data.e.target);
+            const regionData = area.attr('data-region');
+            const regionId = area.attr('id');
             const regionName = formatRegionName(regionData || regionId);
             
-            // Toggle selection
-            if (this.classList.contains('active')) {
-                this.classList.remove('active');
-                selectedRegions = selectedRegions.filter(r => r.id !== regionId);
+            // Check if already selected
+            const existingIndex = selectedRegions.findIndex(r => r.id === regionId);
+            
+            if (existingIndex > -1) {
+                // Remove from selection
+                selectedRegions.splice(existingIndex, 1);
+                $('#body-image').mapster('deselect', regionId);
             } else {
-                this.classList.add('active');
+                // Add to selection
                 selectedRegions.push({
                     id: regionId,
                     name: regionName,
                     data: regionData
                 });
+                $('#body-image').mapster('select', regionId);
             }
             
             // Update display and form
             updateSelectedRegions(selectedRegions);
-            
-            // Provide visual feedback
-            if (this.classList.contains('active')) {
-                showSelectionFeedback(this);
-            }
-        });
+        },
         
-        // Enhanced hover effects
-        region.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('active')) {
-                const regionName = formatRegionName(this.getAttribute('data-region') || this.id);
-                showTooltip(this, regionName);
-            }
-        });
+        onMouseover: function(data) {
+            // Show tooltip on hover
+            const area = $(data.e.target);
+            const regionName = formatRegionName(area.attr('data-region') || area.attr('id'));
+            showTooltip(data.e.target, regionName);
+        },
         
-        region.addEventListener('mouseleave', function() {
+        onMouseout: function() {
+            // Hide tooltip
             hideTooltip();
-        });
+        },
         
-        // Keyboard accessibility
-        region.addEventListener('keydown', function(e) {
+        areas: [
+            {
+                key: 'head',
+                fillColor: 'ff6b5d',
+                selected: false
+            }
+        ]
+    });
+
+    // Add keyboard support
+    $('.bodyParts').each(function() {
+        $(this).attr('tabindex', '0');
+        $(this).on('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                this.click();
+                $(this).trigger('click');
             }
         });
     });
@@ -439,19 +462,19 @@ function setupBodyMapInteractions() {
 
     // Make functions globally available
     window.clearBodyMapSelections = function() {
-        const regions = document.querySelectorAll('.body-region.active');
-        regions.forEach(region => region.classList.remove('active'));
+        if ($('#body-image').data('mapster')) {
+            $('#body-image').mapster('deselect');
+        }
         selectedRegions = [];
         updateSelectedRegions([]);
     };
 
     window.removeRegion = function(regionId) {
-        const region = document.getElementById(regionId);
-        if (region) {
-            region.classList.remove('active');
-            selectedRegions = selectedRegions.filter(r => r.id !== regionId);
-            updateSelectedRegions(selectedRegions);
+        if ($('#body-image').data('mapster')) {
+            $('#body-image').mapster('deselect', regionId);
         }
+        selectedRegions = selectedRegions.filter(r => r.id !== regionId);
+        updateSelectedRegions(selectedRegions);
     };
 }
 
