@@ -230,57 +230,31 @@
                       <!-- Instructions -->
                       <text x="200" y="30" class="bm-instruction">Click on areas of pain or discomfort</text>
                       
-                                              <!-- CLEAN GEOMETRIC SILHOUETTE -->
-                        <g transform="translate(200,150)">
+                                              <!-- SIMPLE SILHOUETTE - NO BACKGROUND -->
+                        <g transform="translate(200,200)">
                           
-                          <!-- Your Clean SVG Silhouette -->
-                          <image x="-100" y="-100" width="200" height="400" href="assets/clean-silhouette.svg" opacity="0.8" class="body-silhouette"/>
+                          <!-- Clean Body Silhouette - Inline -->
+                          <g fill="#00d4ff" opacity="0.6">
+                            <!-- Head -->
+                            <circle cx="0" cy="-80" r="25"/>
+                            <!-- Body -->
+                            <rect x="-25" y="-55" width="50" height="80" rx="15"/>
+                            <!-- Arms -->
+                            <rect x="-110" y="-25" width="220" height="25" rx="12"/>
+                            <!-- Left Leg -->
+                            <rect x="-25" y="25" width="20" height="120" rx="10"/>
+                            <!-- Right Leg -->
+                            <rect x="5" y="25" width="20" height="120" rx="10"/>
+                          </g>
                           
-                          <!-- Interactive Regions Perfectly Aligned -->
-                          
-                          <!-- Head -->
-                          <circle class="body-region" cx="0" cy="-60" r="22" data-region="head" id="head"/>
-                          <text class="bm-label" x="0" y="-30">Head</text>
-                          
-                          <!-- Chest/Torso -->
-                          <rect class="body-region" x="-20" y="-40" width="40" height="60" rx="8" data-region="chest" id="chest"/>
-                          <text class="bm-label" x="0" y="-5">Chest</text>
-                          
-                          <!-- Left Arm -->
-                          <rect class="body-region" x="-90" y="-10" width="70" height="18" rx="8" data-region="left-arm" id="left-arm"/>
-                          <text class="bm-label" x="-55" y="15">L. Arm</text>
-                          
-                          <!-- Right Arm -->
-                          <rect class="body-region" x="20" y="-10" width="70" height="18" rx="8" data-region="right-arm" id="right-arm"/>
-                          <text class="bm-label" x="55" y="15">R. Arm</text>
-                          
-                          <!-- Abdomen -->
-                          <rect class="body-region" x="-20" y="20" width="40" height="60" rx="8" data-region="abdomen" id="abdomen"/>
-                          <text class="bm-label" x="0" y="55">Abdomen</text>
-                          
-                          <!-- Left Leg -->
-                          <rect class="body-region" x="-20" y="80" width="18" height="120" rx="8" data-region="left-leg" id="left-leg"/>
-                          <text class="bm-label" x="-11" y="220">L. Leg</text>
-                          
-                          <!-- Right Leg -->
-                          <rect class="body-region" x="2" y="80" width="18" height="120" rx="8" data-region="right-leg" id="right-leg"/>
-                          <text class="bm-label" x="11" y="220">R. Leg</text>
-                          
-                          <!-- Left Hand -->
-                          <circle class="body-region" cx="-90" cy="0" r="8" data-region="left-hand" id="left-hand"/>
-                          <text class="bm-label" x="-90" y="20">L. Hand</text>
-                          
-                          <!-- Right Hand -->
-                          <circle class="body-region" cx="90" cy="0" r="8" data-region="right-hand" id="right-hand"/>
-                          <text class="bm-label" x="90" y="20">R. Hand</text>
-                          
-                          <!-- Left Foot -->
-                          <circle class="body-region" cx="-11" cy="210" r="10" data-region="left-foot" id="left-foot"/>
-                          <text class="bm-label" x="-11" y="240">L. Foot</text>
-                          
-                          <!-- Right Foot -->
-                          <circle class="body-region" cx="11" cy="210" r="10" data-region="right-foot" id="right-foot"/>
-                          <text class="bm-label" x="11" y="240">R. Foot</text>
+                          <!-- Interactive Regions -->
+                          <circle class="body-region" cx="0" cy="-80" r="30" data-region="head" id="head"/>
+                          <rect class="body-region" x="-30" y="-60" width="60" height="90" rx="10" data-region="chest" id="chest"/>
+                          <rect class="body-region" x="-115" y="-30" width="85" height="30" rx="10" data-region="left-arm" id="left-arm"/>
+                          <rect class="body-region" x="30" y="-30" width="85" height="30" rx="10" data-region="right-arm" id="right-arm"/>
+                          <rect class="body-region" x="-30" y="20" width="60" height="50" rx="10" data-region="abdomen" id="abdomen"/>
+                          <rect class="body-region" x="-30" y="70" width="25" height="80" rx="10" data-region="left-leg" id="left-leg"/>
+                          <rect class="body-region" x="5" y="70" width="25" height="80" rx="10" data-region="right-leg" id="right-leg"/>
                           
                         </g>
                       
