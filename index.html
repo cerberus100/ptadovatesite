@@ -122,35 +122,20 @@
         <div class="container">
             <h2>Interactive Body Map</h2>
             <p>Click on the body area where you need wound care to find specialized providers</p>
-            <div class="hh-bodymap-container">
-                <div class="hh-bodymap-header">
-                    <h3>Select wound location</h3>
-                    <p class="hh-bodymap-instruction">Click on the body area where assistance is needed</p>
-                </div>
-                
-                <div class="hh-bodymap-svg-container" id="body-map-svg">
-                    <!-- Professional SVG body map will be loaded here -->
-                </div>
-                
-                <div class="hh-bodymap-selection-info">
-                    <div class="hh-bodymap-selected-regions">
-                        <strong>Selected:</strong>
-                        <span class="hh-bodymap-selected-list" id="selected-regions-list">None</span>
-                    </div>
-                    
-                    <div class="hh-bodymap-actions">
-                        <button type="button" class="hh-bodymap-clear-btn" id="clear-selection-btn" style="display: none;">
-                            Clear Selection
-                        </button>
-                    </div>
+            <div class="body-map-container">
+                <div class="body-map-svg" id="body-map-svg">
+                    <!-- Futuristic SVG body map will be loaded here -->
                 </div>
                 
                 <div id="selected-area-info">
-                    <p>Click on any part of the body to see relevant wound care specialists and treatment options.</p>
+                    <div class="no-selection">
+                        <p>Click on the body area where you need assistance</p>
+                        <small>You can select multiple areas</small>
+                    </div>
                 </div>
                 
                 <!-- Hidden input for form integration -->
-                <input type="hidden" name="wound_location" id="wound_location" value="" class="hh-bodymap-hidden-input">
+                <input type="hidden" name="wound-location" id="wound-location" value="">
             </div>
         </div>
     </section>
