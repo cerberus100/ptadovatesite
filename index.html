@@ -124,7 +124,7 @@
             <p>Click on the body area where you need wound care to find specialized providers</p>
             <div class="body-map-container">
                 <div class="body-map-svg" id="body-map-svg">
-                    <!-- Professional Human Anatomy Body Map -->
+                    <!-- Smooth Human Body Map -->
                     <svg width="400" height="700" viewBox="0 0 400 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive medical body map for wound location selection">
                       <defs>
                         <style>
@@ -137,46 +137,47 @@
                             fill: none;
                             stroke: #00d4ff;
                             stroke-width: 1;
-                            opacity: 0.3;
-                            animation: pulse 4s ease-in-out infinite;
+                            opacity: 0.2;
+                            animation: pulse 6s ease-in-out infinite;
                           }
                           
                           @keyframes pulse {
-                            0%, 100% { opacity: 0.2; transform: scale(1); }
-                            50% { opacity: 0.4; transform: scale(1.01); }
+                            0%, 100% { opacity: 0.1; transform: scale(1); }
+                            50% { opacity: 0.3; transform: scale(1.02); }
                           }
                           
-                          .body-outline {
-                            fill: none;
+                          .human-silhouette {
+                            fill: rgba(0,212,255,0.1);
                             stroke: #00d4ff;
                             stroke-width: 2;
-                            opacity: 0.8;
+                            opacity: 0.9;
+                            filter: drop-shadow(0 0 15px rgba(0,212,255,0.3));
                           }
                           
                           .body-region {
-                            fill: rgba(0,212,255,0.1);
+                            fill: rgba(0,212,255,0.15);
                             stroke: #00d4ff;
-                            stroke-width: 1;
+                            stroke-width: 1.5;
                             cursor: pointer;
                             transition: all 0.3s ease;
-                            opacity: 0.8;
+                            opacity: 0.7;
                           }
                           
                           .body-region:hover {
                             fill: rgba(0,212,255,0.4);
                             stroke: #00ff9d;
-                            stroke-width: 2;
+                            stroke-width: 2.5;
                             opacity: 1;
-                            filter: drop-shadow(0 0 10px #00d4ff);
+                            filter: drop-shadow(0 0 12px #00d4ff);
                           }
                           
                           .body-region.active {
-                            fill: rgba(255,69,58,0.6);
+                            fill: rgba(255,69,58,0.7);
                             stroke: #ff453a;
                             stroke-width: 3;
                             opacity: 1;
-                            filter: drop-shadow(0 0 15px #ff453a);
-                            animation: painPulse 2s ease-in-out infinite;
+                            filter: drop-shadow(0 0 18px #ff453a);
+                            animation: painPulse 2.5s ease-in-out infinite;
                           }
                           
                           @keyframes painPulse {
@@ -186,7 +187,7 @@
                           
                           .bm-label {
                             font-family: 'Segoe UI', 'Arial', sans-serif;
-                            font-size: 10px;
+                            font-size: 11px;
                             font-weight: 600;
                             fill: #00d4ff;
                             text-anchor: middle;
@@ -222,120 +223,152 @@
                       <rect class="bm-background" width="400" height="700"/>
                       
                       <!-- Glowing ambient circles -->
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="180" style="animation-delay: 0s"/>
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="200" style="animation-delay: 1s"/>
-                      <circle class="bm-glow-circle" cx="200" cy="350" r="220" style="animation-delay: 2s"/>
+                      <circle class="bm-glow-circle" cx="200" cy="350" r="160" style="animation-delay: 0s"/>
+                      <circle class="bm-glow-circle" cx="200" cy="350" r="190" style="animation-delay: 2s"/>
+                      <circle class="bm-glow-circle" cx="200" cy="350" r="220" style="animation-delay: 4s"/>
                       
                       <!-- Instructions -->
                       <text x="200" y="30" class="bm-instruction">Click on areas of pain or discomfort</text>
                       
-                      <!-- HUMAN BODY ANATOMY -->
-                      <g transform="translate(200,50)">
+                      <!-- SMOOTH HUMAN BODY SILHOUETTE -->
+                      <g transform="translate(200,60)">
+                        
+                        <!-- Main Human Body Outline (Smooth) -->
+                        <path class="human-silhouette" d="
+                          M 0,-40
+                          C -30,-40 -35,-30 -35,-15
+                          C -35,-5 -30,5 -25,15
+                          L -40,25
+                          C -50,30 -60,40 -65,55
+                          L -70,75
+                          C -75,85 -80,100 -85,120
+                          L -90,140
+                          C -90,155 -85,170 -80,180
+                          L -75,200
+                          C -70,210 -65,220 -60,230
+                          L -55,245
+                          C -50,255 -45,265 -40,275
+                          L -35,285
+                          C -30,295 -25,305 -20,315
+                          L -15,325
+                          C -10,335 -8,345 -8,355
+                          C -8,365 -10,375 -12,385
+                          L -15,400
+                          C -20,420 -22,440 -20,460
+                          L -18,480
+                          C -16,500 -14,520 -12,540
+                          L -10,560
+                          C -8,580 -5,595 0,600
+                          C 5,595 8,580 10,560
+                          L 12,540
+                          C 14,520 16,500 18,480
+                          L 20,460
+                          C 22,440 20,420 15,400
+                          L 12,385
+                          C 10,375 8,365 8,355
+                          C 8,345 10,335 15,325
+                          L 20,315
+                          C 25,305 30,295 35,285
+                          L 40,275
+                          C 45,265 50,255 55,245
+                          L 60,230
+                          C 65,220 70,210 75,200
+                          L 80,180
+                          C 85,170 90,155 90,140
+                          L 85,120
+                          C 80,100 75,85 70,75
+                          L 65,55
+                          C 60,40 50,30 40,25
+                          L 25,15
+                          C 30,5 35,-5 35,-15
+                          C 35,-30 30,-40 0,-40 Z
+                        "/>
+                        
+                        <!-- Interactive Body Regions (overlaid on silhouette) -->
                         
                         <!-- Head -->
-                        <ellipse class="body-outline" cx="0" cy="40" rx="25" ry="35"/>
-                        <ellipse class="body-region" cx="0" cy="40" rx="23" ry="33" data-region="head" id="head"/>
-                        <text class="bm-label" x="0" y="45">Head</text>
+                        <ellipse class="body-region" cx="0" cy="-20" rx="28" ry="35" data-region="head" id="head"/>
+                        <text class="bm-label" x="0" y="10">Head</text>
                         
                         <!-- Neck -->
-                        <rect class="body-outline" x="-8" y="75" width="16" height="20" rx="8"/>
-                        <rect class="body-region" x="-7" y="76" width="14" height="18" rx="7" data-region="neck" id="neck"/>
-                        <text class="bm-label" x="0" y="87">Neck</text>
+                        <ellipse class="body-region" cx="0" cy="10" rx="12" ry="18" data-region="neck" id="neck"/>
+                        <text class="bm-label" x="0" y="35">Neck</text>
                         
                         <!-- Left Shoulder -->
-                        <ellipse class="body-outline" cx="-35" cy="110" rx="15" ry="20"/>
-                        <ellipse class="body-region" cx="-35" cy="110" rx="13" ry="18" data-region="left-shoulder" id="left-shoulder"/>
-                        <text class="bm-label" x="-35" y="115">L. Shoulder</text>
+                        <ellipse class="body-region" cx="-45" cy="35" rx="18" ry="25" data-region="left-shoulder" id="left-shoulder"/>
+                        <text class="bm-label" x="-45" y="70">L. Shoulder</text>
                         
                         <!-- Right Shoulder -->
-                        <ellipse class="body-outline" cx="35" cy="110" rx="15" ry="20"/>
-                        <ellipse class="body-region" cx="35" cy="110" rx="13" ry="18" data-region="right-shoulder" id="right-shoulder"/>
-                        <text class="bm-label" x="35" y="115">R. Shoulder</text>
+                        <ellipse class="body-region" cx="45" cy="35" rx="18" ry="25" data-region="right-shoulder" id="right-shoulder"/>
+                        <text class="bm-label" x="45" y="70">R. Shoulder</text>
                         
-                        <!-- Chest/Torso -->
-                        <ellipse class="body-outline" cx="0" cy="130" rx="40" ry="35"/>
-                        <ellipse class="body-region" cx="0" cy="130" rx="38" ry="33" data-region="chest" id="chest"/>
-                        <text class="bm-label" x="0" y="135">Chest</text>
+                        <!-- Chest -->
+                        <ellipse class="body-region" cx="0" cy="60" rx="35" ry="30" data-region="chest" id="chest"/>
+                        <text class="bm-label" x="0" y="95">Chest</text>
                         
                         <!-- Left Upper Arm -->
-                        <ellipse class="body-outline" cx="-60" cy="140" rx="12" ry="30" transform="rotate(-10 -60 140)"/>
-                        <ellipse class="body-region" cx="-60" cy="140" rx="10" ry="28" transform="rotate(-10 -60 140)" data-region="left-upper-arm" id="left-upper-arm"/>
-                        <text class="bm-label" x="-60" y="145">L. Upper Arm</text>
+                        <ellipse class="body-region" cx="-65" cy="75" rx="15" ry="35" data-region="left-upper-arm" id="left-upper-arm"/>
+                        <text class="bm-label" x="-65" y="120">L. Upper Arm</text>
                         
                         <!-- Right Upper Arm -->
-                        <ellipse class="body-outline" cx="60" cy="140" rx="12" ry="30" transform="rotate(10 60 140)"/>
-                        <ellipse class="body-region" cx="60" cy="140" rx="10" ry="28" transform="rotate(10 60 140)" data-region="right-upper-arm" id="right-upper-arm"/>
-                        <text class="bm-label" x="60" y="145">R. Upper Arm</text>
+                        <ellipse class="body-region" cx="65" cy="75" rx="15" ry="35" data-region="right-upper-arm" id="right-upper-arm"/>
+                        <text class="bm-label" x="65" y="120">R. Upper Arm</text>
                         
                         <!-- Abdomen -->
-                        <ellipse class="body-outline" cx="0" cy="190" rx="35" ry="25"/>
-                        <ellipse class="body-region" cx="0" cy="190" rx="33" ry="23" data-region="abdomen" id="abdomen"/>
-                        <text class="bm-label" x="0" y="195">Abdomen</text>
+                        <ellipse class="body-region" cx="0" cy="120" rx="32" ry="28" data-region="abdomen" id="abdomen"/>
+                        <text class="bm-label" x="0" y="155">Abdomen</text>
                         
                         <!-- Left Forearm -->
-                        <ellipse class="body-outline" cx="-80" cy="190" rx="10" ry="25" transform="rotate(-5 -80 190)"/>
-                        <ellipse class="body-region" cx="-80" cy="190" rx="8" ry="23" transform="rotate(-5 -80 190)" data-region="left-forearm" id="left-forearm"/>
-                        <text class="bm-label" x="-80" y="195">L. Forearm</text>
+                        <ellipse class="body-region" cx="-80" cy="130" rx="12" ry="30" data-region="left-forearm" id="left-forearm"/>
+                        <text class="bm-label" x="-80" y="170">L. Forearm</text>
                         
                         <!-- Right Forearm -->
-                        <ellipse class="body-outline" cx="80" cy="190" rx="10" ry="25" transform="rotate(5 80 190)"/>
-                        <ellipse class="body-region" cx="80" cy="190" rx="8" ry="23" transform="rotate(5 80 190)" data-region="right-forearm" id="right-forearm"/>
-                        <text class="bm-label" x="80" y="195">R. Forearm</text>
+                        <ellipse class="body-region" cx="80" cy="130" rx="12" ry="30" data-region="right-forearm" id="right-forearm"/>
+                        <text class="bm-label" x="80" y="170">R. Forearm</text>
                         
-                        <!-- Pelvis/Hips -->
-                        <ellipse class="body-outline" cx="0" cy="240" rx="38" ry="25"/>
-                        <ellipse class="body-region" cx="0" cy="240" rx="36" ry="23" data-region="pelvis" id="pelvis"/>
-                        <text class="bm-label" x="0" y="245">Pelvis</text>
+                        <!-- Pelvis -->
+                        <ellipse class="body-region" cx="0" cy="180" rx="30" ry="25" data-region="pelvis" id="pelvis"/>
+                        <text class="bm-label" x="0" y="210">Pelvis</text>
                         
                         <!-- Left Hand -->
-                        <circle class="body-outline" cx="-85" cy="230" r="8"/>
-                        <circle class="body-region" cx="-85" cy="230" r="6" data-region="left-hand" id="left-hand"/>
-                        <text class="bm-label" x="-85" y="235">L. Hand</text>
+                        <ellipse class="body-region" cx="-85" cy="170" rx="8" ry="12" data-region="left-hand" id="left-hand"/>
+                        <text class="bm-label" x="-85" y="190">L. Hand</text>
                         
                         <!-- Right Hand -->
-                        <circle class="body-outline" cx="85" cy="230" r="8"/>
-                        <circle class="body-region" cx="85" cy="230" r="6" data-region="right-hand" id="right-hand"/>
-                        <text class="bm-label" x="85" y="235">R. Hand</text>
+                        <ellipse class="body-region" cx="85" cy="170" rx="8" ry="12" data-region="right-hand" id="right-hand"/>
+                        <text class="bm-label" x="85" y="190">R. Hand</text>
                         
                         <!-- Left Thigh -->
-                        <ellipse class="body-outline" cx="-18" cy="310" rx="18" ry="45"/>
-                        <ellipse class="body-region" cx="-18" cy="310" rx="16" ry="43" data-region="left-thigh" id="left-thigh"/>
-                        <text class="bm-label" x="-18" y="315">L. Thigh</text>
+                        <ellipse class="body-region" cx="-18" cy="240" rx="20" ry="45" data-region="left-thigh" id="left-thigh"/>
+                        <text class="bm-label" x="-18" y="295">L. Thigh</text>
                         
                         <!-- Right Thigh -->
-                        <ellipse class="body-outline" cx="18" cy="310" rx="18" ry="45"/>
-                        <ellipse class="body-region" cx="18" cy="310" rx="16" ry="43" data-region="right-thigh" id="right-thigh"/>
-                        <text class="bm-label" x="18" y="315">R. Thigh</text>
+                        <ellipse class="body-region" cx="18" cy="240" rx="20" ry="45" data-region="right-thigh" id="right-thigh"/>
+                        <text class="bm-label" x="18" y="295">R. Thigh</text>
                         
                         <!-- Left Knee -->
-                        <circle class="body-outline" cx="-18" cy="370" r="12"/>
-                        <circle class="body-region" cx="-18" cy="370" r="10" data-region="left-knee" id="left-knee"/>
-                        <text class="bm-label" x="-18" y="375">L. Knee</text>
+                        <ellipse class="body-region" cx="-18" cy="305" rx="15" ry="18" data-region="left-knee" id="left-knee"/>
+                        <text class="bm-label" x="-18" y="330">L. Knee</text>
                         
                         <!-- Right Knee -->
-                        <circle class="body-outline" cx="18" cy="370" r="12"/>
-                        <circle class="body-region" cx="18" cy="370" r="10" data-region="right-knee" id="right-knee"/>
-                        <text class="bm-label" x="18" y="375">R. Knee</text>
+                        <ellipse class="body-region" cx="18" cy="305" rx="15" ry="18" data-region="right-knee" id="right-knee"/>
+                        <text class="bm-label" x="18" y="330">R. Knee</text>
                         
                         <!-- Left Lower Leg -->
-                        <ellipse class="body-outline" cx="-18" cy="430" rx="15" ry="40"/>
-                        <ellipse class="body-region" cx="-18" cy="430" rx="13" ry="38" data-region="left-lower-leg" id="left-lower-leg"/>
-                        <text class="bm-label" x="-18" y="435">L. Lower Leg</text>
+                        <ellipse class="body-region" cx="-18" cy="370" rx="16" ry="40" data-region="left-lower-leg" id="left-lower-leg"/>
+                        <text class="bm-label" x="-18" y="420">L. Lower Leg</text>
                         
                         <!-- Right Lower Leg -->
-                        <ellipse class="body-outline" cx="18" cy="430" rx="15" ry="40"/>
-                        <ellipse class="body-region" cx="18" cy="430" rx="13" ry="38" data-region="right-lower-leg" id="right-lower-leg"/>
-                        <text class="bm-label" x="18" y="435">R. Lower Leg</text>
+                        <ellipse class="body-region" cx="18" cy="370" rx="16" ry="40" data-region="right-lower-leg" id="right-lower-leg"/>
+                        <text class="bm-label" x="18" y="420">R. Lower Leg</text>
                         
                         <!-- Left Foot -->
-                        <ellipse class="body-outline" cx="-18" cy="485" rx="12" ry="18"/>
-                        <ellipse class="body-region" cx="-18" cy="485" rx="10" ry="16" data-region="left-foot" id="left-foot"/>
-                        <text class="bm-label" x="-18" y="490">L. Foot</text>
+                        <ellipse class="body-region" cx="-18" cy="425" rx="12" ry="20" data-region="left-foot" id="left-foot"/>
+                        <text class="bm-label" x="-18" y="450">L. Foot</text>
                         
                         <!-- Right Foot -->
-                        <ellipse class="body-outline" cx="18" cy="485" rx="12" ry="18"/>
-                        <ellipse class="body-region" cx="18" cy="485" rx="10" ry="16" data-region="right-foot" id="right-foot"/>
-                        <text class="bm-label" x="18" y="490">R. Foot</text>
+                        <ellipse class="body-region" cx="18" cy="425" rx="12" ry="20" data-region="right-foot" id="right-foot"/>
+                        <text class="bm-label" x="18" y="450">R. Foot</text>
                         
                       </g>
                       
