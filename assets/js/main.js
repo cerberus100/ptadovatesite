@@ -273,36 +273,63 @@ function formatWoundType(type) {
 
 // Body map functionality using ImageMapster
 function initializeBodyMap() {
-    // Initialize with jQuery ImageMapster for professional body map
-    setupImageMapInteractions();
+    console.log('Initializing body map...');
+    
+    // Wait for image to load before initializing
+    const bodyImage = document.getElementById('body-image');
+    if (bodyImage) {
+        if (bodyImage.complete) {
+            setupImageMapInteractions();
+        } else {
+            bodyImage.onload = function() {
+                setupImageMapInteractions();
+            };
+        }
+    } else {
+        console.error('Body image element not found');
+    }
 }
 
 // Setup image map interactions using ImageMapster
 function setupImageMapInteractions() {
+    console.log('Setting up ImageMapster...');
+    
     // Check if jQuery is available
     if (typeof $ === 'undefined') {
         console.error('jQuery is required for ImageMapster');
+        fallbackToBasicClicks();
+        return;
+    }
+    
+    // Check if ImageMapster is available
+    if (typeof $.fn.mapster === 'undefined') {
+        console.error('ImageMapster library not loaded');
+        fallbackToBasicClicks();
         return;
     }
     
     const selectedAreaInfo = document.getElementById('selected-area-info');
     let selectedRegions = [];
 
-    // Initialize ImageMapster
+    // Initialize ImageMapster with better configuration
     $('#body-image').mapster({
-        fillColor: '00d4ff',
-        fillOpacity: 0.3,
+        fillColor: 'ff6b5d',
+        fillOpacity: 0.4,
         stroke: true,
         strokeColor: '00d4ff',
-        strokeWidth: 2,
+        strokeWidth: 3,
         staticState: false,
-        mapKey: 'data-region',
+        mapKey: 'id', // Use the id attribute instead of data-region
+        singleSelect: false,
         
         onClick: function(data) {
+            console.log('Area clicked:', data);
             const area = $(data.e.target);
-            const regionData = area.attr('data-region');
             const regionId = area.attr('id');
+            const regionData = area.attr('data-region');
             const regionName = formatRegionName(regionData || regionId);
+            
+            console.log('Region:', regionId, regionName);
             
             // Check if already selected
             const existingIndex = selectedRegions.findIndex(r => r.id === regionId);
@@ -311,6 +338,7 @@ function setupImageMapInteractions() {
                 // Remove from selection
                 selectedRegions.splice(existingIndex, 1);
                 $('#body-image').mapster('deselect', regionId);
+                console.log('Deselected region:', regionName);
             } else {
                 // Add to selection
                 selectedRegions.push({
@@ -319,6 +347,7 @@ function setupImageMapInteractions() {
                     data: regionData
                 });
                 $('#body-image').mapster('select', regionId);
+                console.log('Selected region:', regionName);
             }
             
             // Update display and form
@@ -326,25 +355,25 @@ function setupImageMapInteractions() {
         },
         
         onMouseover: function(data) {
-            // Show tooltip on hover
             const area = $(data.e.target);
             const regionName = formatRegionName(area.attr('data-region') || area.attr('id'));
             showTooltip(data.e.target, regionName);
         },
         
         onMouseout: function() {
-            // Hide tooltip
             hideTooltip();
-        },
-        
-        areas: [
-            {
-                key: 'head',
-                fillColor: 'ff6b5d',
-                selected: false
-            }
-        ]
+        }
     });
+    
+    // Add fallback click handlers
+    setTimeout(function() {
+        if (!$('#body-image').data('mapster')) {
+            console.warn('ImageMapster failed to initialize, using fallback');
+            fallbackToBasicClicks();
+        } else {
+            console.log('ImageMapster initialized successfully');
+        }
+    }, 1000);
 
     // Add keyboard support
     $('.bodyParts').each(function() {
@@ -357,26 +386,45 @@ function setupImageMapInteractions() {
         });
     });
 
-                    function formatRegionName(regionData) {
-                    if (!regionData) return 'Unknown region';
-                    
-                    // Convert data-region values to proper names (simplified for clean silhouette)
-                    const regionMap = {
-                        'head': 'Head',
-                        'chest': 'Chest',
-                        'left-arm': 'Left Arm',
-                        'right-arm': 'Right Arm',
-                        'abdomen': 'Abdomen',
-                        'left-leg': 'Left Leg',
-                        'right-leg': 'Right Leg',
-                        'left-hand': 'Left Hand',
-                        'right-hand': 'Right Hand',
-                        'left-foot': 'Left Foot',
-                        'right-foot': 'Right Foot'
-                    };
-                    
-                    return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                }
+    function formatRegionName(regionData) {
+        if (!regionData) return 'Unknown region';
+        
+        // Convert data-region values to proper names
+        const regionMap = {
+            'head': 'Head',
+            'face': 'Face', 
+            'neck': 'Neck',
+            'chest': 'Chest',
+            'abdomen': 'Abdomen',
+            'pelvis': 'Pelvis',
+            'right-shoulder': 'Right Shoulder',
+            'left-shoulder': 'Left Shoulder',
+            'right-arm': 'Right Arm',
+            'left-arm': 'Left Arm',
+            'right-elbow': 'Right Elbow',
+            'left-elbow': 'Left Elbow',
+            'right-forearm': 'Right Forearm',
+            'left-forearm': 'Left Forearm',
+            'right-wrist': 'Right Wrist',
+            'left-wrist': 'Left Wrist',
+            'right-hand': 'Right Hand',
+            'left-hand': 'Left Hand',
+            'left-hip': 'Left Hip',
+            'right-hip': 'Right Hip',
+            'left-thigh': 'Left Thigh',
+            'right-thigh': 'Right Thigh',
+            'left-knee': 'Left Knee',
+            'right-knee': 'Right Knee',
+            'right-shin': 'Right Shin',
+            'left-shin': 'Left Shin',
+            'left-ankle': 'Left Ankle',
+            'right-ankle': 'Right Ankle',
+            'right-foot': 'Right Foot',
+            'left-foot': 'Left Foot'
+        };
+        
+        return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
 
     function showSelectionFeedback(element) {
         // Add a subtle animation to show selection
@@ -475,6 +523,151 @@ function setupImageMapInteractions() {
         }
         selectedRegions = selectedRegions.filter(r => r.id !== regionId);
         updateSelectedRegions(selectedRegions);
+    };
+}
+
+// Fallback to basic click handling if ImageMapster fails
+function fallbackToBasicClicks() {
+    console.log('Using fallback click handlers...');
+    
+    let selectedRegions = [];
+    const selectedAreaInfo = document.getElementById('selected-area-info');
+    
+    // Add click handlers to all area elements
+    document.querySelectorAll('area.bodyParts').forEach(area => {
+        area.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const regionId = this.id;
+            const regionData = this.getAttribute('data-region');
+            const regionName = formatRegionNameFallback(regionData || regionId);
+            
+            console.log('Fallback click:', regionId, regionName);
+            
+            // Check if already selected
+            const existingIndex = selectedRegions.findIndex(r => r.id === regionId);
+            
+            if (existingIndex > -1) {
+                // Remove from selection
+                selectedRegions.splice(existingIndex, 1);
+                this.style.backgroundColor = '';
+            } else {
+                // Add to selection
+                selectedRegions.push({
+                    id: regionId,
+                    name: regionName,
+                    data: regionData
+                });
+                this.style.backgroundColor = 'rgba(255, 107, 93, 0.4)';
+            }
+            
+            updateSelectedRegionsFallback(selectedRegions);
+        });
+        
+        // Add hover effects
+        area.addEventListener('mouseenter', function() {
+            if (!selectedRegions.find(r => r.id === this.id)) {
+                this.style.backgroundColor = 'rgba(0, 212, 255, 0.3)';
+            }
+        });
+        
+        area.addEventListener('mouseleave', function() {
+            if (!selectedRegions.find(r => r.id === this.id)) {
+                this.style.backgroundColor = '';
+            }
+        });
+    });
+    
+    function formatRegionNameFallback(regionData) {
+        if (!regionData) return 'Unknown region';
+        
+        const regionMap = {
+            'head': 'Head',
+            'face': 'Face', 
+            'neck': 'Neck',
+            'chest': 'Chest',
+            'abdomen': 'Abdomen',
+            'pelvis': 'Pelvis',
+            'right-shoulder': 'Right Shoulder',
+            'left-shoulder': 'Left Shoulder',
+            'right-arm': 'Right Arm',
+            'left-arm': 'Left Arm',
+            'right-elbow': 'Right Elbow',
+            'left-elbow': 'Left Elbow',
+            'right-forearm': 'Right Forearm',
+            'left-forearm': 'Left Forearm',
+            'right-wrist': 'Right Wrist',
+            'left-wrist': 'Left Wrist',
+            'right-hand': 'Right Hand',
+            'left-hand': 'Left Hand',
+            'left-hip': 'Left Hip',
+            'right-hip': 'Right Hip',
+            'left-thigh': 'Left Thigh',
+            'right-thigh': 'Right Thigh',
+            'left-knee': 'Left Knee',
+            'right-knee': 'Right Knee',
+            'right-shin': 'Right Shin',
+            'left-shin': 'Left Shin',
+            'left-ankle': 'Left Ankle',
+            'right-ankle': 'Right Ankle',
+            'right-foot': 'Right Foot',
+            'left-foot': 'Left Foot'
+        };
+        
+        return regionMap[regionData] || regionData.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+    
+    function updateSelectedRegionsFallback(regions) {
+        const selectedAreaInfo = document.getElementById('selected-area-info');
+        const hiddenInput = document.getElementById('wound-location');
+        
+        if (regions.length > 0) {
+            selectedAreaInfo.innerHTML = `
+                <div class="selected-regions">
+                    <h4>Selected Areas (${regions.length}):</h4>
+                    <div class="selected-regions-list">
+                        ${regions.map(region => `
+                            <div class="selected-region-item">
+                                <span class="region-name">${region.name}</span>
+                                <button type="button" onclick="removeRegionFallback('${region.id}')" class="remove-region" title="Remove ${region.name}">×</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button type="button" onclick="clearBodyMapSelectionsFallback()" class="clear-all-btn">Clear All</button>
+                </div>
+            `;
+            if (hiddenInput) {
+                hiddenInput.value = regions.map(r => r.name).join(', ');
+            }
+        } else {
+            selectedAreaInfo.innerHTML = `
+                <div class="no-selection">
+                    <p>Click on the body area where you need assistance</p>
+                    <small>You can select multiple areas</small>
+                </div>
+            `;
+            if (hiddenInput) {
+                hiddenInput.value = '';
+            }
+        }
+    }
+    
+    // Global fallback functions
+    window.clearBodyMapSelectionsFallback = function() {
+        selectedRegions = [];
+        document.querySelectorAll('area.bodyParts').forEach(area => {
+            area.style.backgroundColor = '';
+        });
+        updateSelectedRegionsFallback([]);
+    };
+
+    window.removeRegionFallback = function(regionId) {
+        selectedRegions = selectedRegions.filter(r => r.id !== regionId);
+        const area = document.getElementById(regionId);
+        if (area) {
+            area.style.backgroundColor = '';
+        }
+        updateSelectedRegionsFallback(selectedRegions);
     };
 }
 
