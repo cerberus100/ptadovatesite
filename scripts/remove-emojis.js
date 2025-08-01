@@ -131,6 +131,16 @@ const emojiReplacements = {
     '<span style="font-size: 3rem; color: white;">👩‍🎓</span>': '<div class="professional-avatar">PhD</div>',
     '👨‍💻': '',
     '<span style="font-size: 3rem; color: white;">👨‍💻</span>': '<div class="professional-avatar">IT</div>',
+    
+    // Additional symbols found
+    '🔥': '',
+    '<div style="font-size: 3rem; margin-bottom: 1rem;">🔥</div>': '<div class="section-icon-professional">CARE</div>',
+    '💰': '',
+    '<div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>': '<div class="section-icon-professional">$</div>',
+    '🔬': '',
+    '<div style="font-size: 3rem; margin-bottom: 1rem;">🔬</div>': '<div class="section-icon-professional">LAB</div>',
+    '🔒': '',
+    '🔒 Your Privacy Matters': 'Your Privacy Matters',
 };
 
 // Function to clean up a file
