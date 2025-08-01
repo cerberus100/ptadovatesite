@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Helping Hands Patient Advocates</title>
+    <meta name="description" content="Get answers to common questions about patient advocacy, financial assistance, wound care, and our services at Helping Hands Patient Advocates.">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#46B5A4">
+
+    <style>
+    /* FAQ-specific styles */
+    .faq-item {
+        border: 1px solid #e9ecef;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+    
+    .faq-question {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.3s ease;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #26547C;
+    }
+    
+    .faq-question:hover {
+        background: #e9ecef;
+    }
+    
+    .faq-question.active {
+        background: #46B5A4;
+        color: white;
+    }
+    
+    .faq-answer {
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        background: white;
+    }
+    
+    .faq-answer.open {
+        padding: 1.5rem;
+        max-height: 500px;
+    }
+    
+    .faq-icon {
+        transition: transform 0.3s ease;
+        font-size: 1.2rem;
+    }
+    
+    .faq-question.active .faq-icon {
+        transform: rotate(180deg);
+    }
+    
+    .faq-search {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+    
+    .faq-search input {
+        width: 100%;
+        padding: 1rem 1rem 1rem 3rem;
+        border: 2px solid #e9ecef;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        transition: border-color 0.3s ease;
+    }
+    
+    .faq-search input:focus {
+        border-color: #46B5A4;
+        outline: none;
+    }
+    
+    .faq-search::before {
+        content: "🔍";
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+    }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html" style="color: inherit; text-decoration: none;">🤝 Helping Hands</a></h1>
+                <span>Patient Advocates</span>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html#home" role="menuitem">Home</a></li>
+                <li role="none"><a href="index.html#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="index.html#providers" role="menuitem">Find Providers</a></li>
+                <li role="none"><a href="index.html#body-map" role="menuitem">Body Map</a></li>
+                <li role="none"><a href="financial-help/" role="menuitem">Financial Help</a></li>
+                <li role="none"><a href="index.html#request-help" role="menuitem">Get Help</a></li>
+                <li role="none"><a href="index.html#join-network" role="menuitem">Join Network</a></li>
+                <li role="none"><a href="index.html#contact" role="menuitem">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-menu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" style="margin-top: 70px;">
+        
+        <!-- Header Section -->
+        <section style="padding: 3rem 0; background: linear-gradient(135deg, #26547C 0%, #46B5A4 100%); color: white;">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <h1 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">Frequently Asked Questions</h1>
+                    <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;">
+                        Find answers to common questions about patient advocacy, financial assistance, and wound care support.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Search -->
+        <section style="padding: 3rem 0; background: white;">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="faq-search">
+                        <input type="text" id="faq-search" placeholder="Search for answers..." aria-label="Search FAQ">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Categories -->
+        <section style="padding: 0 0 3rem; background: white;">
+            <div class="container">
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    
+                    <!-- Getting Started -->
+                    <div style="margin-bottom: 3rem;">
+                        <h2 style="color: #26547C; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #46B5A4;">🚀 Getting Started</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                What is a patient advocate and how can you help me?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>A patient advocate is a healthcare professional who helps patients navigate complex healthcare systems, understand their rights, and access needed care and resources. We help with:</p>
+                                <ul>
+                                    <li><strong>Insurance navigation:</strong> Understanding benefits, filing appeals, resolving claim issues</li>
+                                    <li><strong>Financial assistance:</strong> Finding and applying to programs that help pay for medical care</li>
+                                    <li><strong>Care coordination:</strong> Connecting you with specialists and ensuring continuity of care</li>
+                                    <li><strong>Provider communication:</strong> Helping you communicate effectively with your healthcare team</li>
+                                    <li><strong>System navigation:</strong> Guiding you through hospital systems, appointment scheduling, and medical records</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                How much do your services cost?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Our basic advocacy services are <strong>completely free</strong> for patients. This includes:</p>
+                                <ul>
+                                    <li>Initial consultation and assessment</li>
+                                    <li>Provider referrals through our network</li>
+                                    <li>Financial assistance program information</li>
+                                    <li>Basic insurance navigation support</li>
+                                </ul>
+                                <p>We believe that access to healthcare advocacy should not be limited by a patient's ability to pay. Our mission is to remove barriers to care, not create new ones.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                How quickly can I get help?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Our response times vary based on urgency:</p>
+                                <ul>
+                                    <li><strong>Emergency situations:</strong> Same day response (within 4 hours)</li>
+                                    <li><strong>Urgent requests:</strong> Within 24 hours</li>
+                                    <li><strong>Standard requests:</strong> Within 48 hours</li>
+                                    <li><strong>General information:</strong> Within 3 business days</li>
+                                </ul>
+                                <p>For immediate medical emergencies, please call 911 or go to your nearest emergency room.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Financial Assistance -->
+                    <div style="margin-bottom: 3rem;">
+                        <h2 style="color: #26547C; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #46B5A4;">💰 Financial Assistance</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                What types of financial assistance programs are available?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>There are several types of financial assistance programs available:</p>
+                                <ul>
+                                    <li><strong>Co-pay relief programs:</strong> Help with insurance co-pays and deductibles (Patient Advocate Foundation, Good Days, HealthWell)</li>
+                                    <li><strong>Pharmaceutical programs:</strong> Free medications from drug manufacturers (Pfizer, J&J, Merck)</li>
+                                    <li><strong>Hospital charity care:</strong> Free or reduced-cost care based on income</li>
+                                    <li><strong>Government programs:</strong> Medicare Extra Help, Medicaid, state assistance</li>
+                                    <li><strong>Non-profit grants:</strong> Various foundations that help with medical expenses</li>
+                                    <li><strong>Equipment assistance:</strong> Free or low-cost medical equipment loans</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                Do I qualify for financial assistance if I have insurance?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p><strong>Yes!</strong> Having insurance does not disqualify you from financial assistance. Many programs are specifically designed for people with insurance who still struggle with:</p>
+                                <ul>
+                                    <li>High deductibles and co-pays</li>
+                                    <li>Medications not covered by insurance</li>
+                                    <li>Out-of-network specialist care</li>
+                                    <li>Advanced treatments with high out-of-pocket costs</li>
+                                </ul>
+                                <p>Programs like Patient Advocate Foundation Co-Pay Relief and Good Days Foundation specifically help people who have insurance but face financial hardship due to medical costs.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                How long does it take to get approved for financial assistance?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Processing times vary by program:</p>
+                                <ul>
+                                    <li><strong>Co-pay relief programs:</strong> 10-15 business days</li>
+                                    <li><strong>Pharmaceutical programs:</strong> 2-4 weeks</li>
+                                    <li><strong>Hospital charity care:</strong> 30-60 days</li>
+                                    <li><strong>Emergency programs:</strong> 24-48 hours</li>
+                                </ul>
+                                <p><strong>Pro tip:</strong> Apply early and to multiple programs simultaneously. We can help you create a timeline and follow up on applications.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Wound Care -->
+                    <div style="margin-bottom: 3rem;">
+                        <h2 style="color: #26547C; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #46B5A4;">🩹 Wound Care</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                What types of wound care providers are in your network?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Our network includes various healthcare providers specializing in wound care:</p>
+                                <ul>
+                                    <li><strong>Wound care specialists:</strong> Certified wound care professionals</li>
+                                    <li><strong>Vascular surgeons:</strong> For circulation-related wounds</li>
+                                    <li><strong>Dermatologists:</strong> Skin conditions and chronic wounds</li>
+                                    <li><strong>Plastic surgeons:</strong> Complex wound reconstruction</li>
+                                    <li><strong>Podiatrists:</strong> Diabetic foot ulcers and lower extremity wounds</li>
+                                    <li><strong>Certified wound care nurses:</strong> Specialized nursing care</li>
+                                    <li><strong>Hyperbaric medicine specialists:</strong> Advanced oxygen therapy</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                How do I know if my wound needs specialist care?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Consider seeing a wound care specialist if your wound:</p>
+                                <ul>
+                                    <li>Has not healed after 2-4 weeks of proper care</li>
+                                    <li>Is getting larger instead of smaller</li>
+                                    <li>Shows signs of infection (increased pain, redness, warmth, drainage, odor)</li>
+                                    <li>Is deeper than the skin surface</li>
+                                    <li>Keeps reopening after it seems to heal</li>
+                                    <li>Is related to diabetes, circulation problems, or other chronic conditions</li>
+                                </ul>
+                                <p><strong>Emergency warning signs:</strong> Seek immediate medical care if you have fever, red streaks from the wound, severe pain, or signs of serious infection.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                What is the body map tool and how do I use it?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Our interactive body map helps you:</p>
+                                <ul>
+                                    <li><strong>Identify wound location:</strong> Click on the area of your body where the wound is located</li>
+                                    <li><strong>Find relevant specialists:</strong> Get recommendations for providers who specialize in that body area</li>
+                                    <li><strong>Understand treatment options:</strong> Learn about common treatments for wounds in that location</li>
+                                    <li><strong>Prepare for appointments:</strong> Get information to discuss with your healthcare provider</li>
+                                </ul>
+                                <p>The tool is designed to be accessible and works on all devices. If you have trouble using it, we can help you over the phone.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Insurance & Coverage -->
+                    <div style="margin-bottom: 3rem;">
+                        <h2 style="color: #26547C; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #46B5A4;">🛡️ Insurance & Coverage</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                My insurance denied coverage for wound care treatment. What can I do?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Insurance denials can often be successfully appealed. Here's what we can help you do:</p>
+                                <ol>
+                                    <li><strong>Review the denial letter:</strong> Understand exactly why the claim was denied</li>
+                                    <li><strong>Gather supporting documentation:</strong> Medical records, physician letters, research studies</li>
+                                    <li><strong>File a formal appeal:</strong> Follow your insurance company's appeal process</li>
+                                    <li><strong>Request peer-to-peer review:</strong> Have your doctor speak directly with insurance medical director</li>
+                                    <li><strong>Consider external review:</strong> Independent review if internal appeals fail</li>
+                                </ol>
+                                <p>We have experience with insurance appeals and can guide you through each step of the process.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                Does Medicare cover wound care treatments?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Medicare covers many wound care treatments when medically necessary:</p>
+                                <ul>
+                                    <li><strong>Physician visits:</strong> Wound care specialist appointments</li>
+                                    <li><strong>Advanced dressings:</strong> Certain types of specialized wound dressings</li>
+                                    <li><strong>Negative pressure therapy:</strong> Wound VAC systems for qualifying wounds</li>
+                                    <li><strong>Hyperbaric oxygen:</strong> For specific conditions like diabetic wounds</li>
+                                    <li><strong>Surgical procedures:</strong> Debridement, grafts, and reconstructive surgery</li>
+                                </ul>
+                                <p><strong>Important:</strong> Coverage requirements and criteria change regularly. We stay updated on current Medicare policies and can help determine what's covered for your specific situation.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Privacy & Security -->
+                    <div style="margin-bottom: 3rem;">
+                        <h2 style="color: #26547C; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #46B5A4;">🔒 Privacy & Security</h2>
+                        
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                How do you protect my health information?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We take your privacy very seriously and follow strict HIPAA compliance standards:</p>
+                                <ul>
+                                    <li><strong>Encryption:</strong> All data is encrypted in transit and at rest</li>
+                                    <li><strong>Access controls:</strong> Only authorized staff can access your information on a need-to-know basis</li>
+                                    <li><strong>Training:</strong> All team members are trained on privacy protection</li>
+                                    <li><strong>Secure systems:</strong> We use healthcare-grade security systems</li>
+                                    <li><strong>No sharing:</strong> We never share your information without your explicit consent</li>
+                                </ul>
+                                <p>You have the right to access, correct, or request deletion of your information at any time.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFAQ(this)">
+                                Who will you share my information with?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>We only share your information when:</p>
+                                <ul>
+                                    <li><strong>You give explicit consent:</strong> When you authorize us to share information</li>
+                                    <li><strong>For your treatment:</strong> With healthcare providers you choose to connect with</li>
+                                    <li><strong>For assistance applications:</strong> With financial assistance programs you apply to through our service</li>
+                                    <li><strong>As required by law:</strong> Only when legally mandated</li>
+                                </ul>
+                                <p><strong>We never:</strong> Sell your information, share it for marketing purposes, or provide it to unauthorized third parties.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Still Have Questions -->
+        <section style="padding: 3rem 0; background: linear-gradient(135deg, #46B5A4 0%, #26547C 100%); color: white;">
+            <div class="container">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <h2 style="color: white; margin-bottom: 1rem;">Still Have Questions?</h2>
+                    <p style="opacity: 0.9; margin-bottom: 2rem;">
+                        Our patient advocates are here to help. Get personalized answers to your specific situation.
+                    </p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.html#request-help" class="btn" style="background: #FF6B5D; color: white; border-color: #FF6B5D;">Ask a Question</a>
+                        <a href="index.html#contact" class="btn" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.5);">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="background: #26547C; color: white; padding: 2rem 0;">
+        <div class="container">
+            <div style="text-align: center;">
+                <h3 style="color: white; margin-bottom: 1rem;">🤝 Helping Hands Patient Advocates</h3>
+                <p style="opacity: 0.8; margin-bottom: 1rem;">Your questions matter. We're here to provide clear, helpful answers.</p>
+                <div style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 1rem;">
+                    <a href="sitemap.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">Sitemap</a> | 
+                    <a href="privacy.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">Privacy</a> | 
+                    <a href="terms.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">Terms</a> |
+                    <a href="accessibility.html" style="color: rgba(255,255,255,0.6); text-decoration: none;">Accessibility</a>
+                </div>
+                <p style="opacity: 0.7;">&copy; 2024 Helping Hands Patient Advocates. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <script>
+    // FAQ functionality
+    function toggleFAQ(button) {
+        const answer = button.nextElementSibling;
+        const isOpen = answer.classList.contains('open');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
+            openAnswer.classList.remove('open');
+        });
+        document.querySelectorAll('.faq-question.active').forEach(activeQuestion => {
+            activeQuestion.classList.remove('active');
+        });
+        
+        // Toggle current FAQ
+        if (!isOpen) {
+            answer.classList.add('open');
+            button.classList.add('active');
+        }
+    }
+    
+    // FAQ search functionality
+    document.getElementById('faq-search').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = searchTerm ? 'none' : 'block';
+            }
+        });
+    });
+    </script>
+</body>
+</html>

@@ -394,9 +394,32 @@
 
     <script src="admin.js"></script>
     <script>
-        // Authentication check
+        // SECURITY WARNING: This is a basic demo authentication check
+        // In production, implement proper session validation with:
+        // - Server-side JWT token validation
+        // - Session timeout handling
+        // - Secure cookie management
+        // - CSRF protection
+        
         if (!localStorage.getItem('admin_authenticated')) {
             window.location.href = 'index.html';
+            return;
+        }
+        
+        // Basic session timeout check (demo only)
+        const loginTime = localStorage.getItem('admin_login_time');
+        if (loginTime) {
+            const sessionAge = Date.now() - new Date(loginTime).getTime();
+            const sessionTimeout = 24 * 60 * 60 * 1000; // 24 hours
+            
+            if (sessionAge > sessionTimeout) {
+                localStorage.removeItem('admin_authenticated');
+                localStorage.removeItem('admin_username');
+                localStorage.removeItem('admin_login_time');
+                alert('Session expired. Please log in again.');
+                window.location.href = 'index.html';
+                return;
+            }
         }
         
         // Set admin username

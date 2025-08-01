@@ -9,46 +9,59 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#46B5A4">
 </head>
-<body>
+    <body>
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-brand">
                 <h1>🤝 Helping Hands</h1>
                 <span>Patient Advocates</span>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                                    <li><a href="#providers">Find Providers</a></li>
-                    <li><a href="#body-map">Body Map</a></li>
-                    <li><a href="#request-help">Get Help</a></li>
-                    <li><a href="#join-network">Join Network</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="#providers" role="menuitem">Find Providers</a></li>
+                <li role="none"><a href="#body-map" role="menuitem">Body Map</a></li>
+                <li role="none"><a href="financial-help/" role="menuitem">Financial Help</a></li>
+                <li role="none"><a href="#request-help" role="menuitem">Get Help</a></li>
+                <li role="none"><a href="#join-network" role="menuitem">Join Network</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-menu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero" role="banner">
         <div class="container">
             <div class="hero-content">
                 <h2>Your Healthcare Navigation Partner</h2>
                 <p>Professional patient advocacy and wound care specialist connections. We help you find the right care and navigate the healthcare system with confidence.</p>
                 <div class="hero-buttons">
-                    <a href="#request-help" class="btn btn-primary">Request Assistance</a>
-                    <a href="#providers" class="btn btn-secondary">Find Providers</a>
+                    <a href="#request-help" class="btn btn-primary" aria-describedby="request-help-desc">Request Assistance</a>
+                    <a href="#providers" class="btn btn-secondary" aria-describedby="providers-desc">Find Providers</a>
+                    <span id="request-help-desc" class="sr-only">Navigate to patient assistance request form</span>
+                    <span id="providers-desc" class="sr-only">Browse our directory of wound care specialists</span>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-image-placeholder">
-                    <div class="hero-icon">👥</div>
+                <div class="hero-image-placeholder" role="img" aria-label="Illustration representing patient advocacy and wound care connections">
+                    <div class="hero-icon" aria-hidden="true">👥</div>
                     <p>Patient Advocacy</p>
                     <div class="hero-subtext">Professional wound care connections</div>
                 </div>
@@ -57,27 +70,27 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services" role="region" aria-labelledby="services-heading">
         <div class="container">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🩺</div>
+            <h2 id="services-heading">Our Services</h2>
+            <div class="services-grid" role="list">
+                <div class="service-card" role="listitem">
+                    <div class="service-icon" aria-hidden="true">🩺</div>
                     <h3>Provider Connections</h3>
                     <p>Connect with qualified wound care specialists and healthcare providers in your area.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📋</div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon" aria-hidden="true">📋</div>
                     <h3>Patient Advocacy</h3>
                     <p>Professional advocacy services to help you navigate healthcare systems and insurance.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🗺️</div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon" aria-hidden="true">🗺️</div>
                     <h3>Interactive Body Map</h3>
                     <p>Visual wound location mapping to help providers understand your specific needs.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💬</div>
+                <div class="service-card" role="listitem">
+                    <div class="service-icon" aria-hidden="true">💬</div>
                     <h3>Care Coordination</h3>
                     <p>Seamless coordination between multiple healthcare providers for comprehensive care.</p>
                 </div>
@@ -86,9 +99,10 @@
     </section>
 
     <!-- Provider Directory -->
-    <section id="providers" class="providers">
+    <main id="main-content">
+    <section id="providers" class="providers" role="region" aria-labelledby="providers-heading">
         <div class="container">
-            <h2>Find Wound Care Providers</h2>
+            <h2 id="providers-heading">Find Wound Care Providers</h2>
             <div class="provider-search">
                 <div class="search-filters">
                     <input type="text" id="location-search" placeholder="Enter your location">
@@ -494,33 +508,79 @@
                 <div class="footer-section">
                     <h3>🤝 Helping Hands</h3>
                     <p>Professional patient advocacy and wound care connections.</p>
+                    <div class="footer-social">
+                        <h4>Follow Us</h4>
+                        <p>Stay updated with the latest in patient advocacy</p>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
                         <li><a href="#providers">Find Providers</a></li>
-                        <li><a href="#body-map">Body Map</a></li>
-                        <li><a href="#request-help">Patient Assistance</a></li>
+                        <li><a href="#body-map">Interactive Body Map</a></li>
+                        <li><a href="financial-help/">Financial Assistance</a></li>
+                        <li><a href="#request-help">Request Help</a></li>
                         <li><a href="#join-network">Join Network</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Financial Help</h4>
+                    <ul>
+                        <li><a href="financial-help/medication-help.html">Free Medications</a></li>
+                        <li><a href="financial-help/hospital-help.html">Hospital Bill Help</a></li>
+                        <li><a href="financial-help/emergency-help.html">Emergency Assistance</a></li>
+                        <li><a href="financial-help/supplies-help.html">Medical Supplies</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#about">About Patient Advocacy</a></li>
+                        <li><a href="#wound-care-guide">Wound Care Guide</a></li>
+                        <li><a href="#insurance-help">Insurance Navigation</a></li>
+                        <li><a href="#patient-rights">Know Your Rights</a></li>
                     </ul>
+                    <div class="footer-contact">
+                        <h4>Contact</h4>
+                        <p>📧 help@helpinghandspro.com</p>
+                        <p>📞 1-800-HELPING</p>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Helping Hands Patient Advocates. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a> | 
+                    <a href="terms.html">Terms of Service</a> | 
+                    <a href="sitemap.html">Sitemap</a> |
+                    <a href="accessibility.html">Accessibility</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Notification Container -->
+    <div id="notification-container" class="notification-container"></div>
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/jquery.imagemapster.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/lazy-loading.js" defer></script>
+    <script src="assets/js/performance.js" defer></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html> 

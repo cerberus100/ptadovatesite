@@ -273,8 +273,6 @@ function formatWoundType(type) {
 
 // Body map functionality using ImageMapster
 function initializeBodyMap() {
-    console.log('Initializing body map...');
-    
     // Wait for image to load before initializing
     const bodyImage = document.getElementById('body-image');
     if (bodyImage) {
@@ -286,24 +284,22 @@ function initializeBodyMap() {
             };
         }
     } else {
-        console.error('Body image element not found');
+        // Body image element not found - skip initialization
     }
 }
 
 // Setup image map interactions using ImageMapster
 function setupImageMapInteractions() {
-    console.log('Setting up ImageMapster...');
-    
     // Check if jQuery is available
     if (typeof $ === 'undefined') {
-        console.error('jQuery is required for ImageMapster');
+        // jQuery is required for ImageMapster - fall back to basic clicks
         fallbackToBasicClicks();
         return;
     }
     
     // Check if ImageMapster is available
     if (typeof $.fn.mapster === 'undefined') {
-        console.error('ImageMapster library not loaded');
+        // ImageMapster library not loaded - fall back to basic clicks
         fallbackToBasicClicks();
         return;
     }
@@ -323,13 +319,10 @@ function setupImageMapInteractions() {
         singleSelect: false,
         
         onClick: function(data) {
-            console.log('Area clicked:', data);
             const area = $(data.e.target);
             const regionId = area.attr('id');
             const regionData = area.attr('data-region');
             const regionName = formatRegionName(regionData || regionId);
-            
-            console.log('Region:', regionId, regionName);
             
             // Check if already selected
             const existingIndex = selectedRegions.findIndex(r => r.id === regionId);
@@ -338,7 +331,6 @@ function setupImageMapInteractions() {
                 // Remove from selection
                 selectedRegions.splice(existingIndex, 1);
                 $('#body-image').mapster('deselect', regionId);
-                console.log('Deselected region:', regionName);
             } else {
                 // Add to selection
                 selectedRegions.push({
@@ -347,7 +339,6 @@ function setupImageMapInteractions() {
                     data: regionData
                 });
                 $('#body-image').mapster('select', regionId);
-                console.log('Selected region:', regionName);
             }
             
             // Update display and form
@@ -368,10 +359,8 @@ function setupImageMapInteractions() {
     // Add fallback click handlers
     setTimeout(function() {
         if (!$('#body-image').data('mapster')) {
-            console.warn('ImageMapster failed to initialize, using fallback');
+            // ImageMapster failed to initialize, using fallback
             fallbackToBasicClicks();
-        } else {
-            console.log('ImageMapster initialized successfully');
         }
     }, 1000);
 
@@ -528,8 +517,6 @@ function setupImageMapInteractions() {
 
 // Fallback to basic click handling if ImageMapster fails
 function fallbackToBasicClicks() {
-    console.log('Using fallback click handlers...');
-    
     let selectedRegions = [];
     const selectedAreaInfo = document.getElementById('selected-area-info');
     
@@ -541,8 +528,6 @@ function fallbackToBasicClicks() {
             const regionId = this.id;
             const regionData = this.getAttribute('data-region');
             const regionName = formatRegionNameFallback(regionData || regionId);
-            
-            console.log('Fallback click:', regionId, regionName);
             
             // Check if already selected
             const existingIndex = selectedRegions.findIndex(r => r.id === regionId);
@@ -722,12 +707,12 @@ function initializeFormHandling() {
         
         // Validate required fields
         if (!data['patient-name'] || !data['patient-email'] || !data['patient-location'] || !data['description']) {
-            alert('Please fill in all required fields.');
+            notifications.error('Please fill in all required fields.', 'Validation Error');
             return;
         }
         
         if (!data['hipaa-consent']) {
-            alert('Please consent to the privacy policy to continue.');
+            notifications.error('Please consent to the privacy policy to continue.', 'Consent Required');
             return;
         }
         
@@ -746,7 +731,7 @@ function submitAssistanceRequest(data) {
     
     // Simulate API call
     setTimeout(() => {
-        alert('Thank you for your request! A patient advocate will contact you within 24 hours.');
+        notifications.success('Thank you for your request! A patient advocate will contact you within 24 hours.', 'Request Submitted');
         
         // Reset form
         document.getElementById('assistance-form').reset();
@@ -756,7 +741,6 @@ function submitAssistanceRequest(data) {
         submitBtn.disabled = false;
         
         // In a real application, you would send this data to your backend
-        console.log('Form submitted:', data);
     }, 2000);
 }
 
@@ -776,24 +760,22 @@ function initializeNetworkForms() {
             
             // Basic validation
             if (!data['nominator-name'] || !data['nominator-email'] || !data['provider-name'] || !data['nomination-reason']) {
-                alert('Please fill in all required fields.');
+                notifications.error('Please fill in all required fields.', 'Validation Error');
                 return;
             }
             
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(data['nominator-email'])) {
-                alert('Please enter a valid email address.');
+                notifications.error('Please enter a valid email address.', 'Invalid Email');
                 return;
             }
             
             // Simulate nomination submission
-            alert(`Thank you for nominating ${data['provider-name']}! We will review this provider and contact them about joining our patient-first network.`);
+            notifications.success(`Thank you for nominating ${data['provider-name']}! We will review this provider and contact them about joining our patient-first network.`, 'Nomination Submitted');
             
             // Reset form
             nominationForm.reset();
-            
-            console.log('Provider nomination submitted:', data);
         });
     }
     
@@ -822,30 +804,28 @@ function initializeNetworkForms() {
             // Basic validation
             if (!data['applicant-name'] || !data['applicant-email'] || !data['applicant-phone'] || 
                 !data['applicant-specialty'] || !data['patient-commitment'] || !data['insurance-acceptance']) {
-                alert('Please fill in all required fields.');
+                notifications.error('Please fill in all required fields.', 'Validation Error');
                 return;
             }
             
             // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(data['applicant-email'])) {
-                alert('Please enter a valid email address.');
+                notifications.error('Please enter a valid email address.', 'Invalid Email');
                 return;
             }
             
             // Check non-profit agreement
             if (!data['non-profit-agreement']) {
-                alert('Please confirm your commitment to patient-first care in our non-profit network.');
+                notifications.error('Please confirm your commitment to patient-first care in our non-profit network.', 'Agreement Required');
                 return;
             }
             
             // Simulate application submission
-            alert(`Thank you for your application, ${data['applicant-name']}! We will review your information and contact you within 5 business days regarding your application to join the Helping Hands network.`);
+            notifications.success(`Thank you for your application, ${data['applicant-name']}! We will review your information and contact you within 5 business days regarding your application to join the Helping Hands network.`, 'Application Submitted');
             
             // Reset form
             applicationForm.reset();
-            
-            console.log('Provider application submitted:', data);
         });
     }
 }
@@ -861,7 +841,7 @@ function contactProvider(providerId) {
 function requestConnection(providerId) {
     const provider = providers.find(p => p.id === providerId);
     if (provider) {
-        alert(`Connection request sent to ${provider.name}. They will contact you within 24 hours.`);
+        notifications.success(`Connection request sent to ${provider.name}. They will contact you within 24 hours.`, 'Connection Requested');
     }
 }
 
@@ -889,21 +869,113 @@ function showLoading() {
 
 function hideLoading() {
     // Remove loading spinner or indicator
-    console.log('Loading complete');
 }
 
 // Initialize analytics (placeholder)
 function initializeAnalytics() {
-    console.log('Helping Hands Patient Advocates - Static Site Loaded');
-    
-    // Track page views
-    if (typeof gtag !== 'undefined') {
+    // Only track in production environment
+    if (typeof gtag !== 'undefined' && (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1')) {
         gtag('config', 'GA_TRACKING_ID', {
             page_title: document.title,
             page_location: window.location.href
         });
     }
 }
+
+// Notification System
+class NotificationManager {
+    constructor() {
+        this.container = document.getElementById('notification-container');
+        if (!this.container) {
+            // Create container if it doesn't exist
+            this.container = document.createElement('div');
+            this.container.id = 'notification-container';
+            this.container.className = 'notification-container';
+            document.body.appendChild(this.container);
+        }
+    }
+
+    show(message, type = 'info', title = '', duration = 5000) {
+        const notification = this.createNotification(message, type, title, duration);
+        this.container.appendChild(notification);
+        
+        // Trigger animation
+        setTimeout(() => notification.classList.add('show'), 100);
+        
+        // Auto-remove
+        if (duration > 0) {
+            setTimeout(() => this.removeNotification(notification), duration);
+        }
+        
+        return notification;
+    }
+
+    createNotification(message, type, title, duration) {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        
+        const icons = {
+            success: '✓',
+            error: '✕',
+            warning: '⚠',
+            info: 'ℹ'
+        };
+        
+        notification.innerHTML = `
+            <div class="notification-content">
+                <div class="notification-icon">${icons[type] || icons.info}</div>
+                <div class="notification-text">
+                    ${title ? `<div class="notification-title">${title}</div>` : ''}
+                    <div class="notification-message">${message}</div>
+                </div>
+                <button class="notification-close" onclick="this.closest('.notification').remove()">×</button>
+            </div>
+            ${duration > 0 ? '<div class="notification-progress"><div class="notification-progress-bar"></div></div>' : ''}
+        `;
+        
+        // Progress bar animation
+        if (duration > 0) {
+            const progressBar = notification.querySelector('.notification-progress-bar');
+            if (progressBar) {
+                progressBar.style.width = '100%';
+                progressBar.style.transitionDuration = `${duration}ms`;
+                setTimeout(() => {
+                    progressBar.style.width = '0%';
+                }, 100);
+            }
+        }
+        
+        return notification;
+    }
+
+    removeNotification(notification) {
+        notification.classList.add('removing');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }
+
+    success(message, title = 'Success') {
+        return this.show(message, 'success', title);
+    }
+
+    error(message, title = 'Error') {
+        return this.show(message, 'error', title);
+    }
+
+    warning(message, title = 'Warning') {
+        return this.show(message, 'warning', title);
+    }
+
+    info(message, title = 'Info') {
+        return this.show(message, 'info', title);
+    }
+}
+
+// Initialize notification manager
+const notifications = new NotificationManager();
 
 // Initialize join network forms
 function initializeJoinNetworkForms() {

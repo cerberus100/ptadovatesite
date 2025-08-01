@@ -130,11 +130,26 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Demo authentication - accept any credentials
+            // SECURITY WARNING: This is a demo authentication system
+            // In production, implement proper authentication with:
+            // - Secure password hashing (bcrypt, Argon2)
+            // - JWT tokens or secure session management
+            // - Rate limiting for login attempts
+            // - Two-factor authentication
+            // - Backend authentication service
+            
             if (username && password) {
-                // Store admin session
+                // Basic validation - enhance for production
+                if (username.length < 3 || password.length < 8) {
+                    alert('Username must be at least 3 characters and password at least 8 characters');
+                    return;
+                }
+                
+                // Store basic session info (insecure for demo only)
+                // TODO: Replace with secure JWT tokens and server-side validation
                 localStorage.setItem('admin_authenticated', 'true');
                 localStorage.setItem('admin_username', username);
+                localStorage.setItem('admin_login_time', new Date().toISOString());
                 
                 // Redirect to dashboard
                 window.location.href = 'dashboard.html';

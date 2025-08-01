@@ -1,0 +1,38 @@
+# Security Headers for Production Deployment
+# Add these headers to your web server configuration (Nginx, Apache, or AWS CloudFront)
+
+# Content Security Policy
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+
+# X-Frame-Options
+X-Frame-Options: DENY
+
+# X-Content-Type-Options  
+X-Content-Type-Options: nosniff
+
+# X-XSS-Protection
+X-XSS-Protection: 1; mode=block
+
+# Referrer Policy
+Referrer-Policy: strict-origin-when-cross-origin
+
+# Strict Transport Security (HTTPS only)
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# Permissions Policy
+Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), vr=(), accelerometer=(), gyroscope=(), magnetometer=(), clipboard-read=(), clipboard-write=(self)
+
+# Cross-Origin Embedder Policy
+Cross-Origin-Embedder-Policy: require-corp
+
+# Cross-Origin Opener Policy  
+Cross-Origin-Opener-Policy: same-origin
+
+# Cross-Origin Resource Policy
+Cross-Origin-Resource-Policy: same-origin
+
+# Cache Control for sensitive pages
+Cache-Control: no-cache, no-store, must-revalidate, private
+
+# AWS CloudFront Lambda@Edge configuration example:
+# Use these headers in your CloudFront distribution viewer response function

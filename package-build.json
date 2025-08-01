@@ -1,0 +1,66 @@
+{
+  "name": "helping-hands-build-tools",
+  "version": "1.0.0",
+  "description": "Build tools and performance optimization for Helping Hands Patient Advocates",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "NODE_ENV=production webpack --mode production",
+    "build:analyze": "NODE_ENV=production webpack --mode production --analyze",
+    "optimize:images": "node scripts/optimize-images.js",
+    "generate:webp": "node scripts/generate-webp.js", 
+    "minify:assets": "node scripts/minify-assets.js",
+    "test:performance": "lighthouse --output=html --output-path=./reports/lighthouse.html --chrome-flags='--headless' http://localhost:3000",
+    "audit:bundle": "webpack-bundle-analyzer dist/stats.json",
+    "compress:gzip": "gzip-size-cli dist/**/*.{js,css,html}",
+    "precompress": "node scripts/precompress.js",
+    "cdn:prepare": "node scripts/prepare-cdn.js",
+    "deploy:production": "npm run build && npm run precompress && npm run cdn:prepare"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/plugin-proposal-class-properties": "^7.18.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.0",
+    "@babel/preset-env": "^7.22.0",
+    "autoprefixer": "^10.4.0",
+    "babel-loader": "^9.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^10.0.0",
+    "css-loader": "^6.8.0",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "cssnano": "^6.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "image-minimizer-webpack-plugin": "^3.8.0",
+    "imagemin": "^8.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.0",
+    "imagemin-svgo": "^10.0.0",
+    "imagemin-webp": "^7.0.0",
+    "lighthouse": "^10.4.0",
+    "mini-css-extract-plugin": "^2.7.0",
+    "postcss": "^8.4.0",
+    "postcss-loader": "^7.3.0",
+    "sass": "^1.63.0",
+    "sass-loader": "^13.3.0",
+    "style-loader": "^3.3.0",
+    "terser-webpack-plugin": "^5.3.0",
+    "webpack": "^5.88.0",
+    "webpack-bundle-analyzer": "^4.9.0",
+    "webpack-cli": "^5.1.0",
+    "webpack-dev-server": "^4.15.0",
+    "workbox-webpack-plugin": "^7.0.0"
+  },
+  "dependencies": {
+    "core-js": "^3.31.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

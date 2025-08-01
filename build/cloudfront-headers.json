@@ -1,0 +1,107 @@
+{
+  "Comment": "CloudFront distribution configuration for Helping Hands Patient Advocates",
+  "DefaultCacheBehavior": {
+    "TargetOriginId": "S3-helpinghands-origin",
+    "ViewerProtocolPolicy": "redirect-to-https",
+    "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+    "Compress": true,
+    "ResponseHeadersPolicyId": "custom-security-headers"
+  },
+  "CacheBehaviors": [
+    {
+      "PathPattern": "*.css",
+      "TargetOriginId": "S3-helpinghands-origin",
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "Compress": true,
+      "TTL": {
+        "DefaultTTL": 31536000,
+        "MaxTTL": 31536000
+      }
+    },
+    {
+      "PathPattern": "*.js",
+      "TargetOriginId": "S3-helpinghands-origin", 
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "Compress": true,
+      "TTL": {
+        "DefaultTTL": 31536000,
+        "MaxTTL": 31536000
+      }
+    },
+    {
+      "PathPattern": "*.html",
+      "TargetOriginId": "S3-helpinghands-origin",
+      "ViewerProtocolPolicy": "redirect-to-https", 
+      "CachePolicyId": "custom-html-cache",
+      "Compress": true,
+      "TTL": {
+        "DefaultTTL": 3600,
+        "MaxTTL": 86400
+      }
+    },
+    {
+      "PathPattern": "/admin/*",
+      "TargetOriginId": "S3-helpinghands-origin",
+      "ViewerProtocolPolicy": "redirect-to-https",
+      "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+      "Compress": true,
+      "TTL": {
+        "DefaultTTL": 0,
+        "MaxTTL": 0
+      }
+    }
+  ],
+  "CustomErrorResponses": [
+    {
+      "ErrorCode": 404,
+      "ResponsePagePath": "/index.html",
+      "ResponseCode": "200",
+      "ErrorCachingMinTTL": 300
+    }
+  ],
+  "ResponseHeadersPolicy": {
+    "Id": "custom-security-headers",
+    "ResponseHeadersPolicyConfig": {
+      "Name": "HelpingHands-Security-Headers",
+      "SecurityHeadersConfig": {
+        "StrictTransportSecurity": {
+          "AccessControlMaxAgeSec": 31536000,
+          "IncludeSubdomains": true,
+          "Preload": true,
+          "Override": true
+        },
+        "ContentTypeOptions": {
+          "Override": true
+        },
+        "FrameOptions": {
+          "FrameOption": "DENY",
+          "Override": true  
+        },
+        "ReferrerPolicy": {
+          "ReferrerPolicy": "strict-origin-when-cross-origin",
+          "Override": true
+        },
+        "ContentSecurityPolicy": {
+          "ContentSecurityPolicy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://code.jquery.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
+          "Override": true
+        }
+      },
+      "CustomHeadersConfig": {
+        "Items": [
+          {
+            "Header": "X-Custom-App",
+            "Value": "HelpingHands-PatientAdvocates",
+            "Override": true
+          },
+          {
+            "Header": "Permissions-Policy", 
+            "Value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), vr=()",
+            "Override": true
+          }
+        ]
+      }
+    }
+  }
+}

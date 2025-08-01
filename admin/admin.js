@@ -275,7 +275,10 @@ function viewRequest(requestId) {
     const request = requestsData.find(r => r.id === requestId);
     if (!request) return;
     
-    alert(`Request Details:\n\nID: ${request.id}\nPatient: ${request.patientName}\nStatus: ${formatStatus(request.status)}\nLocation: ${getRegionLabel(request.woundLocation)}\n\nDescription: ${request.woundDescription}`);
+            // Create a detailed view modal or notification instead of alert
+        const requestDetails = `ID: ${request.id}\nPatient: ${request.patientName}\nStatus: ${formatStatus(request.status)}\nLocation: ${getRegionLabel(request.woundLocation)}\n\nDescription: ${request.woundDescription}`;
+        // For now, use a structured notification
+        alert(requestDetails); // TODO: Replace with proper modal dialog
 }
 
 // Update request status
@@ -283,7 +286,8 @@ function updateStatus(requestId) {
     const request = requestsData.find(r => r.id === requestId);
     if (!request) return;
     
-    const newStatus = prompt(`Current Status: ${formatStatus(request.status)}\n\nSelect new status:\n1. Pending\n2. In Progress\n3. Completed\n4. Cancelled\n\nEnter number (1-4):`);
+            // TODO: Replace with proper status dropdown modal
+        const newStatus = prompt(`Current Status: ${formatStatus(request.status)}\n\nSelect new status:\n1. Pending\n2. In Progress\n3. Completed\n4. Cancelled\n\nEnter number (1-4):`);
     
     const statusMap = {
         '1': 'pending',
@@ -297,7 +301,8 @@ function updateStatus(requestId) {
         
         // Update assigned person if moving to in-progress
         if (statusMap[newStatus] === 'in-progress' && !request.assignedTo) {
-            const assignedTo = prompt('Assign to (optional):');
+            // TODO: Replace with proper assignment dropdown
+        const assignedTo = prompt('Assign to (optional):');
             if (assignedTo) {
                 request.assignedTo = assignedTo;
             }
@@ -305,12 +310,14 @@ function updateStatus(requestId) {
         
         loadRequests();
         updateStats();
+        // TODO: Replace with notification system
         alert('Status updated successfully!');
     }
 }
 
 // Delete request
 function deleteRequest(requestId) {
+    // TODO: Replace with proper confirmation modal
     if (confirm('Are you sure you want to delete this request? This action cannot be undone.')) {
         const index = requestsData.findIndex(r => r.id === requestId);
         if (index > -1) {
@@ -318,7 +325,8 @@ function deleteRequest(requestId) {
             filteredRequests = filteredRequests.filter(r => r.id !== requestId);
             loadRequests();
             updateStats();
-            alert('Request deleted successfully!');
+            // TODO: Replace with notification system
+        alert('Request deleted successfully!');
         }
     }
 }
@@ -423,5 +431,5 @@ function debounce(func, wait) {
 setInterval(function() {
     // In a real application, this would fetch fresh data from the server
     // For demo purposes, we'll just update the timestamp
-    console.log('Auto-refreshing data...');
+    // Auto-refreshing data
 }, 30000); 

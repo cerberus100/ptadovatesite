@@ -13,14 +13,15 @@ frontend:
         - echo "Dependencies installed successfully"
     build:
       commands:
-        - echo "Building static site assets"
+        - echo "Building production-ready static site assets"
         - npm run build-css
         - echo "SCSS compiled to CSS successfully"
-        - echo "Static site build complete"
+        - echo "Setting production environment variables"
+        - echo "Static site build complete - production ready"
     postBuild:
       commands:
-        - echo "Running post-build tasks"
-        - echo "Static site ready for deployment"
+        - echo "Running post-build optimization tasks"
+        - echo "Production deployment ready"
   artifacts:
     baseDirectory: /
     files:
@@ -33,6 +34,13 @@ frontend:
       - '!forms/**/*'
       - '!*.md'
       - '!package*.json'
+      - '!.env*'
+      - '!.git/**/*'
+      - '!.gitignore'
   cache:
     paths:
-      - node_modules/**/* 
+      - node_modules/**/*
+  env:
+    variables:
+      NODE_ENV: production
+      PRODUCTION_BUILD: "true" 

@@ -1,0 +1,124 @@
+<!-- Loading Component Template -->
+<div class="loading-overlay" id="loading-overlay" style="display: none;">
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p class="loading-text">Loading...</p>
+    </div>
+</div>
+
+<style>
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(38, 84, 124, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.loading-spinner {
+    text-align: center;
+    color: white;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #46B5A4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Success and Error States */
+.loading-success .spinner {
+    border-top-color: #28a745;
+    animation: none;
+}
+
+.loading-error .spinner {
+    border-top-color: #dc3545;
+    animation: none;
+}
+
+.loading-success .spinner::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #28a745;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.loading-error .spinner::after {
+    content: "✕";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #dc3545;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+</style>
+
+<script>
+// Loading utility functions
+const LoadingUtils = {
+    show: function(message = 'Loading...') {
+        const overlay = document.getElementById('loading-overlay');
+        const text = overlay.querySelector('.loading-text');
+        if (text) text.textContent = message;
+        overlay.style.display = 'flex';
+    },
+    
+    hide: function() {
+        const overlay = document.getElementById('loading-overlay');
+        overlay.style.display = 'none';
+        overlay.className = 'loading-overlay';
+    },
+    
+    success: function(message = 'Success!') {
+        const overlay = document.getElementById('loading-overlay');
+        const text = overlay.querySelector('.loading-text');
+        overlay.className = 'loading-overlay loading-success';
+        if (text) text.textContent = message;
+        
+        setTimeout(() => {
+            this.hide();
+        }, 2000);
+    },
+    
+    error: function(message = 'Error occurred') {
+        const overlay = document.getElementById('loading-overlay');
+        const text = overlay.querySelector('.loading-text');
+        overlay.className = 'loading-overlay loading-error';
+        if (text) text.textContent = message;
+        
+        setTimeout(() => {
+            this.hide();
+        }, 3000);
+    }
+};
+
+// Make globally available
+window.LoadingUtils = LoadingUtils;
+</script>

@@ -8,7 +8,7 @@ This project provides a complete patient advocacy platform as a **static website
 
 ### Core Features
 - **Provider Directory**: Searchable database of wound care specialists
-- **Interactive Body Map**: Professional SVG-based wound location selection tool
+- **Interactive Body Map**: Professional image map-based wound location selection tool
 - **Patient Assistance Forms**: Streamlined request submission
 - **Admin Dashboard**: Complete request management system with authentication
 - **Mobile-Responsive Design**: Optimized for all devices
@@ -68,7 +68,8 @@ ptadvocatesite/
 │   │   └── _buttons.scss     # Button styles
 │   ├── js/
 │   │   └── main.js          # Main JavaScript functionality
-│   └── bodymap.svg          # Interactive body map SVG
+│   └── images/
+│       └── body-silhouette.jpg    # Body map image for interactive regions
 ├── admin/
 │   ├── index.html           # Admin login page
 │   ├── dashboard.html       # Admin dashboard
@@ -111,7 +112,7 @@ ptadvocatesite/
 - **HTML5**: Semantic markup with accessibility features
 - **CSS3/SCSS**: Modern styling with variables and mixins
 - **JavaScript**: Vanilla JS for optimal performance
-- **SVG**: Interactive body map with clickable regions
+- **HTML Image Maps**: Interactive body map with clickable regions
 
 ### Key Functionality
 - **Provider Search**: Filter by location, specialty, and wound type
@@ -175,10 +176,11 @@ No environment variables required for basic functionality.
 - **Integration**: Connected to body map selections
 
 ### 3. Interactive Body Map
-- **Professional SVG**: 14 anatomical regions with hover effects
-- **Click Regions**: Head/neck, chest, arms, legs, back areas
+- **Professional Image Map**: 14 anatomical regions with hover effects using HTML image maps
+- **Click Regions**: Head/neck, chest, arms, legs, back areas  
 - **Specialist Matching**: Contextual provider recommendations
 - **Accessibility**: ARIA labels, keyboard navigation
+- **Fallback Support**: Works without JavaScript using basic click handlers
 
 ### 4. Patient Assistance
 - **Request Form**: Comprehensive intake process
