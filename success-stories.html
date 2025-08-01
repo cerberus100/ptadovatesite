@@ -6,6 +6,7 @@
     <title>Success Stories - Helping Hands Patient Advocates</title>
     <meta name="description" content="Read inspiring success stories from patients who received help with wound care, financial assistance, and healthcare navigation through Helping Hands Patient Advocates.">
     <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="assets/css/professional-ui.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +27,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-brand">
-                <h1><a href="index.html" style="color: inherit; text-decoration: none;">🤝 Helping Hands</a></h1>
+                <h1><a href="index.html" style="color: inherit; text-decoration: none;">Helping Hands</a></h1>
                 <span>Patient Advocates</span>
                 <div style="font-size: 0.7rem; color: #46B5A4; font-weight: 500; margin-top: 0.2rem;">Empowering Patients with Choice</div>
             </div>
@@ -115,8 +116,12 @@
                                 <a href="#maria-full-story" class="btn btn-primary">Read Full Story</a>
                             </div>
                             <div style="text-align: center;">
-                                <div style="background: linear-gradient(135deg, #46B5A4, #26547C); padding: 3rem; border-radius: 1rem; color: white;">
-                                    <div style="font-size: 4rem; margin-bottom: 1rem;">⚡</div>
+                                                        <div style="background: linear-gradient(135deg, #46B5A4, #26547C); padding: 3rem; border-radius: 1rem; color: white;">
+                            <div style="margin-bottom: 1rem;">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="white"/>
+                                </svg>
+                            </div>
                                     <h3 style="color: white; margin-bottom: 1rem;">The Power of Choice</h3>
                                     <p style="opacity: 0.9; margin: 0;">From one option (amputation)<br>To multiple solutions<br>To complete recovery</p>
                                 </div>
@@ -138,7 +143,7 @@
                     <!-- Success Story 1 -->
                     <div style="background: #f8f9fa; border-radius: 1rem; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <div style="background: linear-gradient(135deg, #28a745, #20c997); height: 150px; display: flex; align-items: center; justify-content: center;">
-                            <span style="font-size: 4rem; color: white;">👨‍🦳</span>
+                            <div class="professional-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); font-size: 1.8rem;">RM</div>
                         </div>
                         <div style="padding: 2rem;">
                             <h3 style="color: #26547C; margin-bottom: 1rem;">Robert's Medicare Success</h3>
@@ -161,7 +166,7 @@
                     <!-- Success Story 2 -->
                     <div style="background: #f8f9fa; border-radius: 1rem; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <div style="background: linear-gradient(135deg, #FF6B5D, #FF8A75); height: 150px; display: flex; align-items: center; justify-content: center;">
-                            <span style="font-size: 4rem; color: white;">👩‍💼</span>
+                            <div class="professional-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); font-size: 1.8rem;">JM</div>
                         </div>
                         <div style="padding: 2rem;">
                             <h3 style="color: #26547C; margin-bottom: 1rem;">Jennifer's Financial Options</h3>
@@ -184,7 +189,7 @@
                     <!-- Success Story 3 -->
                     <div style="background: #f8f9fa; border-radius: 1rem; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <div style="background: linear-gradient(135deg, #6f42c1, #8B5CF6); height: 150px; display: flex; align-items: center; justify-content: center;">
-                            <span style="font-size: 4rem; color: white;">🏃‍♂️</span>
+                            <div class="professional-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); font-size: 1.8rem;">CA</div>
                         </div>
                         <div style="padding: 2rem;">
                             <h3 style="color: #26547C; margin-bottom: 1rem;">Carlos Returns to Competition</h3>
@@ -207,7 +212,7 @@
                     <!-- Success Story 4 -->
                     <div style="background: #f8f9fa; border-radius: 1rem; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
                         <div style="background: linear-gradient(135deg, #fd7e14, #FF8A75); height: 150px; display: flex; align-items: center; justify-content: center;">
-                            <span style="font-size: 4rem; color: white;">👵</span>
+                            <div class="professional-avatar" style="width: 80px; height: 80px; background: rgba(255,255,255,0.2); font-size: 1.8rem;">DH</div>
                         </div>
                         <div style="padding: 2rem;">
                             <h3 style="color: #26547C; margin-bottom: 1rem;">Dorothy's Medication Choices</h3>
@@ -239,7 +244,13 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                     
                     <div style="background: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <div style="font-size: 2rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-stars" style="justify-content: center; margin-bottom: 1rem;">
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                        </div>
                         <p style="font-style: italic; margin-bottom: 1.5rem; color: #6c757d;">
                             "Before Helping Hands, I felt trapped with no options. Now I understand there are always choices - you just need someone who knows how to find them."
                         </p>
@@ -247,7 +258,13 @@
                     </div>
 
                     <div style="background: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <div style="font-size: 2rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-stars" style="justify-content: center; margin-bottom: 1rem;">
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                        </div>
                         <p style="font-style: italic; margin-bottom: 1.5rem; color: #6c757d;">
                             "They didn't just solve my problem - they showed me I had power to choose my own path. That mindset change was life-changing."
                         </p>
@@ -255,7 +272,13 @@
                     </div>
 
                     <div style="background: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
-                        <div style="font-size: 2rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-stars" style="justify-content: center; margin-bottom: 1rem;">
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                            <svg class="testimonial-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                        </div>
                         <p style="font-style: italic; margin-bottom: 1.5rem; color: #6c757d;">
                             "For the first time in my diabetes journey, I felt empowered. They gave me choices I never knew existed and the confidence to pursue them."
                         </p>
@@ -289,7 +312,7 @@
     <footer class="footer" style="background: #26547C; color: white; padding: 2rem 0;">
         <div class="container">
             <div style="text-align: center;">
-                <h3 style="color: white; margin-bottom: 1rem;">🤝 Helping Hands Patient Advocates</h3>
+                <h3 style="color: white; margin-bottom: 1rem;">Helping Hands Patient Advocates</h3>
                 <p style="opacity: 0.8; margin-bottom: 1rem;">Every success story started with expanding someone's choices. Your story could be next.</p>
                 <p style="font-style: italic; opacity: 0.8; margin-bottom: 1rem;">"Empowering Patients with Choice"</p>
                 <div style="opacity: 0.6; font-size: 0.9rem; margin-bottom: 1rem;">
