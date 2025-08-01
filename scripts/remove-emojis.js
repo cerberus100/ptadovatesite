@@ -77,6 +77,60 @@ const emojiReplacements = {
     '<div style="font-size: 3rem; margin-bottom: 1rem;">🩺</div>': '<div class="section-icon-professional">MD</div>',
     '🩺 Our Services': 'Our Services',
     '🩺 Find Providers': 'Find Providers',
+    
+    // Legal & Professional symbols
+    '⚖️': '',
+    '<span style="font-size: 4rem; color: white;">⚖️</span>': '<div class="professional-avatar">LAW</div>',
+    '<div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>': '<div class="section-icon-professional">LAW</div>',
+    '<div style="font-size: 4rem; margin-bottom: 1.5rem;">⚖️</div>': '<div class="section-icon-professional">LAW</div>',
+    '⚖️ Important Notice': 'Important Notice',
+    '⚖️ Know Your Rights': 'Know Your Rights',
+    
+    // Medical caduceus
+    '⚕️': '',
+    '<div style="font-size: 3rem; margin-bottom: 1rem;">⚕️</div>': '<div class="section-icon-professional">MD</div>',
+    
+    // Faith-based
+    '⛪': '',
+    '⛪ Faith-Based Help': 'Faith-Based Help',
+    '⛪ Faith-Based Organizations': 'Faith-Based Organizations',
+    
+    // Insurance & Protection
+    '🛡️': '',
+    '🛡️ Insurance & Coverage': 'Insurance & Coverage',
+    '🛡️ Insurance Navigation': 'Insurance Navigation',
+    
+    // Timing symbols
+    '⏱️': '',
+    '⏱️ Processing:': 'Processing:',
+    
+    // Government
+    '🏛️': '',
+    '🏛️ Government Diabetes Assistance Programs': 'Government Diabetes Assistance Programs',
+    
+    // Veterans
+    '🎖️': '',
+    '🎖️ Veterans Resources': 'Veterans Resources',
+    
+    // Info
+    'ℹ️': '',
+    'ℹ️ About Us': 'About Us',
+    
+    // Accessibility
+    '⌨️': '',
+    '⌨️ Keyboard Accessibility': 'Keyboard Accessibility',
+    '⚠️': '',
+    '⚠️ Legacy Browser Notice': 'Legacy Browser Notice',
+    
+    // Professional people - replace with professional avatars
+    '👩‍⚕️': '',
+    '<span style="font-size: 3rem; color: white;">👩‍⚕️</span>': '<div class="professional-avatar">RN</div>',
+    '👨‍💼': '',
+    '<span style="font-size: 3rem; color: white;">👨‍💼</span>': '<div class="professional-avatar">ADM</div>',
+    '👩‍🎓': '',
+    '<span style="font-size: 3rem; color: white;">👩‍🎓</span>': '<div class="professional-avatar">PhD</div>',
+    '👨‍💻': '',
+    '<span style="font-size: 3rem; color: white;">👨‍💻</span>': '<div class="professional-avatar">IT</div>',
 };
 
 // Function to clean up a file
