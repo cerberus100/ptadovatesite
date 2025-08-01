@@ -228,6 +228,291 @@
     margin: 0;
 }
 
+/* Medical Assessment Form */
+.medical-assessment-section {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.medical-assessment-form {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.assessment-progress {
+    background: linear-gradient(135deg, #26547C 0%, #46B5A4 100%);
+    padding: 2rem;
+    color: white;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.step.active .step-number {
+    background: white;
+    color: #26547C;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.assessment-form {
+    padding: 3rem;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    color: #26547C;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.option-card {
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: block;
+}
+
+.option-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.option-card:hover {
+    border-color: #46B5A4;
+    background: #e8f5f0;
+    transform: translateY(-2px);
+}
+
+.option-card input[type="radio"]:checked + .card-content {
+    border-left: 4px solid #46B5A4;
+}
+
+.option-card input[type="radio"]:checked {
+    & ~ .card-content {
+        background: #e8f5f0;
+    }
+}
+
+.card-content h4 {
+    color: #26547C;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.card-content p {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #26547C;
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #46B5A4;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.radio-group label:hover {
+    background: #f8f9fa;
+}
+
+.radio-group input[type="radio"] {
+    margin: 0;
+}
+
+.urgency-option {
+    border: 2px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.urgency-option.emergency {
+    border-color: #dc3545;
+}
+
+.urgency-option.urgent {
+    border-color: #ffc107;
+}
+
+.urgency-option.routine {
+    border-color: #28a745;
+}
+
+.urgency-option input[type="radio"]:checked {
+    & ~ div {
+        color: white;
+    }
+}
+
+.urgency-option.emergency input[type="radio"]:checked {
+    & ~ div {
+        background: #dc3545;
+        border-radius: 0.25rem;
+        padding: 0.5rem;
+    }
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .progress-steps {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .assessment-form {
+        padding: 2rem;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Remove emoji fallbacks */
 .no-emoji {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
