@@ -175,6 +175,59 @@
     fill: #FFD700;
 }
 
+/* Professional Navigation Improvements */
+.nav-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.nav-brand h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: #26547C;
+}
+
+.nav-brand span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6c757d;
+    line-height: 1;
+    margin: 0;
+}
+
+/* Professional Hero Improvements */
+.hero h2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    font-weight: 400;
+    opacity: 0.95;
+}
+
+.hero-image-placeholder p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 1rem 0 0.5rem 0;
+    color: #26547C;
+}
+
+.hero-image-placeholder .hero-subtext {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6c757d;
+    margin: 0;
+}
+
 /* Remove emoji fallbacks */
 .no-emoji {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
