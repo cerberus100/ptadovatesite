@@ -4,47 +4,51 @@
 const providers = [
     {
         id: 1,
-        name: "Dr. Sarah Johnson",
-        specialty: "wound-care",
+        name: "Dr. Sarah Johnson, CDE",
+        specialty: "diabetic-wound-care",
         location: "New York, NY",
-        woundTypes: ["chronic", "diabetic", "pressure"],
-        rating: 4.8,
+        woundTypes: ["diabetic-foot", "chronic", "venous"],
+        rating: 4.9,
         distance: "2.3 miles",
         phone: "(555) 123-4567",
-        address: "123 Medical Center Dr, New York, NY 10001"
+        address: "123 Diabetic Care Center, New York, NY 10001",
+        specializations: ["Diabetic Foot Ulcers", "Certified Diabetes Educator", "Wound Care Specialist"]
     },
     {
         id: 2,
-        name: "Dr. Michael Chen",
-        specialty: "vascular",
+        name: "Dr. Michael Chen, DPM",
+        specialty: "diabetic-podiatry",
         location: "Los Angeles, CA",
-        woundTypes: ["venous", "arterial"],
+        woundTypes: ["diabetic-foot", "venous", "arterial"],
         rating: 4.9,
         distance: "1.8 miles",
         phone: "(555) 234-5678",
-        address: "456 Health Plaza, Los Angeles, CA 90210"
+        address: "456 Diabetic Foot Care Clinic, Los Angeles, CA 90210",
+        specializations: ["Diabetic Foot Care", "Podiatric Surgery", "Limb Salvage"]
     },
     {
         id: 3,
-        name: "Dr. Emily Rodriguez",
-        specialty: "dermatology",
+        name: "Dr. Emily Rodriguez, MD",
+        specialty: "endocrinology",
         location: "Chicago, IL",
-        woundTypes: ["chronic", "surgical"],
-        rating: 4.7,
+        woundTypes: ["diabetic-foot", "chronic", "pressure"],
+        rating: 4.8,
         distance: "3.1 miles",
         phone: "(555) 345-6789",
-        address: "789 Wellness Ave, Chicago, IL 60601"
+        address: "789 Diabetes & Endocrine Center, Chicago, IL 60601",
+        specializations: ["Diabetes Management", "Diabetic Complications", "Endocrinology"]
     },
     {
         id: 4,
-        name: "Dr. David Wilson",
-        specialty: "plastic",
+        name: "Dr. David Wilson, MD",
+        specialty: "vascular-surgery",
         location: "Houston, TX",
-        woundTypes: ["surgical", "chronic"],
+        woundTypes: ["diabetic-foot", "arterial", "venous"],
         rating: 4.8,
         distance: "2.7 miles",
         phone: "(555) 456-7890",
-        address: "321 Surgery Center, Houston, TX 77001"
+        address: "321 Vascular & Diabetic Wound Center, Houston, TX 77001",
+        specializations: ["Diabetic Limb Salvage", "Vascular Surgery", "Bypass Surgery"]
     },
     {
         id: 5,
