@@ -156,39 +156,53 @@
             </div>
             <p>Complete our professional medical assessment to connect with the right specialists for your condition</p>
             
-            <div class="medical-assessment-form">
-                <div class="assessment-progress">
-                    <div class="progress-steps">
-                        <div class="step active" data-step="1">
-                            <div class="step-number">1</div>
-                            <div class="step-label">Condition Type</div>
-                        </div>
-                        <div class="step" data-step="2">
-                            <div class="step-number">2</div>
-                            <div class="step-label">Location</div>
-                        </div>
-                        <div class="step" data-step="3">
-                            <div class="step-number">3</div>
-                            <div class="step-label">Priority</div>
-                        </div>
-                        <div class="step" data-step="4">
-                            <div class="step-number">4</div>
-                            <div class="step-label">Preferences</div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 25%;"></div>
-                    </div>
+            <div class="body-map-container">
+                <h3>Click on the body area where you have wounds</h3>
+                <div class="body-map-wrapper">
+                    <img src="assets/images/body-silhouette.jpg" alt="Human body diagram" id="body-image" usemap="#body-map" />
+                    <map name="body-map" id="body-map">
+                        <!-- Head & Face -->
+                        <area shape="circle" coords="150,40,25" id="head" class="bodyParts" data-region="head" alt="Head" tabindex="0">
+                        <area shape="circle" coords="150,55,15" id="face" class="bodyParts" data-region="face" alt="Face" tabindex="0">
+                        <area shape="rect" coords="135,70,165,85" id="neck" class="bodyParts" data-region="neck" alt="Neck" tabindex="0">
+                        
+                        <!-- Torso -->
+                        <area shape="rect" coords="110,90,190,140" id="chest" class="bodyParts" data-region="chest" alt="Chest" tabindex="0">
+                        <area shape="rect" coords="110,140,190,190" id="abdomen" class="bodyParts" data-region="abdomen" alt="Abdomen" tabindex="0">
+                        <area shape="rect" coords="110,190,190,220" id="pelvis" class="bodyParts" data-region="pelvis" alt="Pelvis" tabindex="0">
+                        
+                        <!-- Arms -->
+                        <area shape="rect" coords="80,90,110,130" id="right-shoulder" class="bodyParts" data-region="right-shoulder" alt="Right Shoulder" tabindex="0">
+                        <area shape="rect" coords="190,90,220,130" id="left-shoulder" class="bodyParts" data-region="left-shoulder" alt="Left Shoulder" tabindex="0">
+                        <area shape="rect" coords="50,130,80,180" id="right-arm" class="bodyParts" data-region="right-arm" alt="Right Arm" tabindex="0">
+                        <area shape="rect" coords="220,130,250,180" id="left-arm" class="bodyParts" data-region="left-arm" alt="Left Arm" tabindex="0">
+                        <area shape="circle" coords="65,180,15" id="right-elbow" class="bodyParts" data-region="right-elbow" alt="Right Elbow" tabindex="0">
+                        <area shape="circle" coords="235,180,15" id="left-elbow" class="bodyParts" data-region="left-elbow" alt="Left Elbow" tabindex="0">
+                        <area shape="rect" coords="50,180,80,230" id="right-forearm" class="bodyParts" data-region="right-forearm" alt="Right Forearm" tabindex="0">
+                        <area shape="rect" coords="220,180,250,230" id="left-forearm" class="bodyParts" data-region="left-forearm" alt="Left Forearm" tabindex="0">
+                        <area shape="circle" coords="65,230,10" id="right-wrist" class="bodyParts" data-region="right-wrist" alt="Right Wrist" tabindex="0">
+                        <area shape="circle" coords="235,230,10" id="left-wrist" class="bodyParts" data-region="left-wrist" alt="Left Wrist" tabindex="0">
+                        <area shape="rect" coords="45,230,85,260" id="right-hand" class="bodyParts" data-region="right-hand" alt="Right Hand" tabindex="0">
+                        <area shape="rect" coords="215,230,255,260" id="left-hand" class="bodyParts" data-region="left-hand" alt="Left Hand" tabindex="0">
+                        
+                        <!-- Legs -->
+                        <area shape="rect" coords="110,220,145,260" id="right-hip" class="bodyParts" data-region="right-hip" alt="Right Hip" tabindex="0">
+                        <area shape="rect" coords="155,220,190,260" id="left-hip" class="bodyParts" data-region="left-hip" alt="Left Hip" tabindex="0">
+                        <area shape="rect" coords="100,260,140,350" id="right-thigh" class="bodyParts" data-region="right-thigh" alt="Right Thigh" tabindex="0">
+                        <area shape="rect" coords="160,260,200,350" id="left-thigh" class="bodyParts" data-region="left-thigh" alt="Left Thigh" tabindex="0">
+                        <area shape="circle" coords="120,350,20" id="right-knee" class="bodyParts" data-region="right-knee" alt="Right Knee" tabindex="0">
+                        <area shape="circle" coords="180,350,20" id="left-knee" class="bodyParts" data-region="left-knee" alt="Left Knee" tabindex="0">
+                        <area shape="rect" coords="105,370,135,450" id="right-shin" class="bodyParts" data-region="right-shin" alt="Right Shin" tabindex="0">
+                        <area shape="rect" coords="165,370,195,450" id="left-shin" class="bodyParts" data-region="left-shin" alt="Left Shin" tabindex="0">
+                        <area shape="circle" coords="120,450,15" id="right-ankle" class="bodyParts" data-region="right-ankle" alt="Right Ankle" tabindex="0">
+                        <area shape="circle" coords="180,450,15" id="left-ankle" class="bodyParts" data-region="left-ankle" alt="Left Ankle" tabindex="0">
+                        <area shape="rect" coords="100,465,140,500" id="right-foot" class="bodyParts" data-region="right-foot" alt="Right Foot" tabindex="0">
+                        <area shape="rect" coords="160,465,200,500" id="left-foot" class="bodyParts" data-region="left-foot" alt="Left Foot" tabindex="0">
+                    </map>
                 </div>
-
-                <form id="medical-assessment-form" class="assessment-form">
-                    <!-- Simplified placeholder for now -->
-                    <div class="form-step active" data-step="1">
-                        <h3>What type of wound care do you need?</h3>
-                        <p>Professional medical assessment form will be implemented here with step-by-step wizard interface.</p>
-                        <button type="button" class="btn btn-primary">Start Assessment</button>
-                    </div>
-                </form>
+                <div id="selected-area-info" class="selected-info">
+                    <p>Selected regions will appear here</p>
+                </div>
             </div>
         </div>
     </section>
