@@ -194,7 +194,7 @@ npm run lint
 
 ## Support
 
-For technical support, contact: tech@truenorthadvocates.com
+For technical support, contact: tech@truenorthadvocates.org
 
 ## License
 
