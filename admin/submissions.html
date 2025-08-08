@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submissions Dashboard - True North Advocates Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.min.css">
+    <link rel="stylesheet" href="../assets/css/admin-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-header {
+            background: #26547C;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .admin-container {
+            display: flex;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background: #f8f9fa;
+            padding: 2rem 0;
+            border-right: 1px solid #dee2e6;
+        }
+        
+        .admin-content {
+            flex: 1;
+            padding: 2rem;
+            background: #fff;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #26547C;
+        }
+        
+        .submissions-table {
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-pending { background: #ffc107; color: #000; }
+        .status-approved { background: #28a745; color: #fff; }
+        .status-rejected { background: #dc3545; color: #fff; }
+        .status-contacted { background: #17a2b8; color: #fff; }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 style="margin: 0; font-size: 1.5rem;">True North Advocates - Admin Dashboard</h1>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <span>Welcome, Admin</span>
+                    <a href="../index.html" class="btn btn-light btn-sm">View Site</a>
+                    <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <nav>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="dashboard.html" style="display: block; padding: 0.75rem 1.5rem; color: #495057; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="submissions.html" style="display: block; padding: 0.75rem 1.5rem; background: #e9ecef; color: #26547C; font-weight: 600;">Submissions</a></li>
+                    <li><a href="providers.html" style="display: block; padding: 0.75rem 1.5rem; color: #495057; text-decoration: none;">Providers</a></li>
+                    <li><a href="analytics.html" style="display: block; padding: 0.75rem 1.5rem; color: #495057; text-decoration: none;">Analytics</a></li>
+                    <li><a href="settings.html" style="display: block; padding: 0.75rem 1.5rem; color: #495057; text-decoration: none;">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <h2>Patient Submissions</h2>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <p>Pending Review</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">156</div>
+                    <p>Total This Month</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2.3h</div>
+                    <p>Avg Response Time</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <p>Success Rate</p>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <select class="form-control" style="width: 200px;">
+                    <option>All Statuses</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Contacted</option>
+                    <option>Rejected</option>
+                </select>
+                <select class="form-control" style="width: 200px;">
+                    <option>All Types</option>
+                    <option>Patient Request</option>
+                    <option>Provider Application</option>
+                </select>
+                <input type="date" class="form-control" style="width: 200px;" placeholder="From Date">
+                <input type="date" class="form-control" style="width: 200px;" placeholder="To Date">
+                <button class="btn btn-primary">Apply Filters</button>
+            </div>
+
+            <!-- Submissions Table -->
+            <div class="submissions-table">
+                <div class="table-header">
+                    <h3 style="margin: 0;">Recent Submissions</h3>
+                    <div class="export-buttons">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="exportCSV()">Export CSV</button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="exportPDF()">Export PDF</button>
+                    </div>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Location</th>
+                            <th>Urgency</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="submissionsTableBody">
+                        <tr>
+                            <td>#1234</td>
+                            <td>2024-01-15</td>
+                            <td>John Doe</td>
+                            <td>Patient Request</td>
+                            <td>New York, NY</td>
+                            <td><span class="status-badge status-pending">High</span></td>
+                            <td><span class="status-badge status-pending">Pending</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-sm btn-primary" onclick="viewDetails(1234)">View</button>
+                                    <button class="btn btn-sm btn-success" onclick="approve(1234)">Approve</button>
+                                    <button class="btn btn-sm btn-info" onclick="contact(1234)">Contact</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#1233</td>
+                            <td>2024-01-15</td>
+                            <td>Dr. Sarah Smith</td>
+                            <td>Provider Application</td>
+                            <td>Los Angeles, CA</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-approved">Approved</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-sm btn-primary" onclick="viewDetails(1233)">View</button>
+                                    <button class="btn btn-sm btn-secondary" onclick="sendEmail(1233)">Email</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div style="display: flex; justify-content: center; margin-top: 2rem;">
+                <nav>
+                    <ul style="display: flex; list-style: none; gap: 0.5rem;">
+                        <li><button class="btn btn-outline-secondary">&laquo;</button></li>
+                        <li><button class="btn btn-primary">1</button></li>
+                        <li><button class="btn btn-outline-secondary">2</button></li>
+                        <li><button class="btn btn-outline-secondary">3</button></li>
+                        <li><button class="btn btn-outline-secondary">&raquo;</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </main>
+    </div>
+
+    <!-- Submission Details Modal -->
+    <div id="detailsModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000;">
+        <div style="background: white; max-width: 600px; margin: 50px auto; padding: 2rem; border-radius: 0.5rem; max-height: 90vh; overflow-y: auto;">
+            <h3>Submission Details</h3>
+            <div id="modalContent">
+                <!-- Content will be loaded here -->
+            </div>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <button class="btn btn-success" onclick="approveAndClose()">Approve</button>
+                <button class="btn btn-info" onclick="contactAndClose()">Contact</button>
+                <button class="btn btn-danger" onclick="rejectAndClose()">Reject</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data for demonstration
+        const submissions = [
+            {
+                id: 1234,
+                date: '2024-01-15',
+                name: 'John Doe',
+                email: 'john.doe@email.com',
+                phone: '(555) 123-4567',
+                type: 'Patient Request',
+                location: 'New York, NY',
+                urgency: 'High',
+                woundType: 'Diabetic Foot Ulcer',
+                message: 'I have been dealing with a diabetic foot ulcer for 3 months...',
+                status: 'pending'
+            }
+        ];
+
+        function viewDetails(id) {
+            const submission = submissions.find(s => s.id === id);
+            if (submission) {
+                document.getElementById('modalContent').innerHTML = `
+                    <p><strong>ID:</strong> #${submission.id}</p>
+                    <p><strong>Date:</strong> ${submission.date}</p>
+                    <p><strong>Name:</strong> ${submission.name}</p>
+                    <p><strong>Email:</strong> ${submission.email}</p>
+                    <p><strong>Phone:</strong> ${submission.phone}</p>
+                    <p><strong>Location:</strong> ${submission.location}</p>
+                    <p><strong>Wound Type:</strong> ${submission.woundType}</p>
+                    <p><strong>Urgency:</strong> ${submission.urgency}</p>
+                    <p><strong>Message:</strong><br>${submission.message}</p>
+                `;
+                document.getElementById('detailsModal').style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detailsModal').style.display = 'none';
+        }
+
+        function approve(id) {
+            if (confirm('Approve this submission?')) {
+                showNotification('success', 'Submission approved successfully');
+                updateStatus(id, 'approved');
+            }
+        }
+
+        function contact(id) {
+            // Open communication interface
+            showNotification('info', 'Opening communication panel...');
+        }
+
+        function exportCSV() {
+            showNotification('info', 'Generating CSV export...');
+            // Implement CSV export
+        }
+
+        function exportPDF() {
+            showNotification('info', 'Generating PDF export...');
+            // Implement PDF export
+        }
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                background: ${type === 'success' ? '#28a745' : '#17a2b8'};
+                color: white;
+                border-radius: 0.5rem;
+                z-index: 3000;
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        function updateStatus(id, status) {
+            // Update the status in the table
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            if (row) {
+                const statusCell = row.querySelector('.status-badge');
+                statusCell.className = `status-badge status-${status}`;
+                statusCell.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+            }
+        }
+
+        // Auto-refresh data every 30 seconds
+        setInterval(() => {
+            console.log('Refreshing submission data...');
+            // Fetch new submissions from API
+        }, 30000);
+    </script>
+</body>
+</html>
