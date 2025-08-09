@@ -1,5 +1,8 @@
 // Helping Hands - Main JavaScript
 
+// API base URL (Lambda via API Gateway)
+const API_BASE_URL = 'https://3zkisn905d.execute-api.us-east-1.amazonaws.com/prod';
+
 // Provider data (would normally come from API)
 const providers = [
     {
@@ -771,7 +774,7 @@ function initializeFormHandling() {
             showAssistStep(aIndex);
         });
 
-        assistanceForm.addEventListener('submit', function(e) {
+        assistanceForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Final step validation (includes HIPAA + TCPA)
@@ -783,13 +786,49 @@ function initializeFormHandling() {
             showLoading();
             const formData = new FormData(assistanceForm);
             const data = Object.fromEntries(formData);
-            setTimeout(() => {
+
+            // Map to backend payload and include questionnaire in message
+            const payload = {
+                name: data['patient-name'] || '',
+                email: data['patient-email'] || '',
+                phone: data['patient-phone'] || '',
+                location: data['patient-location'] || '',
+                wound_type: data['wound-type'] || '',
+                urgency: data['urgency'] || 'routine',
+                message: [
+                    data['description'] ? `Additional notes: ${data['description']}` : null,
+                    data['is-diabetic'] ? `Diabetic: ${data['is-diabetic']}` : null,
+                    data['over-30-days'] ? `Wound >30 days: ${data['over-30-days']}` : null,
+                    data['neuropathy'] ? `Neuropathy: ${data['neuropathy']}` : null,
+                    data['care-preference'] ? `Care preference: ${data['care-preference']}` : null,
+                    data['insurance'] ? `Insurance: ${data['insurance']}` : null,
+                    data['insurance'] === 'none' && data['insurance-assist'] ? `Wants insurance assistance: ${data['insurance-assist']}` : null,
+                    data['hipaa-consent'] ? 'HIPAA consent: yes' : null,
+                    data['assist-tcpa'] ? 'TCPA consent: yes' : null
+                ].filter(Boolean).join(' | ')
+            };
+
+            try {
+                const resp = await fetch(`${API_BASE_URL}/api/patient-assistance`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await resp.json().catch(() => ({}));
                 hideLoading();
+                if (!resp.ok) {
+                    notifications.error(json.error || 'Submission failed. Please try again.', 'Server Error');
+                    return;
+                }
+                notifications.success('Your request has been submitted.', 'Request Submitted');
                 // Replace form with full thank-you state
                 assistanceForm.style.display = 'none';
                 aThanks.style.display = 'block';
                 aThanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 1200);
+            } catch (err) {
+                hideLoading();
+                notifications.error('Network error. Please check your connection and try again.', 'Network Error');
+            }
         });
     }
 }
