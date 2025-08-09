@@ -354,151 +354,184 @@
                 </div>
                 
                 <form id="application-form" class="network-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="applicant-name">Full Name *</label>
-                            <input type="text" id="applicant-name" name="applicant-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="applicant-title">Professional Title *</label>
-                            <input type="text" id="applicant-title" name="applicant-title" placeholder="MD, DO, NP, PA, etc." required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="applicant-email">Email *</label>
-                            <input type="email" id="applicant-email" name="applicant-email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="applicant-phone">Phone *</label>
-                            <input type="tel" id="applicant-phone" name="applicant-phone" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="applicant-specialty">Primary Specialty *</label>
-                            <select id="applicant-specialty" name="applicant-specialty" required>
-                                <option value="">Select Specialty</option>
-                                <option value="wound-care">Wound Care Specialist</option>
-                                <option value="dermatology">Dermatologist</option>
-                                <option value="vascular">Vascular Surgeon</option>
-                                <option value="plastic">Plastic Surgeon</option>
-                                <option value="podiatry">Podiatrist</option>
-                                <option value="general">General Practitioner</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="applicant-experience">Years of Experience *</label>
-                            <select id="applicant-experience" name="applicant-experience" required>
-                                <option value="">Select Experience</option>
-                                <option value="1-5">1-5 years</option>
-                                <option value="6-10">6-10 years</option>
-                                <option value="11-15">11-15 years</option>
-                                <option value="16-20">16-20 years</option>
-                                <option value="20+">20+ years</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="applicant-practice">Practice/Organization *</label>
-                            <input type="text" id="applicant-practice" name="applicant-practice" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="applicant-location">Location *</label>
-                            <input type="text" id="applicant-location" name="applicant-location" placeholder="City, State" required>
-                        </div>
+                    <!-- Progress -->
+                    <div id="app-progress" style="display:flex;gap:8px;align-items:center;margin-bottom:16px;">
+                        <div class="step-dot" data-step="1" style="width:10px;height:10px;border-radius:50%;background:#46B5A4"></div>
+                        <div class="step-dot" data-step="2" style="width:10px;height:10px;border-radius:50%;background:#cbd5e1"></div>
+                        <div class="step-dot" data-step="3" style="width:10px;height:10px;border-radius:50%;background:#cbd5e1"></div>
+                        <div class="step-dot" data-step="4" style="width:10px;height:10px;border-radius:50%;background:#cbd5e1"></div>
                     </div>
 
-                    <!-- Self-nomination questionnaire -->
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="num-woundcare-doctors">Number of practicing wound care clinicians *</label>
-                            <input type="number" min="0" id="num-woundcare-doctors" name="num-woundcare-doctors" placeholder="e.g., 3" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="npi">NPI Number *</label>
-                            <input type="text" id="npi" name="npi" placeholder="10-digit NPI" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Does your practice provide acute wound care? *</label>
-                            <div class="checkbox-group">
-                                <label><input type="radio" name="acute-wound-care" value="yes" required> Yes</label>
-                                <label><input type="radio" name="acute-wound-care" value="no"> No</label>
+                    <!-- Step 1: Contact info -->
+                    <div class="form-step" data-step="1">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicant-name">Full Name *</label>
+                                <input type="text" id="applicant-name" name="applicant-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant-title">Professional Title *</label>
+                                <input type="text" id="applicant-title" name="applicant-title" placeholder="MD, DO, NP, PA, etc." required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Does your practice provide advanced wound care? *</label>
-                            <div class="checkbox-group">
-                                <label><input type="radio" name="advanced-wound-care" value="yes" required> Yes</label>
-                                <label><input type="radio" name="advanced-wound-care" value="no"> No</label>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicant-email">Email *</label>
+                                <input type="email" id="applicant-email" name="applicant-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant-phone">Phone *</label>
+                                <input type="tel" id="applicant-phone" name="applicant-phone" required>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Does your clinic offer mobile services? *</label>
-                        <div class="checkbox-group">
-                            <label><input type="radio" name="mobile-services" value="yes" required> Yes</label>
-                            <label><input type="radio" name="mobile-services" value="no"> No</label>
+                    <!-- Step 2: Practice details -->
+                    <div class="form-step" data-step="2" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicant-practice">Practice/Organization *</label>
+                                <input type="text" id="applicant-practice" name="applicant-practice" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant-location">Location *</label>
+                                <input type="text" id="applicant-location" name="applicant-location" placeholder="City, State" required>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="applicant-license">License Number *</label>
-                        <input type="text" id="applicant-license" name="applicant-license" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="patient-commitment">Patient-First Commitment *</label>
-                        <textarea id="patient-commitment" name="patient-commitment" rows="4" placeholder="Describe your commitment to patient-centered care, accessibility, and working with underserved populations..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="insurance-acceptance">Insurance & Payment Options *</label>
-                        <textarea id="insurance-acceptance" name="insurance-acceptance" rows="3" placeholder="List accepted insurance plans, sliding scale fees, payment plans, or other accessibility options..." required></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="wound-types">Wound Types Treated</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="wound-types" value="chronic"> Chronic wounds</label>
-                            <label><input type="checkbox" name="wound-types" value="diabetic"> Diabetic ulcers</label>
-                            <label><input type="checkbox" name="wound-types" value="pressure"> Pressure sores</label>
-                            <label><input type="checkbox" name="wound-types" value="venous"> Venous ulcers</label>
-                            <label><input type="checkbox" name="wound-types" value="arterial"> Arterial ulcers</label>
-                            <label><input type="checkbox" name="wound-types" value="surgical"> Surgical wounds</label>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicant-specialty">Primary Specialty *</label>
+                                <select id="applicant-specialty" name="applicant-specialty" required>
+                                    <option value="">Select Specialty</option>
+                                    <option value="wound-care">Wound Care Specialist</option>
+                                    <option value="dermatology">Dermatologist</option>
+                                    <option value="vascular">Vascular Surgeon</option>
+                                    <option value="plastic">Plastic Surgeon</option>
+                                    <option value="podiatry">Podiatrist</option>
+                                    <option value="general">General Practitioner</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="applicant-experience">Years of Experience *</label>
+                                <select id="applicant-experience" name="applicant-experience" required>
+                                    <option value="">Select Experience</option>
+                                    <option value="1-5">1-5 years</option>
+                                    <option value="6-10">6-10 years</option>
+                                    <option value="11-15">11-15 years</option>
+                                    <option value="16-20">16-20 years</option>
+                                    <option value="20+">20+ years</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="additional-info">Additional Information</label>
-                        <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any other information about your practice, specializations, or commitment to patient advocacy..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="non-profit-agreement" required>
-                            I understand this is a non-profit organization and I commit to prioritizing patient care over profit
-                        </label>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="num-woundcare-doctors">Number of practicing wound care clinicians *</label>
+                                <input type="number" min="0" id="num-woundcare-doctors" name="num-woundcare-doctors" placeholder="e.g., 3" required>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="tcpa-consent" name="tcpa-consent" required>
-                            I agree to be contacted by True North Advocates to verify this information by email or phone call (TCPA consent)
-                        </label>
+                    <!-- Step 3: Care capabilities -->
+                    <div class="form-step" data-step="3" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Does your practice provide acute wound care? *</label>
+                                <div class="checkbox-group">
+                                    <label><input type="radio" name="acute-wound-care" value="yes" required> Yes</label>
+                                    <label><input type="radio" name="acute-wound-care" value="no"> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Does your practice provide advanced wound care? *</label>
+                                <div class="checkbox-group">
+                                    <label><input type="radio" name="advanced-wound-care" value="yes" required> Yes</label>
+                                    <label><input type="radio" name="advanced-wound-care" value="no"> No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Does your clinic offer mobile services? *</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="mobile-services" value="yes" required> Yes</label>
+                                <label><input type="radio" name="mobile-services" value="no"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wound-types">Wound Types Treated</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="wound-types" value="chronic"> Chronic wounds</label>
+                                <label><input type="checkbox" name="wound-types" value="diabetic"> Diabetic ulcers</label>
+                                <label><input type="checkbox" name="wound-types" value="pressure"> Pressure sores</label>
+                                <label><input type="checkbox" name="wound-types" value="venous"> Venous ulcers</label>
+                                <label><input type="checkbox" name="wound-types" value="arterial"> Arterial ulcers</label>
+                                <label><input type="checkbox" name="wound-types" value="surgical"> Surgical wounds</label>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
+
+                    <!-- Step 4: Compliance & submit -->
+                    <div class="form-step" data-step="4" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="applicant-license">License Number *</label>
+                                <input type="text" id="applicant-license" name="applicant-license" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="npi">NPI Number *</label>
+                                <input type="text" id="npi" name="npi" placeholder="10-digit NPI" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="patient-commitment">Patient-First Commitment *</label>
+                            <textarea id="patient-commitment" name="patient-commitment" rows="4" placeholder="Describe your commitment to patient-centered care, accessibility, and working with underserved populations..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="insurance-acceptance">Insurance & Payment Options *</label>
+                            <textarea id="insurance-acceptance" name="insurance-acceptance" rows="3" placeholder="List accepted insurance plans, sliding scale fees, payment plans, or other accessibility options..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional-info">Additional Information</label>
+                            <textarea id="additional-info" name="additional-info" rows="3" placeholder="Any other information about your practice, specializations, or commitment to patient advocacy..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="non-profit-agreement" required>
+                                I understand this is a non-profit organization and I commit to prioritizing patient care over profit
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="tcpa-consent" name="tcpa-consent" required>
+                                I agree to be contacted by True North Advocates to verify this information by email or phone call (TCPA consent)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="assessment-actions" style="display:flex;justify-content:space-between;margin-top:16px;">
+                        <button type="button" id="app-prev" class="btn btn-outline-secondary">Back</button>
+                        <div>
+                            <button type="button" id="app-next" class="btn btn-primary">Next</button>
+                            <button type="submit" id="app-submit" class="btn btn-primary" style="display:none;">Submit Application</button>
+                        </div>
+                    </div>
                 </form>
+
+                <!-- Thank you -->
+                <div id="application-thankyou" style="display:none;padding:24px;text-align:center;">
+                    <h3 style="color:#26547C;margin-bottom:8px;">Thank you for your request to join our network</h3>
+                    <p>Please allow 24–72 hours for us to process your application. You may receive an outreach call from one of our advocates. Once approved, you will receive an email.</p>
+                </div>
             </div>
         </div>
     </section>

@@ -785,6 +785,66 @@ function initializeNetworkForms() {
     
     // Provider application form
     if (applicationForm) {
+        // Multi-step controls
+        const steps = Array.from(applicationForm.querySelectorAll('.form-step'));
+        const dots = Array.from(document.querySelectorAll('#app-progress .step-dot'));
+        const nextBtn = document.getElementById('app-next');
+        const prevBtn = document.getElementById('app-prev');
+        const submitBtnEl = document.getElementById('app-submit');
+        const thankyouEl = document.getElementById('application-thankyou');
+        let currentStep = 0;
+
+        function showStep(index) {
+            steps.forEach((s, i) => s.style.display = i === index ? '' : 'none');
+            dots.forEach((d, i) => d.style.background = i <= index ? '#46B5A4' : '#cbd5e1');
+            prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
+            nextBtn.style.display = index === steps.length - 1 ? 'none' : '';
+            submitBtnEl.style.display = index === steps.length - 1 ? '' : 'none';
+        }
+
+        function validateCurrentStep() {
+            const stepEl = steps[currentStep];
+            const inputs = Array.from(stepEl.querySelectorAll('input, select, textarea'));
+            for (const el of inputs) {
+                if (el.hasAttribute('required')) {
+                    if (el.type === 'radio') {
+                        const group = stepEl.querySelectorAll(`input[name="${el.name}"]`);
+                        const checked = Array.from(group).some(r => r.checked);
+                        if (!checked) return false;
+                    } else if (!el.value) {
+                        return false;
+                    }
+                }
+                if (el.id === 'applicant-email' && el.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(el.value)) return false;
+                }
+                if (el.id === 'npi' && el.value) {
+                    if (!/^\d{10}$/.test(String(el.value).replace(/\D/g, ''))) return false;
+                }
+                if (el.id === 'num-woundcare-doctors' && el.value) {
+                    if (Number(el.value) < 0) return false;
+                }
+            }
+            return true;
+        }
+
+        showStep(currentStep);
+
+        nextBtn.addEventListener('click', () => {
+            if (!validateCurrentStep()) {
+                notifications.error('Please complete the required fields on this step.', 'Validation Error');
+                return;
+            }
+            currentStep = Math.min(currentStep + 1, steps.length - 1);
+            showStep(currentStep);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentStep = Math.max(currentStep - 1, 0);
+            showStep(currentStep);
+        });
+
         applicationForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -845,10 +905,11 @@ function initializeNetworkForms() {
             }
             
             // Simulate application submission
-            notifications.success(`Thank you for your application, ${data['applicant-name']}! We will review your information and contact you within 5 business days regarding your application to join the Helping Hands network.`, 'Application Submitted');
-            
-            // Reset form
-            applicationForm.reset();
+            notifications.success(`Thank you for your application, ${data['applicant-name']}!`, 'Application Submitted');
+
+            // Show thank you
+            applicationForm.style.display = 'none';
+            thankyouEl.style.display = '';
         });
     }
 }
