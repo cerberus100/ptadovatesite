@@ -361,70 +361,24 @@
 
         // Current tab
         let currentTab = 'all';
-
-        // Mock data (replace with API calls)
-        const mockSubmissions = [
-            {
-                id: 1,
-                date: '2024-01-20',
-                type: 'patient',
-                name: 'John Doe',
-                email: 'john.doe@email.com',
-                phone: '(555) 123-4567',
-                location: 'New York, NY',
-                urgency: 'high',
-                status: 'pending',
-                message: 'I have a diabetic foot ulcer that needs urgent attention.'
-            },
-            {
-                id: 2,
-                date: '2024-01-20',
-                type: 'provider',
-                name: 'Dr. Sarah Johnson',
-                email: 'dr.johnson@clinic.com',
-                phone: '(555) 234-5678',
-                location: 'Los Angeles, CA',
-                urgency: null,
-                status: 'pending',
-                credentials: 'MD, Wound Care Certified'
-            },
-            {
-                id: 3,
-                date: '2024-01-19',
-                type: 'patient',
-                name: 'Mary Smith',
-                email: 'mary.smith@email.com',
-                phone: '(555) 345-6789',
-                location: 'Chicago, IL',
-                urgency: 'medium',
-                status: 'reviewed',
-                message: 'Looking for wound care specialist in my area.'
-            },
-            {
-                id: 4,
-                date: '2024-01-19',
-                type: 'patient',
-                name: 'Robert Brown',
-                email: 'robert.brown@email.com',
-                phone: '(555) 456-7890',
-                location: 'Houston, TX',
-                urgency: 'emergency',
-                status: 'contacted',
-                message: 'Emergency: Infected wound, need immediate help!'
-            }
-        ];
+        const API_BASE_URL = 'https://3zkisn905d.execute-api.us-east-1.amazonaws.com/prod';
+        let submissionsData = [];
 
         // Load data
-        function loadData() {
+        async function loadData() {
             const tbody = document.getElementById('table-body');
             const emptyState = document.getElementById('empty-state');
             
             // Filter data based on current tab
-            let filteredData = mockSubmissions;
+            if (submissionsData.length === 0) {
+                await fetchSubmissions();
+            }
+
+            let filteredData = submissionsData;
             if (currentTab === 'patients') {
-                filteredData = mockSubmissions.filter(s => s.type === 'patient');
+                filteredData = submissionsData.filter(s => s.type === 'patient');
             } else if (currentTab === 'providers') {
-                filteredData = mockSubmissions.filter(s => s.type === 'provider');
+                filteredData = submissionsData.filter(s => s.type === 'provider');
             }
             
             // Update stats
@@ -441,7 +395,7 @@
             // Build table rows
             tbody.innerHTML = filteredData.map(submission => `
                 <tr>
-                    <td>${formatDate(submission.date)}</td>
+                    <td>${formatDate(submission.created_at || submission.date)}</td>
                     <td>${submission.type === 'patient' ? 'Patient' : 'Provider'}</td>
                     <td><strong>${submission.name}</strong></td>
                     <td>${submission.email}</td>
@@ -450,8 +404,8 @@
                     <td>${submission.urgency ? `<span class="urgency-${submission.urgency}">${submission.urgency.toUpperCase()}</span>` : '-'}</td>
                     <td><span class="status-badge status-${submission.status}">${submission.status.toUpperCase()}</span></td>
                     <td>
-                        <button class="btn-action" onclick="viewDetails(${submission.id})">View</button>
-                        ${submission.status === 'pending' ? `<button class="btn-action primary" onclick="markReviewed(${submission.id})">Mark Reviewed</button>` : ''}
+                        <button class="btn-action" onclick="viewDetails(${submission.id}, '${submission.type}')">View</button>
+                        ${submission.status === 'pending' ? `<button class="btn-action primary" onclick="markReviewed(${submission.id}, '${submission.type}')">Mark Reviewed</button>` : ''}
                     </td>
                 </tr>
             `).join('');
@@ -462,10 +416,10 @@
 
         // Update statistics
         function updateStats() {
-            const total = mockSubmissions.length;
-            const pending = mockSubmissions.filter(s => s.status === 'pending').length;
-            const patients = mockSubmissions.filter(s => s.type === 'patient').length;
-            const providers = mockSubmissions.filter(s => s.type === 'provider').length;
+            const total = submissionsData.length;
+            const pending = submissionsData.filter(s => s.status === 'pending').length;
+            const patients = submissionsData.filter(s => s.type === 'patient').length;
+            const providers = submissionsData.filter(s => s.type === 'provider').length;
             
             document.getElementById('total-submissions').textContent = total;
             document.getElementById('pending-count').textContent = pending;
@@ -486,25 +440,36 @@
         }
 
         // View details
-        function viewDetails(id) {
-            const submission = mockSubmissions.find(s => s.id === id);
+        function viewDetails(id, type) {
+            const submission = submissionsData.find(s => s.id === id && s.type === type);
             if (submission) {
-                alert(`Details for ${submission.name}:\n\nEmail: ${submission.email}\nPhone: ${submission.phone}\nLocation: ${submission.location}\n${submission.message ? `\nMessage: ${submission.message}` : ''}`);
+                const details = [
+                    `Email: ${submission.email || '-'}`,
+                    `Phone: ${submission.phone || '-'}`,
+                    `Location: ${submission.location || '-'}`,
+                    type === 'patient' ? `Urgency: ${submission.urgency || '-'}` : null,
+                    submission.message ? `\nMessage:\n${submission.message}` : null,
+                    submission.credentials ? `\nCredentials: ${submission.credentials}` : null,
+                    submission.specialties ? `\nSpecialties: ${submission.specialties}` : null
+                ].filter(Boolean).join('\n');
+                alert(`Details for ${submission.name}:\n\n${details}`);
             }
         }
 
         // Mark as reviewed
-        function markReviewed(id) {
-            const submission = mockSubmissions.find(s => s.id === id);
-            if (submission) {
-                submission.status = 'reviewed';
+        function markReviewed(id, type) {
+            const idx = submissionsData.findIndex(s => s.id === id && s.type === type);
+            if (idx > -1) {
+                submissionsData[idx].status = 'reviewed';
                 loadData();
+                updateStats();
+                alert('Status updated locally. (Server update available in main API)');
             }
         }
 
         // Refresh data
-        function refreshData() {
-            console.log('Refreshing data...');
+        async function refreshData() {
+            await fetchSubmissions();
             loadData();
         }
 
@@ -545,21 +510,47 @@
             }
         }, 60000); // Check every minute
 
-        // Initial load
-        loadData();
-
-        // Real API integration (commented out for now)
-        /*
         async function fetchSubmissions() {
             try {
-                const response = await fetch('https://3zkisn905d.execute-api.us-east-1.amazonaws.com/prod/api/submissions');
-                const data = await response.json();
-                // Process and display data
+                const [patientsRes, providersRes] = await Promise.all([
+                    fetch(`${API_BASE_URL}/api/submissions?type=patient`),
+                    fetch(`${API_BASE_URL}/api/submissions?type=provider`)
+                ]);
+                const patientsJson = await patientsRes.json();
+                const providersJson = await providersRes.json();
+                const patients = (patientsJson.submissions || []).map(r => ({
+                    id: r.id,
+                    type: 'patient',
+                    name: r.name,
+                    email: r.email,
+                    phone: r.phone,
+                    location: r.location,
+                    urgency: r.urgency,
+                    status: r.status || 'pending',
+                    message: r.message || '',
+                    created_at: r.created_at
+                }));
+                const providers = (providersJson.submissions || []).map(r => ({
+                    id: r.id,
+                    type: 'provider',
+                    name: r.name,
+                    email: r.email,
+                    phone: r.phone,
+                    location: r.location,
+                    status: r.status || 'pending',
+                    credentials: r.credentials || '',
+                    specialties: Array.isArray(r.specialties) ? r.specialties.join(', ') : (r.specialties || ''),
+                    created_at: r.created_at
+                }));
+                submissionsData = [...patients, ...providers].sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
             } catch (error) {
                 console.error('Failed to fetch submissions:', error);
+                if (submissionsData.length === 0) submissionsData = [];
             }
         }
-        */
+
+        // Initial load
+        (async () => { await fetchSubmissions(); loadData(); })();
     </script>
 </body>
 </html>
