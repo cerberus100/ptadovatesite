@@ -1,0 +1,30 @@
+{
+  "name": "truenorth-advocates-enhanced-lambda",
+  "version": "2.0.0",
+  "description": "Enhanced Lambda backend for True North Advocates with full security and compliance features",
+  "main": "enhanced-index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "zip -r function.zip . && aws lambda update-function-code --function-name tna-backend --zip-file fileb://function.zip",
+    "build": "npm ci --production",
+    "create-layer": "mkdir -p nodejs && cp package*.json nodejs/ && cd nodejs && npm ci --production && cd .. && zip -r layer.zip nodejs"
+  },
+  "dependencies": {
+    "pg": "^8.11.3",
+    "redis": "^4.6.10",
+    "nodemailer": "^6.9.7",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "@sendgrid/mail": "^7.7.0",
+    "twilio": "^4.19.0",
+    "uuid": "^9.0.1",
+    "@aws-sdk/client-ssm": "^3.445.0",
+    "@aws-sdk/client-ses": "^3.445.0",
+    "@aws-sdk/client-sns": "^3.445.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.445.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "aws-sdk-client-mock": "^3.0.0"
+  }
+}
