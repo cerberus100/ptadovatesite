@@ -164,65 +164,132 @@
             </p>
             <div class="form-container">
                 <form id="assistance-form" class="assistance-form">
-                    <div class="form-group">
-                        <label for="patient-name">Full Name *</label>
-                        <input type="text" id="patient-name" name="patient-name" required>
+                    <div id="assist-progress" style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
+                        <div class="step-dot" data-step="1" style="width:10px;height:10px;border-radius:50%;background:#46B5A4"></div>
+                        <div class="step-dot" data-step="2" style="width:10px;height:10px;border-radius:50%;background:#cbd5e1"></div>
+                        <div class="step-dot" data-step="3" style="width:10px;height:10px;border-radius:50%;background:#cbd5e1"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="patient-email">Email Address *</label>
-                        <input type="email" id="patient-email" name="patient-email" required>
+
+                    <!-- Step 1: Contact & location -->
+                    <div class="form-step active" data-step="1">
+                        <div class="form-group">
+                            <label for="patient-name">Full Name *</label>
+                            <input type="text" id="patient-name" name="patient-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-email">Email Address *</label>
+                            <input type="email" id="patient-email" name="patient-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-phone">Phone Number</label>
+                            <input type="tel" id="patient-phone" name="patient-phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="patient-location">Location (City, State) *</label>
+                            <input type="text" id="patient-location" name="patient-location" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="patient-phone">Phone Number</label>
-                        <input type="tel" id="patient-phone" name="patient-phone">
+
+                    <!-- Step 2: Simple wound questions -->
+                    <div class="form-step" data-step="2">
+                        <div class="form-group">
+                            <label for="wound-type">What kind of wound care do you need? (best match)</label>
+                            <select id="wound-type" name="wound-type">
+                                <option value="">Please select...</option>
+                                <option value="diabetic-foot">Diabetic Foot Ulcer (Priority)</option>
+                                <option value="diabetic">Other Diabetic Ulcer (Priority)</option>
+                                <option value="chronic">Chronic Wound (Non-Diabetic)</option>
+                                <option value="pressure">Pressure Sore</option>
+                                <option value="venous">Venous Ulcer</option>
+                                <option value="arterial">Arterial Ulcer</option>
+                                <option value="surgical">Surgical Wound</option>
+                                <option value="other">Other / Not sure</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Are you diabetic?</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="is-diabetic" value="yes"> Yes</label>
+                                <label><input type="radio" name="is-diabetic" value="no"> No</label>
+                                <label><input type="radio" name="is-diabetic" value="unsure"> Not sure</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Has the wound lasted longer than 30 days without healing?</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="over-30-days" value="yes"> Yes</label>
+                                <label><input type="radio" name="over-30-days" value="no"> No</label>
+                                <label><input type="radio" name="over-30-days" value="unsure"> Not sure</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Do you have neuropathy (numbness/tingling in feet or hands)?</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="neuropathy" value="yes"> Yes</label>
+                                <label><input type="radio" name="neuropathy" value="no"> No</label>
+                                <label><input type="radio" name="neuropathy" value="unsure"> Not sure</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Where do you prefer to receive care?</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="care-preference" value="home"> Home health / Mobile care</label>
+                                <label><input type="radio" name="care-preference" value="clinic"> Physical clinic/location</label>
+                                <label><input type="radio" name="care-preference" value="either"> Either / No preference</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="urgency">How soon do you need help?</label>
+                            <select id="urgency" name="urgency">
+                                <option value="routine">Routine</option>
+                                <option value="urgent">Urgent (within 1 week)</option>
+                                <option value="emergency">Emergency (within 24 hours)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="insurance">Insurance (optional)</label>
+                            <select id="insurance" name="insurance">
+                                <option value="">Select Insurance Type (optional)</option>
+                                <option value="medicare">Medicare</option>
+                                <option value="medicaid">Medicaid</option>
+                                <option value="commercial">Commercial Insurance</option>
+                                <option value="none">No Insurance / Self-pay</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="patient-location">Location (City, State) *</label>
-                        <input type="text" id="patient-location" name="patient-location" required>
+
+                    <!-- Step 3: Consent & submit -->
+                    <div class="form-step" data-step="3">
+                        <div class="form-group">
+                            <label for="description">Anything else we should know? (optional)</label>
+                            <textarea id="description" name="description" rows="3" placeholder="Tell us briefly about your situation"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="hipaa-consent" name="hipaa-consent" required>
+                                I consent to the collection and use of my information as described in the Privacy Policy.
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="assist-tcpa" name="assist-tcpa" required>
+                                I agree to be contacted about my request by phone, email, or SMS (TCPA consent).
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="wound-type">Type of Wound Care Needed</label>
-                        <select id="wound-type" name="wound-type">
-                            <option value="">Please select...</option>
-                            <option value="diabetic-foot" style="font-weight: bold; color: #26547C;">Diabetic Foot Ulcer (Priority)</option>
-                            <option value="diabetic" style="font-weight: bold; color: #26547C;">Other Diabetic Ulcer (Priority)</option>
-                            <option value="chronic">Chronic Wound (Non-Diabetic)</option>
-                            <option value="pressure">Pressure Sore</option>
-                            <option value="venous">Venous Ulcer</option>
-                            <option value="arterial">Arterial Ulcer</option>
-                            <option value="surgical">Surgical Wound</option>
-                            <option value="other">Other</option>
-                        </select>
+
+                    <div class="assessment-actions" style="display:flex;justify-content:space-between;margin-top:16px;">
+                        <button type="button" id="assist-prev" class="btn btn-outline-secondary">Back</button>
+                        <div>
+                            <button type="button" id="assist-next" class="btn btn-primary">Next</button>
+                            <button type="submit" id="assist-submit" class="btn btn-primary" style="display:none;">Submit Request</button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="urgency">Urgency Level</label>
-                        <select id="urgency" name="urgency">
-                            <option value="routine">Routine</option>
-                            <option value="urgent">Urgent (within 1 week)</option>
-                            <option value="emergency">Emergency (within 24 hours)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                                        <label for="insurance">Insurance Information</label>
-                <select id="insurance" name="insurance">
-                    <option value="">Select Insurance Type (optional)</option>
-                    <option value="medicare">Medicare</option>
-                    <option value="medicaid">Medicaid</option>
-                    <option value="commercial">Commercial Insurance (ACA or Work Plan)</option>
-                </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description of Assistance Needed *</label>
-                        <textarea id="description" name="description" rows="4" required placeholder="Please describe your situation and how we can help..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="hipaa-consent" name="hipaa-consent" required>
-                            I consent to the collection and use of my information as described in the Privacy Policy *
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Request</button>
                 </form>
+                <div id="assistance-thankyou" style="display:none;padding:24px;text-align:center;">
+                    <h3 style="color:#26547C;margin-bottom:8px;">Thank you for requesting assistance</h3>
+                    <p>An advocate will review your information and contact you within 24–72 hours. If this is an emergency, please seek immediate medical care.</p>
+                </div>
             </div>
         </div>
     </section>

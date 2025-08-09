@@ -701,28 +701,81 @@ function filterProvidersByArea(area) {
 
 // Form handling
 function initializeFormHandling() {
-    const form = document.getElementById('assistance-form');
+    const assistanceForm = document.getElementById('assistance-form');
     
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        // Validate required fields
-        if (!data['patient-name'] || !data['patient-email'] || !data['patient-location'] || !data['description']) {
-            notifications.error('Please fill in all required fields.', 'Validation Error');
-            return;
+    if (assistanceForm) {
+        const aSteps = Array.from(assistanceForm.querySelectorAll('.form-step'));
+        const aDots = Array.from(document.querySelectorAll('#assist-progress .step-dot'));
+        const aNext = document.getElementById('assist-next');
+        const aPrev = document.getElementById('assist-prev');
+        const aSubmit = document.getElementById('assist-submit');
+        const aThanks = document.getElementById('assistance-thankyou');
+        let aIndex = 0;
+
+        function showAssistStep(i) {
+            aSteps.forEach((s, idx) => s.classList.toggle('active', idx === i));
+            aDots.forEach((d, idx) => d.style.background = idx <= i ? '#46B5A4' : '#cbd5e1');
+            aPrev.style.visibility = i === 0 ? 'hidden' : 'visible';
+            aNext.style.display = i === aSteps.length - 1 ? 'none' : '';
+            aSubmit.style.display = i === aSteps.length - 1 ? '' : 'none';
         }
-        
-        if (!data['hipaa-consent']) {
-            notifications.error('Please consent to the privacy policy to continue.', 'Consent Required');
-            return;
+
+        function validAssistStep() {
+            const step = aSteps[aIndex];
+            const fields = Array.from(step.querySelectorAll('input, select, textarea'));
+            for (const el of fields) {
+                if (el.hasAttribute('required')) {
+                    if (el.type === 'radio') {
+                        const group = step.querySelectorAll(`input[name="${el.name}"]`);
+                        if (!Array.from(group).some(r => r.checked)) return false;
+                    } else if (!el.value) {
+                        return false;
+                    }
+                }
+                if (el.id === 'patient-email' && el.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(el.value)) return false;
+                }
+            }
+            return true;
         }
-        
-        // Simulate form submission
-        submitAssistanceRequest(data);
-    });
+
+        showAssistStep(aIndex);
+
+        aNext.addEventListener('click', () => {
+            if (!validAssistStep()) {
+                notifications.error('Please complete the required fields on this step.', 'Validation Error');
+                return;
+            }
+            aIndex = Math.min(aIndex + 1, aSteps.length - 1);
+            showAssistStep(aIndex);
+        });
+
+        aPrev.addEventListener('click', () => {
+            aIndex = Math.max(aIndex - 1, 0);
+            showAssistStep(aIndex);
+        });
+
+        assistanceForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Final step validation (includes HIPAA + TCPA)
+            if (!validAssistStep()) {
+                notifications.error('Please complete all required fields.', 'Validation Error');
+                return;
+            }
+
+            showLoading();
+            const formData = new FormData(assistanceForm);
+            const data = Object.fromEntries(formData);
+            setTimeout(() => {
+                hideLoading();
+                notifications.success('Thank you for your request!', 'Request Submitted');
+                assistanceForm.style.display = 'none';
+                aThanks.style.display = '';
+            }, 1200);
+        });
+    }
 }
 
 // Submit assistance request
