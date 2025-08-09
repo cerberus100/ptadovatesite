@@ -413,6 +413,43 @@
                             <input type="text" id="applicant-location" name="applicant-location" placeholder="City, State" required>
                         </div>
                     </div>
+
+                    <!-- Self-nomination questionnaire -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="num-woundcare-doctors">Number of practicing wound care clinicians *</label>
+                            <input type="number" min="0" id="num-woundcare-doctors" name="num-woundcare-doctors" placeholder="e.g., 3" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="npi">NPI Number *</label>
+                            <input type="text" id="npi" name="npi" placeholder="10-digit NPI" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Does your practice provide acute wound care? *</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="acute-wound-care" value="yes" required> Yes</label>
+                                <label><input type="radio" name="acute-wound-care" value="no"> No</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Does your practice provide advanced wound care? *</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="advanced-wound-care" value="yes" required> Yes</label>
+                                <label><input type="radio" name="advanced-wound-care" value="no"> No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Does your clinic offer mobile services? *</label>
+                        <div class="checkbox-group">
+                            <label><input type="radio" name="mobile-services" value="yes" required> Yes</label>
+                            <label><input type="radio" name="mobile-services" value="no"> No</label>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <label for="applicant-license">License Number *</label>
@@ -450,6 +487,13 @@
                         <label class="checkbox-label">
                             <input type="checkbox" name="non-profit-agreement" required>
                             I understand this is a non-profit organization and I commit to prioritizing patient care over profit
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="tcpa-consent" name="tcpa-consent" required>
+                            I agree to be contacted by True North Advocates to verify this information by email or phone call (TCPA consent)
                         </label>
                     </div>
                     

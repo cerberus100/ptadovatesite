@@ -819,9 +819,28 @@ function initializeNetworkForms() {
                 return;
             }
             
+            // New questionnaire validation
+            if (!data['num-woundcare-doctors'] || Number(data['num-woundcare-doctors']) < 0) {
+                notifications.error('Please provide a valid number of practicing wound care clinicians.', 'Validation Error');
+                return;
+            }
+            if (!data['npi'] || !/^\d{10}$/.test(String(data['npi']).replace(/\D/g, ''))) {
+                notifications.error('Please provide a valid 10-digit NPI number.', 'Validation Error');
+                return;
+            }
+            if (!data['acute-wound-care'] || !data['advanced-wound-care'] || !data['mobile-services']) {
+                notifications.error('Please answer the acute/advanced/mobile practice questions.', 'Validation Error');
+                return;
+            }
+
             // Check non-profit agreement
             if (!data['non-profit-agreement']) {
                 notifications.error('Please confirm your commitment to patient-first care in our non-profit network.', 'Agreement Required');
+                return;
+            }
+            // TCPA consent
+            if (!data['tcpa-consent']) {
+                notifications.error('Please provide consent to be contacted to verify your information (TCPA).', 'Consent Required');
                 return;
             }
             
