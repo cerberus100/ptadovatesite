@@ -795,7 +795,13 @@ function initializeNetworkForms() {
         let currentStep = 0;
 
         function showStep(index) {
-            steps.forEach((s, i) => s.style.display = i === index ? '' : 'none');
+            steps.forEach((s, i) => {
+                if (i === index) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
             dots.forEach((d, i) => d.style.background = i <= index ? '#46B5A4' : '#cbd5e1');
             prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
             nextBtn.style.display = index === steps.length - 1 ? 'none' : '';
