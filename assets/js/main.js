@@ -742,6 +742,21 @@ function initializeFormHandling() {
 
         showAssistStep(aIndex);
 
+        // Dynamic: insurance none -> show assistance question
+        const insuranceSelect = document.getElementById('insurance');
+        const insuranceAssistGroup = document.getElementById('insurance-assist-group');
+        if (insuranceSelect && insuranceAssistGroup) {
+            insuranceSelect.addEventListener('change', () => {
+                if (insuranceSelect.value === 'none') {
+                    insuranceAssistGroup.style.display = '';
+                } else {
+                    insuranceAssistGroup.style.display = 'none';
+                    const checked = insuranceAssistGroup.querySelector('input[name="insurance-assist"]:checked');
+                    if (checked) checked.checked = false;
+                }
+            });
+        }
+
         aNext.addEventListener('click', () => {
             if (!validAssistStep()) {
                 notifications.error('Please complete the required fields on this step.', 'Validation Error');
@@ -770,9 +785,10 @@ function initializeFormHandling() {
             const data = Object.fromEntries(formData);
             setTimeout(() => {
                 hideLoading();
-                notifications.success('Thank you for your request!', 'Request Submitted');
+                // Replace form with full thank-you state
                 assistanceForm.style.display = 'none';
-                aThanks.style.display = '';
+                aThanks.style.display = 'block';
+                aThanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 1200);
         });
     }

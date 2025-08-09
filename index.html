@@ -256,6 +256,13 @@
                                 <option value="none">No Insurance / Self-pay</option>
                             </select>
                         </div>
+                        <div class="form-group" id="insurance-assist-group" style="display:none;">
+                            <label>Would you like assistance obtaining insurance? In many cases, coverage may be free based on eligibility.</label>
+                            <div class="checkbox-group">
+                                <label><input type="radio" name="insurance-assist" value="yes"> Yes</label>
+                                <label><input type="radio" name="insurance-assist" value="no"> No</label>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Step 3: Consent & submit -->
@@ -273,7 +280,7 @@
                         <div class="form-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="assist-tcpa" name="assist-tcpa" required>
-                                I agree to be contacted about my request by phone, email, or SMS (TCPA consent).
+                                <span class="tcpa-smallprint">By checking this box, you agree that True North Advocates and its partners may contact you at the email address and phone number you provided (including by automated dialing systems, prerecorded messages, and text messages) for coordination of care and related services. Message/data rates may apply. Consent is not a condition of receiving services. You may reply STOP to opt out at any time.</span>
                             </label>
                         </div>
                     </div>
@@ -286,9 +293,12 @@
                         </div>
                     </div>
                 </form>
-                <div id="assistance-thankyou" style="display:none;padding:24px;text-align:center;">
-                    <h3 style="color:#26547C;margin-bottom:8px;">Thank you for requesting assistance</h3>
-                    <p>An advocate will review your information and contact you within 24–72 hours. If this is an emergency, please seek immediate medical care.</p>
+                <div id="assistance-thankyou" style="display:none;padding:32px 24px;text-align:center;">
+                    <h3 style="color:#26547C;margin-bottom:8px;">Your submission has been accepted at True North</h3>
+                    <p style="max-width:720px;margin:0 auto 10px;color:#374151;">We strive to advocate for patients across the country. Please allow us time to help you as quickly as possible.</p>
+                    <p style="max-width:720px;margin:0 auto 10px;color:#374151;">In case of a medical emergency, please call 911 immediately.</p>
+                    <p style="max-width:720px;margin:0 auto 16px;color:#374151;">If it is not an emergency and you would like to contact a doctor before an advocate reaches out to you, please <a href="#providers" class="btn-link">click here</a> to go to our provider search portal where you can find a physician in your area.</p>
+                    <a href="#providers" class="btn btn-primary">Go to Provider Search</a>
                 </div>
             </div>
         </div>
