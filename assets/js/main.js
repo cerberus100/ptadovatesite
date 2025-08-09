@@ -1018,12 +1018,54 @@ function initializeNetworkForms() {
                 return;
             }
             
-            // Simulate application submission
-            notifications.success(`Thank you for your application, ${data['applicant-name']}!`, 'Application Submitted');
+            // Map payload to backend expectations
+            const payload = {
+                name: data['applicant-name'],
+                email: data['applicant-email'],
+                phone: data['applicant-phone'],
+                credentials: [
+                    data['applicant-title'] ? `Title: ${data['applicant-title']}` : null,
+                    data['applicant-license'] ? `License: ${data['applicant-license']}` : null,
+                    data['npi'] ? `NPI: ${data['npi']}` : null
+                ].filter(Boolean).join(' | '),
+                specialties: Array.isArray(data['wound-types']) ? data['wound-types'] : (data['wound-types'] ? [data['wound-types']] : []),
+                location: data['applicant-location'],
+                // Extra details appended for admin context
+                message: [
+                    data['applicant-practice'] ? `Practice: ${data['applicant-practice']}` : null,
+                    data['applicant-specialty'] ? `Primary Specialty: ${data['applicant-specialty']}` : null,
+                    data['applicant-experience'] ? `Experience: ${data['applicant-experience']}` : null,
+                    data['num-woundcare-doctors'] ? `Clinicians: ${data['num-woundcare-doctors']}` : null,
+                    data['acute-wound-care'] ? `Acute care: ${data['acute-wound-care']}` : null,
+                    data['advanced-wound-care'] ? `Advanced care: ${data['advanced-wound-care']}` : null,
+                    data['mobile-services'] ? `Mobile services: ${data['mobile-services']}` : null,
+                    data['patient-commitment'] ? `Commitment: ${data['patient-commitment']}` : null,
+                    data['insurance-acceptance'] ? `Insurance/Payment: ${data['insurance-acceptance']}` : null
+                ].filter(Boolean).join(' | ')
+            };
 
-            // Show thank you
-            applicationForm.style.display = 'none';
-            thankyouEl.style.display = '';
+            (async () => {
+                try {
+                    showLoading();
+                    const resp = await fetch(`${API_BASE_URL}/api/provider-application`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const json = await resp.json().catch(() => ({}));
+                    hideLoading();
+                    if (!resp.ok) {
+                        notifications.error(json.error || 'Submission failed. Please try again.', 'Server Error');
+                        return;
+                    }
+                    notifications.success(`Thank you for your application, ${data['applicant-name']}!`, 'Application Submitted');
+                    applicationForm.style.display = 'none';
+                    thankyouEl.style.display = '';
+                } catch (err) {
+                    hideLoading();
+                    notifications.error('Network error. Please try again.', 'Network Error');
+                }
+            })();
         });
     }
 }

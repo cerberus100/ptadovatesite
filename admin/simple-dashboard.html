@@ -456,14 +456,22 @@
             }
         }
 
-        // Mark as reviewed
-        function markReviewed(id, type) {
+        async function markReviewed(id, type) {
             const idx = submissionsData.findIndex(s => s.id === id && s.type === type);
-            if (idx > -1) {
+            if (idx === -1) return;
+            try {
+                const resp = await fetch(`${API_BASE_URL}/api/submissions/${id}/status`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: 'reviewed', type })
+                });
+                if (!resp.ok) throw new Error('server');
                 submissionsData[idx].status = 'reviewed';
                 loadData();
                 updateStats();
-                alert('Status updated locally. (Server update available in main API)');
+                alert('Status updated to REVIEWED.');
+            } catch (e) {
+                alert('Failed to update status on server. Please try again later.');
             }
         }
 
