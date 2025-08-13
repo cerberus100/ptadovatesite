@@ -87,14 +87,8 @@ class PerformanceManager {
     deferNonCriticalJS() {
         // Load non-critical JavaScript after page load
         window.addEventListener('load', () => {
-            const nonCriticalScripts = [
-                'assets/js/lazy-loading.js',
-                'assets/js/analytics.js'
-            ];
-
-            nonCriticalScripts.forEach(src => {
-                this.loadScriptAsync(src);
-            });
+            // Intentionally empty: avoid double-loading modules or 404s
+            // Lazy loading is already included via a script tag, and analytics is not used.
         });
     }
 
