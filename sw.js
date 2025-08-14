@@ -3,10 +3,10 @@
  * Provides offline functionality and performance optimization
  */
 
-const CACHE_NAME = 'helping-hands-v1.0.0';
-const STATIC_CACHE = 'helping-hands-static-v1';
-const DYNAMIC_CACHE = 'helping-hands-dynamic-v1';
-const IMAGE_CACHE = 'helping-hands-images-v1';
+const CACHE_NAME = 'truenorth-v1.0.1';
+const STATIC_CACHE = 'truenorth-static-v1.0.1';
+const DYNAMIC_CACHE = 'truenorth-dynamic-v1.0.1';
+const IMAGE_CACHE = 'truenorth-images-v1.0.1';
 
 // Resources to cache on install
 const STATIC_ASSETS = [
